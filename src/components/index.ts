@@ -6,6 +6,7 @@ export { Divider, type DividerProps } from './Divider';
 export { Headline, type HeadlineProps } from './Headline';
 export { LargeTitle, type LargeTitleProps } from './LargeTitle';
 export { List, type ListProps } from './List';
+export { Placeholder, type PlaceholderProps } from './Placeholder';
 export {
   Section,
   SectionFooter,

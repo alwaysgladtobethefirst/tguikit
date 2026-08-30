@@ -1,0 +1,25 @@
+.placeholder {
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 24px;
+  padding: 32px;
+}
+
+.fields {
+  margin: 0;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.description {
+  color: var(--tgui--hint_color);
+}
+
+.description:not(:first-child) {
+  margin-top: 8px;
+}
