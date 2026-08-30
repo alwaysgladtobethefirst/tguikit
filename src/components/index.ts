@@ -1,3 +1,4 @@
+export { Button, type ButtonMode, type ButtonProps, type ButtonSize } from './Button';
 export { Caption, type CaptionProps } from './Caption';
 export { Headline, type HeadlineProps } from './Headline';
 export { LargeTitle, type LargeTitleProps } from './LargeTitle';
