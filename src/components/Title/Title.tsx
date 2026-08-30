@@ -1,6 +1,6 @@
 import type { ElementType, Ref } from 'react';
-import { Typography, type TypographyProps } from '../../foundations/Typography';
 import { cn } from '../../shared/lib/cn';
+import { Typography, type TypographyProps } from '../Typography';
 import styles from './Title.module.css';
 
 type Level = '1' | '2' | '3';

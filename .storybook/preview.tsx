@@ -2,7 +2,7 @@ import '@fontsource-variable/inter-tight';
 import '@fontsource-variable/geist-mono';
 import type { Decorator, Preview } from '@storybook/react-vite';
 import { useLayoutEffect, useRef } from 'react';
-import { TguiProvider } from '../src/foundations/TguiProvider';
+import { TguiProvider } from '../src/components/TguiProvider';
 import type { Appearance, TguiPlatform } from '../src/shared/types/tgui';
 import './preview.css';
 
