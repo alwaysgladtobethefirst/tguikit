@@ -1,0 +1,5 @@
+.divider {
+  margin: 0;
+  border: none;
+  border-block-start: var(--tgui--border--width) solid var(--tgui--outline);
+}

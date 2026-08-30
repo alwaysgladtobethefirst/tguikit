@@ -1,6 +1,7 @@
 export { Button, type ButtonMode, type ButtonProps, type ButtonSize } from './Button';
 export { Caption, type CaptionProps } from './Caption';
 export { Cell, type CellProps } from './Cell';
+export { Divider, type DividerProps } from './Divider';
 export { Headline, type HeadlineProps } from './Headline';
 export { LargeTitle, type LargeTitleProps } from './LargeTitle';
 export { Subheadline, type SubheadlineProps } from './Subheadline';
