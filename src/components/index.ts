@@ -4,6 +4,7 @@ export { Card, CardCell, type CardCellProps, type CardProps, type CardType } fro
 export { Cell, type CellProps } from './Cell';
 export { Divider, type DividerProps } from './Divider';
 export { Headline, type HeadlineProps } from './Headline';
+export { Input, type InputProps, type InputStatus } from './Input';
 export { LargeTitle, type LargeTitleProps } from './LargeTitle';
 export { List, type ListProps } from './List';
 export { Placeholder, type PlaceholderProps } from './Placeholder';
