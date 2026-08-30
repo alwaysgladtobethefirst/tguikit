@@ -1,0 +1,42 @@
+.card {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 20px;
+  background: var(--tgui--tertiary_bg_color);
+  box-shadow:
+    0 32px 64px 0 rgba(0, 0, 0, 0.04),
+    0 0 2px 1px rgba(0, 0, 0, 0.02);
+}
+
+.cardAmbient {
+  background: var(--tgui--plain_foreground);
+}
+
+.cell {
+  --tgui--cell--middle--padding: 16px 0;
+
+  padding: 0 20px;
+  background: var(--tgui--card_bg_color);
+}
+
+.cellAmbient {
+  --tgui--text_color: var(--tgui--white);
+  --tgui--hint_color: rgba(255, 255, 255, 0.75);
+
+  position: absolute;
+  inset: auto 0 0 0;
+  padding-top: 48px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, var(--tgui--black) 100%);
+}
+
+.cellHeader {
+  font-weight: var(--tgui--font_weight--accent2);
+}
+
+.cellSubtitle {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: break-spaces;
+}
