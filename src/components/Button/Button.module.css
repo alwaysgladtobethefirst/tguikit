@@ -1,0 +1,153 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  max-inline-size: 100%;
+  min-inline-size: 80px;
+  border: none;
+  border-radius: var(--tgui--button--border_radius, 8px);
+  text-decoration: none;
+}
+
+.stretched {
+  inline-size: 100%;
+  flex-grow: 1;
+}
+
+/* hover wash — a translucent overlay whose strength varies by mode */
+.button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: var(--tgui--bg_color);
+  transition: opacity 0.15s ease-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:not([data-disabled]):hover::after {
+    opacity: var(--tgui--button--wash-opacity);
+  }
+}
+
+.before,
+.after {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  z-index: var(--tgui--z-index--simple);
+}
+
+.loading {
+  pointer-events: none;
+}
+
+.loading .before,
+.loading .after,
+.loading .content {
+  opacity: 0;
+}
+
+.spinner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  border-top-color: transparent;
+  color: var(--tgui--button--spinner-color);
+  animation: button-spinner 0.6s linear infinite;
+}
+
+@keyframes button-spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation-duration: 1.6s;
+  }
+}
+
+/* sizes */
+.size-s {
+  height: 36px;
+  min-width: 34px;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 999px;
+}
+
+.size-m {
+  height: 42px;
+  min-width: 42px;
+  gap: 8px;
+  padding: 8px 14px;
+}
+
+.size-l {
+  height: 50px;
+  gap: 10px;
+  padding: 10px 20px;
+}
+
+.ios.size-m {
+  border-radius: 12px;
+}
+
+.ios::after {
+  content: none;
+}
+
+/* modes */
+.mode-filled {
+  --tgui--button--wash-opacity: 0.15;
+  --tgui--button--spinner-color: var(--tgui--button_text_color);
+  color: var(--tgui--button_text_color);
+  background: var(--tgui--button_color);
+}
+
+.mode-bezeled {
+  --tgui--button--wash-opacity: 0.07;
+  --tgui--button--spinner-color: var(--tgui--link_color);
+  color: var(--tgui--link_color);
+  background: var(--tgui--secondary_fill);
+}
+
+.mode-plain {
+  --tgui--button--wash-opacity: 0.03;
+  --tgui--button--spinner-color: var(--tgui--plain_foreground);
+  color: var(--tgui--link_color);
+  background: transparent;
+}
+
+.mode-gray {
+  --tgui--button--wash-opacity: 0.5;
+  --tgui--button--spinner-color: var(--tgui--plain_foreground);
+  color: var(--tgui--plain_foreground);
+  background: var(--tgui--plain_background);
+}
+
+.mode-outline {
+  --tgui--button--wash-opacity: 0.5;
+  --tgui--button--spinner-color: var(--tgui--plain_foreground);
+  color: var(--tgui--plain_foreground);
+  background: transparent;
+  box-shadow: 0 0 0 1px var(--tgui--outline);
+}
+
+.mode-white {
+  --tgui--button--wash-opacity: 0.5;
+  --tgui--button--spinner-color: var(--tgui--surface_dark);
+  color: var(--tgui--black);
+  background: var(--tgui--white);
+}
