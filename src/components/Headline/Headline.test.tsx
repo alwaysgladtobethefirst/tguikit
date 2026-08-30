@@ -9,6 +9,14 @@ describe('Headline', () => {
     expect(el.className).toContain('headline');
   });
 
+  it('is semibold (weight 2) by default, overridable', () => {
+    const { rerender } = render(<Headline>x</Headline>);
+    expect(screen.getByRole('heading').className).toContain('weight-2');
+
+    rerender(<Headline weight="3">x</Headline>);
+    expect(screen.getByRole('heading').className).toContain('weight-3');
+  });
+
   it('renders as another element when Component is set', () => {
     render(<Headline Component="span">x</Headline>);
     expect(screen.getByText('x').tagName).toBe('SPAN');
