@@ -7,7 +7,6 @@ interface ArticleProps {
   children: ReactNode;
 }
 
-// shared doc-page shell: centred column, heading + intro, then the examples
 export function Article({ title, lead, children }: ArticleProps) {
   return (
     <div

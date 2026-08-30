@@ -7,7 +7,7 @@ export interface HeadlineProps extends TypographyProps {
   ref?: Ref<HTMLElement>;
 }
 
-// semibold by default – that emphasis is what makes a headline read as one (iOS Headline)
+// semibold by default — the emphasis is what makes it a headline (iOS)
 export function Headline({
   ref,
   weight = '2',

@@ -4,7 +4,7 @@ import { typography } from './Typography.variants';
 
 export interface TypographyProps extends AllHTMLAttributes<HTMLElement> {
   ref?: Ref<HTMLElement>;
-  // 1 = bold, 2 = semibold, 3 = regular (maps to --tgui--font_weight--accent1..3)
+  // 1 = bold, 2 = semibold, 3 = regular
   weight?: '1' | '2' | '3';
   caps?: boolean;
   Component?: ElementType;
