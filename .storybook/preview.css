@@ -1,4 +1,21 @@
+html,
+body,
+#storybook-root {
+  height: 100%;
+}
+
 .sb-show-main,
 .sbdocs {
   font-family: "Inter Tight Variable", system-ui, sans-serif;
+}
+
+/* fallback before the decorator syncs it (see preview.tsx) */
+.sb-main-fullscreen {
+  background: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  .sb-main-fullscreen {
+    background: #212121;
+  }
 }
