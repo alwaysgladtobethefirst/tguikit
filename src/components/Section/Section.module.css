@@ -1,0 +1,69 @@
+.body {
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionBase .bodyWithHeader {
+  background: var(--tgui--section_bg_color);
+  box-shadow: var(--tgui--base--section--box_shadow);
+}
+
+.sectionIos .body {
+  border-radius: 12px;
+  background: var(--tgui--section_bg_color);
+}
+
+.sectionIos .body > :first-child {
+  border-radius: 12px 12px 0 0;
+}
+
+.sectionIos .body > :last-child {
+  border-radius: 0 0 12px 12px;
+}
+
+.sectionIos .body > :only-child {
+  border-radius: 12px;
+}
+
+/* header */
+.header {
+  padding: 20px 24px 4px 22px;
+  color: var(--tgui--link_color);
+}
+
+.headerLarge {
+  padding-left: 24px;
+  color: var(--tgui--text_color);
+}
+
+.headerIos {
+  padding: 16px 16px 8px;
+  color: var(--tgui--section_header_text_color);
+}
+
+.headerIos.headerLarge {
+  padding: 0 0 12px;
+  color: var(--tgui--text_color);
+}
+
+/* footer */
+.footer {
+  padding: 12px 24px;
+}
+
+.footerIos {
+  padding: 8px 16px 0;
+}
+
+.footerCentered {
+  padding: 16px 24px 20px;
+  text-align: center;
+}
+
+.footerIos.footerCentered {
+  padding: 16px 16px 0;
+}
+
+.footerText {
+  color: var(--tgui--hint_color);
+}

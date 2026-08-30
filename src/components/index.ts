@@ -4,6 +4,14 @@ export { Cell, type CellProps } from './Cell';
 export { Divider, type DividerProps } from './Divider';
 export { Headline, type HeadlineProps } from './Headline';
 export { LargeTitle, type LargeTitleProps } from './LargeTitle';
+export {
+  Section,
+  SectionFooter,
+  type SectionFooterProps,
+  SectionHeader,
+  type SectionHeaderProps,
+  type SectionProps,
+} from './Section';
 export { Subheadline, type SubheadlineProps } from './Subheadline';
 export { Tappable, type TappableProps } from './Tappable';
 export { Text, type TextProps } from './Text';
