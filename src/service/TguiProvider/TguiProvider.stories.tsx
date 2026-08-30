@@ -211,7 +211,6 @@ const meta = {
   component: TguiProvider,
   tags: ['autodocs'],
   parameters: {
-    layout: 'fullscreen',
     docs: {
       description: {
         component:
@@ -221,22 +220,12 @@ const meta = {
           '`useTgui()`. Its wrapper element carries the `--tgui--*` design tokens and is the ' +
           'default mount point for overlays. Render it once near the top of your tree – with ' +
           'no props it resolves everything automatically, or pass `platform`, `appearance`, ' +
-          'or `portalContainer` to override.',
+          'or `portalContainer` to override. Use the Appearance and Platform toolbar controls ' +
+          'to drive the provider this Storybook wraps every story in.',
       },
     },
   },
   argTypes: {
-    platform: {
-      control: 'inline-radio',
-      options: [undefined, 'base', 'ios'],
-      description:
-        "Pinned design language: 'ios', or 'base' for Android / Desktop / Web. Unset detects it.",
-    },
-    appearance: {
-      control: 'inline-radio',
-      options: [undefined, 'light', 'dark'],
-      description: 'Pinned colour scheme. Unset follows the theme live.',
-    },
     portalContainer: {
       control: false,
       description: 'Overlay mount point. Defaults to the wrapper element.',
@@ -245,14 +234,7 @@ const meta = {
     children: { table: { disable: true } },
     className: { table: { disable: true } },
   },
-  render: (args) => (
-    <TguiProvider
-      {...args}
-      style={{ minHeight: '100dvh', background: 'var(--tgui--bg_color)', padding: '56px 24px' }}
-    >
-      <Overview />
-    </TguiProvider>
-  ),
+  render: () => <Overview />,
 } satisfies Meta<typeof TguiProvider>;
 
 export default meta;
@@ -263,13 +245,9 @@ export const Playground: Story = {};
 
 export const IOS: Story = {
   name: 'iOS',
-  args: { platform: 'ios' },
-};
-
-export const Base: Story = {
-  args: { platform: 'base' },
+  globals: { platform: 'ios' },
 };
 
 export const Dark: Story = {
-  args: { appearance: 'dark' },
+  globals: { appearance: 'dark' },
 };
