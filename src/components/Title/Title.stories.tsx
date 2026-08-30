@@ -1,51 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import type { CSSProperties, ReactNode } from 'react';
+import type { ReactNode } from 'react';
+import { Article } from '../../shared/stories/Article';
+import { eyebrow } from '../../shared/stories/tokens';
 import { Title } from './Title';
 
-const MONO = "'Geist Mono Variable', ui-monospace, 'SF Mono', 'Menlo', monospace";
-const DISPLAY = "'Inter Tight Variable', 'Inter Tight', system-ui, sans-serif";
-
-const eyebrow: CSSProperties = {
-  margin: 0,
-  fontFamily: MONO,
-  fontSize: 11,
-  letterSpacing: '0.04em',
-  color: 'var(--tgui--hint_color)',
-};
-
-function Article({ children }: { children: ReactNode }) {
-  return (
-    <div
-      style={{
-        maxWidth: 620,
-        margin: '0 auto',
-        color: 'var(--tgui--text_color)',
-        fontFamily: DISPLAY,
-        display: 'grid',
-        gap: 40,
-      }}
-    >
-      <header style={{ display: 'grid', gap: 12 }}>
-        <h1 style={{ margin: 0, fontSize: 30, fontWeight: 640, letterSpacing: '-0.025em' }}>
-          Title
-        </h1>
-        <p
-          style={{
-            margin: 0,
-            fontSize: 16,
-            lineHeight: 1.6,
-            color: 'var(--tgui--subtitle_text_color)',
-          }}
-        >
-          Section and page headings. `level` picks the size and the semantic tag together – 1 is an
-          `h2` at the title-1 size, 2 an `h3` (default), 3 an `h4`. Override the tag with
-          `Component` without changing the size.
-        </p>
-      </header>
-      {children}
-    </div>
-  );
-}
+const Page = ({ children }: { children: ReactNode }) => (
+  <Article
+    title="Title"
+    lead="Section and page headings. `level` picks the size and the semantic tag together – 1 is an `h2` at the title-1 size, 2 an `h3` (default), 3 an `h4`. Override the tag with `Component` without changing the size."
+  >
+    {children}
+  </Article>
+);
 
 const meta = {
   title: 'Typography/Title',
@@ -78,25 +44,31 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
   render: (args) => (
-    <Article>
+    <Page>
       <Title {...args} />
-    </Article>
+    </Page>
   ),
 };
 
 export const Levels: Story = {
   render: () => (
-    <Article>
+    <Page>
       <div style={{ display: 'grid', gap: 16 }}>
-        {(['1', '2', '3'] as const).map((level) => (
+        {(
+          [
+            ['1', 'h2'],
+            ['2', 'h3'],
+            ['3', 'h4'],
+          ] as const
+        ).map(([level, tag]) => (
           <div key={level} style={{ display: 'grid', gap: 4 }}>
             <span style={eyebrow}>
-              level="{level}" · {level === '1' ? 'h2' : level === '2' ? 'h3' : 'h4'}
+              level="{level}" · {tag}
             </span>
             <Title level={level}>Mini App settings</Title>
           </div>
         ))}
       </div>
-    </Article>
+    </Page>
   ),
 };

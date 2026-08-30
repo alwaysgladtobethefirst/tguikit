@@ -1,17 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import type { CSSProperties } from 'react';
+import type { ReactNode } from 'react';
+import { Article } from '../../shared/stories/Article';
+import { eyebrow } from '../../shared/stories/tokens';
 import { Typography } from './Typography';
 
-const MONO = "'Geist Mono Variable', ui-monospace, 'SF Mono', 'Menlo', monospace";
-const DISPLAY = "'Inter Tight Variable', 'Inter Tight', system-ui, sans-serif";
-
-const eyebrow: CSSProperties = {
-  margin: 0,
-  fontFamily: MONO,
-  fontSize: 11,
-  letterSpacing: '0.04em',
-  color: 'var(--tgui--hint_color)',
-};
+const Page = ({ children }: { children: ReactNode }) => (
+  <Article
+    title="Typography"
+    lead="The low-level base every named typography component (Text, Title, Headline, …) extends. It only owns the font family, weight and caps – size and line height come from whichever component wraps it. Reach for a named component first; use Typography directly for a one-off."
+  >
+    {children}
+  </Article>
+);
 
 const meta = {
   title: 'Foundations/Typography',
@@ -42,34 +42,33 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Playground: Story = {};
+export const Playground: Story = {
+  render: (args) => (
+    <Page>
+      <Typography {...args} style={{ fontSize: 20 }} />
+    </Page>
+  ),
+};
 
 export const Weights: Story = {
   render: () => (
-    <div
-      style={{
-        maxWidth: 620,
-        margin: '0 auto',
-        display: 'grid',
-        gap: 12,
-        color: 'var(--tgui--text_color)',
-        fontFamily: DISPLAY,
-      }}
-    >
-      {(['1', '2', '3'] as const).map((weight) => (
-        <div key={weight} style={{ display: 'grid', gap: 4 }}>
-          <span style={eyebrow}>weight="{weight}"</span>
-          <Typography weight={weight} style={{ fontSize: 20 }}>
+    <Page>
+      <div style={{ display: 'grid', gap: 12 }}>
+        {(['1', '2', '3'] as const).map((weight) => (
+          <div key={weight} style={{ display: 'grid', gap: 4 }}>
+            <span style={eyebrow}>weight="{weight}"</span>
+            <Typography weight={weight} style={{ fontSize: 20 }}>
+              The quick brown fox jumps over the lazy dog
+            </Typography>
+          </div>
+        ))}
+        <div style={{ display: 'grid', gap: 4 }}>
+          <span style={eyebrow}>caps</span>
+          <Typography caps style={{ fontSize: 20 }}>
             The quick brown fox jumps over the lazy dog
           </Typography>
         </div>
-      ))}
-      <div style={{ display: 'grid', gap: 4 }}>
-        <span style={eyebrow}>caps</span>
-        <Typography caps style={{ fontSize: 20 }}>
-          The quick brown fox jumps over the lazy dog
-        </Typography>
       </div>
-    </div>
+    </Page>
   ),
 };

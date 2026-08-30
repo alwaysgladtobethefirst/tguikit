@@ -1,14 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import type { ReactNode } from 'react';
+import { Article } from '../../shared/stories/Article';
+import { MONO } from '../../shared/stories/tokens';
 import { Caption } from '../Caption';
 import { Headline } from '../Headline';
 import { LargeTitle } from '../LargeTitle';
 import { Subheadline } from '../Subheadline';
 import { Text } from '../Text';
 import { Title } from '../Title';
-
-const MONO = "'Geist Mono Variable', ui-monospace, 'SF Mono', 'Menlo', monospace";
-const DISPLAY = "'Inter Tight Variable', 'Inter Tight', system-ui, sans-serif";
 
 const STEPS: Array<{ sample: ReactNode; name: string; px: string; use: string }> = [
   {
@@ -105,34 +104,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Scale: Story = {
   render: () => (
-    <div
-      style={{
-        maxWidth: 620,
-        margin: '0 auto',
-        color: 'var(--tgui--text_color)',
-        fontFamily: DISPLAY,
-        display: 'grid',
-        gap: 28,
-      }}
+    <Article
+      title="Type scale"
+      lead="Apple's iOS text styles, which Telegram follows. Each step pairs a size with a weight and colour – Headline is emphasised body, Subheadline is dimmed supporting text. Flip the Platform toolbar to iOS to see the line heights tighten."
     >
-      <header style={{ display: 'grid', gap: 12 }}>
-        <h1 style={{ margin: 0, fontSize: 30, fontWeight: 640, letterSpacing: '-0.025em' }}>
-          Type scale
-        </h1>
-        <p
-          style={{
-            margin: 0,
-            fontSize: 16,
-            lineHeight: 1.6,
-            color: 'var(--tgui--subtitle_text_color)',
-          }}
-        >
-          Apple's iOS text styles, which Telegram follows. Each step pairs a size with a weight and
-          colour – Headline is emphasised body, Subheadline is dimmed supporting text. Flip the
-          Platform toolbar to iOS to see the line heights tighten.
-        </p>
-      </header>
-
       <div style={{ display: 'grid', gap: 22 }}>
         {STEPS.map((step) => (
           <div
@@ -159,6 +134,6 @@ export const Scale: Story = {
           </div>
         ))}
       </div>
-    </div>
+    </Article>
   ),
 };

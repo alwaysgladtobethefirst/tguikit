@@ -1,51 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import type { CSSProperties, ReactNode } from 'react';
+import type { ReactNode } from 'react';
+import { Article } from '../../shared/stories/Article';
+import { eyebrow } from '../../shared/stories/tokens';
 import { Text } from '../Text';
 import { LargeTitle } from './LargeTitle';
 
-const MONO = "'Geist Mono Variable', ui-monospace, 'SF Mono', 'Menlo', monospace";
-const DISPLAY = "'Inter Tight Variable', 'Inter Tight', system-ui, sans-serif";
-
-const eyebrow: CSSProperties = {
-  margin: 0,
-  fontFamily: MONO,
-  fontSize: 11,
-  letterSpacing: '0.04em',
-  color: 'var(--tgui--hint_color)',
-};
-
-function Article({ children }: { children: ReactNode }) {
-  return (
-    <div
-      style={{
-        maxWidth: 620,
-        margin: '0 auto',
-        color: 'var(--tgui--text_color)',
-        fontFamily: DISPLAY,
-        display: 'grid',
-        gap: 40,
-      }}
-    >
-      <header style={{ display: 'grid', gap: 12 }}>
-        <h1 style={{ margin: 0, fontSize: 30, fontWeight: 640, letterSpacing: '-0.025em' }}>
-          LargeTitle
-        </h1>
-        <p
-          style={{
-            margin: 0,
-            fontSize: 16,
-            lineHeight: 1.6,
-            color: 'var(--tgui--subtitle_text_color)',
-          }}
-        >
-          The top of the scale (34px), bold by default. One per screen – the page's own title, the
-          welcome heading on an onboarding step. Renders an `h1`.
-        </p>
-      </header>
-      {children}
-    </div>
-  );
-}
+const Page = ({ children }: { children: ReactNode }) => (
+  <Article
+    title="LargeTitle"
+    lead="The top of the scale (34px), bold by default. One per screen – the page's own title, the welcome heading on an onboarding step. Renders an `h1`."
+  >
+    {children}
+  </Article>
+);
 
 const meta = {
   title: 'Typography/LargeTitle',
@@ -77,16 +44,16 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
   render: (args) => (
-    <Article>
+    <Page>
       <LargeTitle {...args} />
-    </Article>
+    </Page>
   ),
 };
 
 export const AsScreenTitle: Story = {
   name: 'As a screen title',
   render: () => (
-    <Article>
+    <Page>
       <div style={{ display: 'grid', gap: 8 }}>
         <span style={eyebrow}>onboarding step</span>
         <LargeTitle>Your chats, everywhere</LargeTitle>
@@ -95,6 +62,6 @@ export const AsScreenTitle: Story = {
           device you sign in on.
         </Text>
       </div>
-    </Article>
+    </Page>
   ),
 };
