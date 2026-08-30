@@ -7,7 +7,7 @@ export interface LargeTitleProps extends TypographyProps {
   ref?: Ref<HTMLElement>;
 }
 
-// bold by default, like the iOS Large Title it mirrors
+// bold by default, matching iOS Large Title
 export function LargeTitle({
   ref,
   weight = '1',

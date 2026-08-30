@@ -1,8 +1,8 @@
 import { type PointerEvent, useCallback, useEffect, useRef, useState } from 'react';
 
-// wait this long before showing a wave so a quick scroll doesn't trigger one
+// so a quick scroll doesn't leave a wave behind
 const PRESS_DELAY = 70;
-// safety net in case the wave's animationend never fires (e.g. reduced motion)
+// fallback for when animationend never fires (reduced motion)
 const WAVE_FALLBACK = 600;
 
 export interface Wave {
