@@ -7,10 +7,18 @@ export interface HeadlineProps extends TypographyProps {
   ref?: Ref<HTMLElement>;
 }
 
-export function Headline({ ref, className, Component = 'h5', ...rest }: HeadlineProps) {
+// semibold by default – that emphasis is what makes a headline read as one (iOS Headline)
+export function Headline({
+  ref,
+  weight = '2',
+  className,
+  Component = 'h5',
+  ...rest
+}: HeadlineProps) {
   return (
     <Typography
       ref={ref}
+      weight={weight}
       Component={Component}
       className={cn(styles.headline, className)}
       {...rest}

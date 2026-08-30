@@ -37,8 +37,8 @@ function Article({ children }: { children: ReactNode }) {
             color: 'var(--tgui--subtitle_text_color)',
           }}
         >
-          A step between Title and Text (19px), for subsection headings and list-group labels.
-          Renders an `h5` by default; extends Typography for `weight` and `caps`.
+          Emphasised text at 19px, semibold by default – the bold first line of a list row, a
+          subsection heading. That weight is what sets it apart from Text. Renders an `h5`.
         </p>
       </header>
       {children}
@@ -54,8 +54,9 @@ const meta = {
     docs: {
       description: {
         component:
-          'Heading text at the `--tgui--headline` size (19px), sitting between Title and Text. ' +
-          'Defaults to `h5`; `Component` changes the tag. Extends Typography (`weight`, `caps`).',
+          'Emphasised text at `--tgui--headline` (19px), **semibold** by default (`weight="2"`) – ' +
+          'the emphasis is its whole point (matches iOS Headline). Use it for the primary line ' +
+          'of a list row or a subsection heading. Defaults to `h5`; `Component` changes the tag.',
       },
     },
   },

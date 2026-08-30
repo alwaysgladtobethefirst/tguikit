@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import type { CSSProperties, ReactNode } from 'react';
+import { Headline } from '../Headline';
 import { Subheadline } from './Subheadline';
 
 const MONO = "'Geist Mono Variable', ui-monospace, 'SF Mono', 'Menlo', monospace";
@@ -37,8 +38,9 @@ function Article({ children }: { children: ReactNode }) {
             color: 'var(--tgui--subtitle_text_color)',
           }}
         >
-          Secondary headings – section-group labels, list headers. `level` 1 (16px, default) or 2
-          (15px). Renders an `h6`; extends Typography for `weight` and `caps`.
+          Supporting text, always paired with a dimmer colour. Two jobs: `level` 1 (16px) is the
+          secondary line under a row title; `level` 2 (15px) `caps` is the group header above a
+          settings section. Renders an `h6`.
         </p>
       </header>
       {children}
@@ -54,9 +56,10 @@ const meta = {
     docs: {
       description: {
         component:
-          'Secondary heading text. `level` 1 = `--tgui--subheadline1` (16px, default), 2 = ' +
-          '`--tgui--subheadline2` (15px). Renders an `h6`; `Component` changes the tag. Extends ' +
-          'Typography (`weight`, `caps`).',
+          'Supporting text, meant to be used with a dim colour (hint / subtitle). ' +
+          '`level` 1 = `--tgui--subheadline1` (16px) for the secondary line under a row title; ' +
+          '`level` 2 = `--tgui--subheadline2` (15px) with `caps` for a settings-section header. ' +
+          'Renders an `h6`; `Component` changes the tag.',
       },
     },
   },
@@ -100,14 +103,18 @@ export const Levels: Story = {
   ),
 };
 
-export const AsGroupLabel: Story = {
-  name: 'As a section-group label',
+export const InContext: Story = {
+  name: 'In context',
   render: () => (
     <Article>
-      <div style={{ display: 'grid', gap: 10 }}>
-        <Subheadline caps style={{ color: 'var(--tgui--section_header_text_color)' }}>
-          Account
+      <div style={{ display: 'grid', gap: 12 }}>
+        <span style={eyebrow}>the two jobs subheadline does</span>
+
+        {/* level 2, caps, dim: the group header above a settings section */}
+        <Subheadline level="2" caps style={{ color: 'var(--tgui--section_header_text_color)' }}>
+          Privacy
         </Subheadline>
+
         <div
           style={{
             display: 'grid',
@@ -117,16 +124,24 @@ export const AsGroupLabel: Story = {
             background: 'var(--tgui--section_separator_color)',
           }}
         >
-          {['Phone number', 'Username', 'Bio'].map((row) => (
+          {[
+            ['Last seen & online', 'Nobody'],
+            ['Phone number', 'My contacts'],
+          ].map(([title, value]) => (
             <div
-              key={row}
+              key={title}
               style={{
-                padding: '12px 16px',
+                display: 'grid',
+                gap: 2,
+                padding: '10px 16px',
                 background: 'var(--tgui--section_bg_color)',
-                fontSize: 'var(--tgui--text--font_size)',
               }}
             >
-              {row}
+              <Headline>{title}</Headline>
+              {/* level 1, dim: the secondary line under the row title */}
+              <Subheadline style={{ color: 'var(--tgui--subtitle_text_color)' }}>
+                {value}
+              </Subheadline>
             </div>
           ))}
         </div>

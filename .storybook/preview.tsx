@@ -82,6 +82,7 @@ const preview: Preview = {
           'Getting Started',
           'Foundations',
           'Typography',
+          ['Scale', '*'],
           'Layout',
           'Data Display',
           'Inputs',
