@@ -8,7 +8,7 @@ import { Input } from './Input';
 const Page = ({ children }: { children: ReactNode }) => (
   <Article
     title="Input"
-    lead="A single-line text field. `header` is a floating label (base platform); `before` / `after` slot icons or actions; `status` pins the error / focused ring, otherwise it follows focus. Wrap groups in a Section."
+    lead="A single-line text field. On base it is a self-contained outlined field with a floating `header` label; on iOS it is a borderless row that lives inside a `Section`. `before` / `after` slot icons or a clear button; `status` pins the error / focused ring, otherwise it follows focus."
   >
     {children}
   </Article>
@@ -22,16 +22,19 @@ const meta = {
     docs: {
       description: {
         component:
-          'Text input with a platform-aware container: a boxed field with a floating `header` ' +
-          'label on base, a rounded row on iOS. `status` is `default` | `error` | `focused` ' +
-          '(pins the ring); left unset it tracks focus. `before` / `after` hold icons or a ' +
-          'clear button. Needs a `TguiProvider`.',
+          'Text input with a platform-aware container. Base: an outlined field with a floating ' +
+          '`header` label — use it on its own, not inside a `Section`. iOS: a borderless row that ' +
+          'takes its framing from the surrounding `Section` / list. `status` is `default` | ' +
+          '`error` | `focused` (pins the ring); left unset it tracks focus. Needs a `TguiProvider`.',
       },
     },
   },
   argTypes: {
     header: { control: 'text' },
     placeholder: { control: 'text' },
+    type: { control: 'select', options: ['text', 'email', 'password', 'number', 'tel', 'search'] },
+    value: { table: { disable: true } },
+    defaultValue: { table: { disable: true } },
     status: { control: 'inline-radio', options: [undefined, 'default', 'error', 'focused'] },
     disabled: { control: 'boolean' },
     before: { control: false },
@@ -49,9 +52,7 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {
   render: (args) => (
     <Page>
-      <Section>
-        <Input {...args} />
-      </Section>
+      <Input {...args} />
     </Page>
   ),
 };
@@ -59,22 +60,32 @@ export const Playground: Story = {
 export const States: Story = {
   render: () => (
     <Page>
-      <div style={{ display: 'grid', gap: 16 }}>
+      <div style={{ display: 'grid', gap: 20 }}>
         {(['default', 'focused', 'error'] as const).map((status) => (
           <div key={status} style={{ display: 'grid', gap: 8 }}>
             <span style={eyebrow}>status="{status}"</span>
-            <Section>
-              <Input header="Email" placeholder="you@example.com" status={status} />
-            </Section>
+            <Input header="Email" placeholder="you@example.com" status={status} />
           </div>
         ))}
         <div style={{ display: 'grid', gap: 8 }}>
           <span style={eyebrow}>disabled</span>
-          <Section>
-            <Input header="Email" defaultValue="locked@example.com" disabled />
-          </Section>
+          <Input header="Email" defaultValue="locked@example.com" disabled />
         </div>
       </div>
+    </Page>
+  ),
+};
+
+export const InAList: Story = {
+  name: 'In a list (iOS)',
+  globals: { platform: 'ios' },
+  render: () => (
+    <Page>
+      <Section header="Contact">
+        <Input placeholder="First name" defaultValue="Ada" />
+        <Input placeholder="Last name" defaultValue="Lovelace" />
+        <Input placeholder="Email" defaultValue="ada@example.com" />
+      </Section>
     </Page>
   ),
 };
