@@ -1,11 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { type CSSProperties, useLayoutEffect, useRef, useState } from 'react';
+import { DISPLAY, eyebrow, MONO } from '../../shared/stories/tokens';
 import type { TguiPlatform } from '../../shared/types/tgui';
 import { TguiProvider } from './TguiProvider';
 import { useTgui } from './useTgui';
-
-const MONO = "'Geist Mono Variable', ui-monospace, 'SF Mono', 'Menlo', monospace";
-const DISPLAY = "'Inter Tight Variable', 'Inter Tight', system-ui, sans-serif";
 
 const PLATFORM_LABEL: Record<TguiPlatform, string> = { ios: 'iOS', base: 'Base' };
 
@@ -33,14 +31,6 @@ const READ_TOKENS = [
   ...SWATCHES.map((s) => s.token),
   ...TYPE_STEPS.flatMap((s) => [s.size, s.line]),
 ];
-
-const eyebrow: CSSProperties = {
-  margin: 0,
-  fontFamily: MONO,
-  fontSize: 11,
-  letterSpacing: '0.04em',
-  color: 'var(--tgui--hint_color)',
-};
 
 const sectionStyle: CSSProperties = { display: 'grid', gap: 16 };
 const monoValue: CSSProperties = {
