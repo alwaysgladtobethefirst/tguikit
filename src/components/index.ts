@@ -2,6 +2,7 @@ export { Button, type ButtonMode, type ButtonProps, type ButtonSize } from './Bu
 export { Caption, type CaptionProps } from './Caption';
 export { Card, CardCell, type CardCellProps, type CardProps, type CardType } from './Card';
 export { Cell, type CellProps } from './Cell';
+export { Checkbox, type CheckboxProps } from './Checkbox';
 export { Divider, type DividerProps } from './Divider';
 export { Headline, type HeadlineProps } from './Headline';
 export { Input, type InputProps, type InputStatus } from './Input';
