@@ -1,0 +1,70 @@
+.cell {
+  --tgui--cell--middle--padding: 16px 0;
+
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 24px;
+}
+
+.before,
+.after {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.middle {
+  flex-grow: 1;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  padding: var(--tgui--cell--middle--padding);
+
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.middle > *,
+.title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.multiline .middle > *,
+.multiline .title {
+  white-space: normal;
+}
+
+.head {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.subhead {
+  color: var(--tgui--subtitle_text_color);
+}
+
+.hint,
+.subtitle,
+.description {
+  color: var(--tgui--hint_color);
+}
+
+.hovered {
+  background: var(--tgui--tertiary_bg_color);
+}
+
+.ios {
+  --tgui--cell--middle--padding: 12px 0;
+  gap: 16px;
+  padding: 0 16px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cell:not([data-disabled]):hover {
+    background: var(--tgui--tertiary_bg_color);
+  }
+}
