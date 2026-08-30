@@ -1,3 +1,4 @@
+export { Caption, type CaptionProps } from './Caption';
 export { Headline, type HeadlineProps } from './Headline';
 export { Tappable, type TappableProps } from './Tappable';
 export { Text, type TextProps } from './Text';
