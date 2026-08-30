@@ -16,7 +16,7 @@ const Page = ({ children }: { children: ReactNode }) => (
 const Media = ({ h = 180 }: { h?: number }) => (
   <div
     style={{
-      width: 260,
+      width: '100%',
       height: h,
       background: 'linear-gradient(135deg, #4b7bec 0%, #a55eea 100%)',
     }}
@@ -54,7 +54,7 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {
   render: (args) => (
     <Page>
-      <Card {...args}>
+      <Card {...args} style={{ width: 280 }}>
         <Media />
         <Card.Cell subtitle="Open now · 0.4 km away">Blue Bottle Coffee</Card.Cell>
       </Card>
@@ -68,15 +68,15 @@ export const Types: Story = {
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24 }}>
         <div style={{ display: 'grid', gap: 8 }}>
           <span style={eyebrow}>plain</span>
-          <Card>
-            <Media />
+          <Card style={{ width: 240 }}>
+            <Media h={150} />
             <Card.Cell subtitle="Warm and sunny, 24°">Today</Card.Cell>
           </Card>
         </div>
         <div style={{ display: 'grid', gap: 8 }}>
           <span style={eyebrow}>ambient</span>
-          <Card type="ambient">
-            <Media h={220} />
+          <Card type="ambient" style={{ width: 240 }}>
+            <Media h={300} />
             <Card.Cell subtitle="A quiet spot by the river">Riverside Park</Card.Cell>
           </Card>
         </div>

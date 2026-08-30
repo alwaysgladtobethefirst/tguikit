@@ -29,9 +29,9 @@ describe('Checkbox', () => {
   });
 
   it('disables', () => {
-    const { container } = render(<Checkbox aria-label="x" disabled />);
+    render(<Checkbox aria-label="x" disabled />);
     expect(screen.getByRole('checkbox')).toBeDisabled();
-    expect(container.querySelector('label')).toHaveAttribute('data-disabled');
+    expect(screen.getByRole('checkbox').parentElement).toHaveAttribute('data-disabled');
   });
 
   it('forwards ref', () => {

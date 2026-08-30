@@ -54,12 +54,18 @@ export const InRows: Story = {
   render: () => (
     <Page>
       <Section header="Notify me about">
-        <Cell after={<Checkbox defaultChecked aria-label="Direct messages" />}>
+        <Cell Component="label" after={<Checkbox defaultChecked aria-label="Direct messages" />}>
           Direct messages
         </Cell>
-        <Cell after={<Checkbox defaultChecked aria-label="Group mentions" />}>Group mentions</Cell>
-        <Cell after={<Checkbox aria-label="Channel posts" />}>Channel posts</Cell>
-        <Cell after={<Checkbox indeterminate aria-label="All activity" />}>All activity</Cell>
+        <Cell Component="label" after={<Checkbox defaultChecked aria-label="Group mentions" />}>
+          Group mentions
+        </Cell>
+        <Cell Component="label" after={<Checkbox aria-label="Channel posts" />}>
+          Channel posts
+        </Cell>
+        <Cell Component="label" after={<Checkbox indeterminate aria-label="All activity" />}>
+          All activity
+        </Cell>
       </Section>
     </Page>
   ),

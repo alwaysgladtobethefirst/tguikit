@@ -29,8 +29,14 @@ export function Tappable({
   const disabled = Boolean(rest.disabled);
   const readOnly = Boolean(rest.readOnly);
 
+  // a plain div/span with no handler is a layout wrapper, not a control — no feedback
+  const interactive = Component !== 'div' && Component !== 'span';
   const hasRipple =
-    platform === 'base' && interactiveAnimation === 'background' && !readOnly && !disabled;
+    platform === 'base' &&
+    interactiveAnimation === 'background' &&
+    !readOnly &&
+    !disabled &&
+    (interactive || rest.onClick != null);
 
   const handlePointerDown = (event: PointerEvent<HTMLElement>) => {
     if (hasRipple) ripple.onPointerDown(event);
