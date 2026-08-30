@@ -1,4 +1,4 @@
-import { TguiProvider, useTgui } from './foundations/TguiProvider';
+import { TguiProvider, useTgui } from './components/TguiProvider';
 
 function Readout() {
   const { platform, appearance } = useTgui();

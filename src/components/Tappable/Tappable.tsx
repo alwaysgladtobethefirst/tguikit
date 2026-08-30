@@ -1,8 +1,8 @@
 'use client';
 
 import type { AllHTMLAttributes, ElementType, PointerEvent, Ref } from 'react';
-import { useTgui } from '../../foundations/TguiProvider/useTgui';
 import { cn } from '../../shared/lib/cn';
+import { useTgui } from '../TguiProvider/useTgui';
 import { Ripple } from './Ripple';
 import styles from './Tappable.module.css';
 import { useRipple } from './useRipple';
