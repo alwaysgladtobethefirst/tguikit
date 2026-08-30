@@ -1,0 +1,98 @@
+.switch {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  width: 52px;
+  height: 32px;
+  border-radius: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.switch[data-disabled] {
+  cursor: default;
+  opacity: 0.4;
+}
+
+.input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.control::before {
+  position: absolute;
+  content: "";
+  inset: 0;
+  background: var(--tgui--secondary_bg_color);
+}
+
+.base .control::before {
+  border-radius: 16px;
+  border: 3px solid var(--tgui--secondary_hint_color);
+}
+
+.control::after {
+  position: absolute;
+  content: "";
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+}
+
+.base .control::after {
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+  background: var(--tgui--secondary_hint_color);
+}
+
+.ios .control::after {
+  width: 28px;
+  height: 28px;
+  margin-left: 2px;
+  background: var(--tgui--white);
+  box-shadow:
+    0 3px 1px 0 rgba(0, 0, 0, 0.06),
+    0 3px 8px 0 rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+.input:checked + .control::before {
+  border-color: var(--tgui--link_color);
+  background-color: var(--tgui--link_color);
+}
+
+.input:checked + .control::after {
+  transform: translateX(20px) translateY(-50%);
+}
+
+.base .input:checked + .control::after {
+  width: 24px;
+  height: 24px;
+  background: var(--tgui--white);
+  transform: translateX(16px) translateY(-50%);
+}
+
+.input:focus-visible + .control::before {
+  box-shadow: 0 0 0 2px var(--tgui--link_color);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .control::before {
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+  }
+  .control::after {
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .ios .control::after {
+    transition: transform 0.2s cubic-bezier(0.36, -0.24, 0.26, 1.32);
+  }
+}
