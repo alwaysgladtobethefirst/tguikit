@@ -56,10 +56,11 @@
   --tgui--divider: rgba(0, 0, 0, 0.15);
   --tgui--outline: rgba(0, 0, 0, 0.05);
   --tgui--surface_primary: rgba(255, 255, 255, 0.95);
+  /* solid fallbacks; the color-mix block below derives these from the live theme */
   --tgui--tertiary_bg_color: #f4f4f7;
   --tgui--quartenary_bg_color: #f6f6fa;
-  --tgui--segmented_control_active_bg: #ffffff;
-  --tgui--card_bg_color: #ffffff;
+  --tgui--segmented_control_active_bg: var(--tgui--bg_color);
+  --tgui--card_bg_color: var(--tgui--section_bg_color);
   --tgui--secondary_hint_color: #a2acb0;
   --tgui--secondary_fill: rgba(67, 120, 255, 0.1);
   --tgui--green: #31d158;
@@ -123,7 +124,7 @@
   --tgui--tertiary_bg_color: #2a2a2a;
   --tgui--quartenary_bg_color: #2f2f2f;
   --tgui--segmented_control_active_bg: #2f2f2f;
-  --tgui--card_bg_color: #242424;
+  --tgui--card_bg_color: #262626;
   --tgui--secondary_hint_color: #78797e;
   --tgui--secondary_fill: rgba(41, 144, 255, 0.15);
   --tgui--green: #32e55e;
@@ -147,12 +148,28 @@
   }
 }
 
+/* derive the neutral surface tokens from the live theme so they track custom themes
+   and Telegram's blue-grey dark instead of clashing fixed greys (upstream #114, #53, #59) */
 @supports (color: color-mix(in srgb, red 10%, transparent)) {
   .wrapper {
     --tgui--secondary_fill: color-mix(in srgb, var(--tgui--accent_text_color) 10%, transparent);
+    --tgui--tertiary_bg_color: color-mix(
+      in srgb,
+      var(--tgui--secondary_bg_color),
+      var(--tgui--bg_color) 40%
+    );
+    --tgui--quartenary_bg_color: color-mix(
+      in srgb,
+      var(--tgui--secondary_bg_color),
+      var(--tgui--bg_color) 20%
+    );
   }
 
   .wrapper--dark {
     --tgui--secondary_fill: color-mix(in srgb, var(--tgui--accent_text_color) 15%, transparent);
+    --tgui--card_bg_color: color-mix(in srgb, var(--tgui--bg_color), #fff 7%);
+    --tgui--tertiary_bg_color: color-mix(in srgb, var(--tgui--bg_color), #fff 10%);
+    --tgui--quartenary_bg_color: color-mix(in srgb, var(--tgui--bg_color), #fff 14%);
+    --tgui--segmented_control_active_bg: color-mix(in srgb, var(--tgui--bg_color), #fff 12%);
   }
 }
