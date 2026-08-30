@@ -18,6 +18,7 @@ export {
   type SectionProps,
 } from './Section';
 export { Subheadline, type SubheadlineProps } from './Subheadline';
+export { Switch, type SwitchProps } from './Switch';
 export { Tappable, type TappableProps } from './Tappable';
 export { Text, type TextProps } from './Text';
 export { TguiProvider, type TguiProviderProps, useTgui } from './TguiProvider';
