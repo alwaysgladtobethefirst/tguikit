@@ -1,5 +1,6 @@
 export { Caption, type CaptionProps } from './Caption';
 export { Headline, type HeadlineProps } from './Headline';
+export { LargeTitle, type LargeTitleProps } from './LargeTitle';
 export { Subheadline, type SubheadlineProps } from './Subheadline';
 export { Tappable, type TappableProps } from './Tappable';
 export { Text, type TextProps } from './Text';
