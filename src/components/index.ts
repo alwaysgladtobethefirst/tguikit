@@ -1,5 +1,6 @@
 export { Button, type ButtonMode, type ButtonProps, type ButtonSize } from './Button';
 export { Caption, type CaptionProps } from './Caption';
+export { Card, CardCell, type CardCellProps, type CardProps, type CardType } from './Card';
 export { Cell, type CellProps } from './Cell';
 export { Divider, type DividerProps } from './Divider';
 export { Headline, type HeadlineProps } from './Headline';
