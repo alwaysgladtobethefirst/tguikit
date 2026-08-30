@@ -2,7 +2,7 @@ import '@fontsource-variable/inter-tight';
 import '@fontsource-variable/geist-mono';
 import type { Decorator, Preview } from '@storybook/react-vite';
 import { useLayoutEffect, useRef } from 'react';
-import { TguiProvider } from '../src/service/TguiProvider';
+import { TguiProvider } from '../src/foundations/TguiProvider';
 import type { Appearance, TguiPlatform } from '../src/shared/types/tgui';
 import './preview.css';
 
@@ -74,6 +74,21 @@ const preview: Preview = {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
+      },
+    },
+    options: {
+      storySort: {
+        order: [
+          'Getting Started',
+          'Foundations',
+          'Typography',
+          'Layout',
+          'Data Display',
+          'Inputs',
+          'Actions',
+          'Navigation',
+          'Utilities',
+        ],
       },
     },
   },
