@@ -2,8 +2,8 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { act } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { TguiProvider } from '../../foundations/TguiProvider';
 import type { TguiPlatform } from '../../shared/types/tgui';
-import { TguiProvider } from '../TguiProvider';
 import { Tappable } from './Tappable';
 
 function renderTappable(ui: ReactNode, platform: TguiPlatform = 'base') {

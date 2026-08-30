@@ -1,6 +1,6 @@
 import type { Ref } from 'react';
+import { Typography, type TypographyProps } from '../../foundations/Typography';
 import { cn } from '../../shared/lib/cn';
-import { Typography, type TypographyProps } from '../Typography';
 import styles from './Text.module.css';
 
 export interface TextProps extends TypographyProps {

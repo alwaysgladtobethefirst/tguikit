@@ -14,7 +14,7 @@ const eyebrow: CSSProperties = {
 };
 
 const meta = {
-  title: 'Typography/Typography',
+  title: 'Foundations/Typography',
   component: Typography,
   tags: ['autodocs'],
   parameters: {

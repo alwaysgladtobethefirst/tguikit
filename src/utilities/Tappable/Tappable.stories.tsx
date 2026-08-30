@@ -62,7 +62,7 @@ function Article({ children }: { children: ReactNode }) {
 }
 
 const meta = {
-  title: 'Service/Tappable',
+  title: 'Utilities/Tappable',
   component: Tappable,
   tags: ['autodocs'],
   parameters: {
