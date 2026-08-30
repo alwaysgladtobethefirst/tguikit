@@ -2,29 +2,13 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import type { ReactNode } from 'react';
 import { Caption } from '../Caption';
 import { Headline } from '../Headline';
+import { LargeTitle } from '../LargeTitle';
 import { Subheadline } from '../Subheadline';
 import { Text } from '../Text';
 import { Title } from '../Title';
 
 const MONO = "'Geist Mono Variable', ui-monospace, 'SF Mono', 'Menlo', monospace";
 const DISPLAY = "'Inter Tight Variable', 'Inter Tight', system-ui, sans-serif";
-
-// large title lands with tgui-8; rendered from the token here for now
-function LargeTitle({ children }: { children: ReactNode }) {
-  return (
-    <span
-      style={{
-        fontFamily: 'var(--tgui--font-family)',
-        fontSize: 'var(--tgui--large_title--font_size)',
-        lineHeight: 'var(--tgui--large_title--line_height)',
-        fontWeight: 'var(--tgui--font_weight--accent1)',
-        letterSpacing: '-0.02em',
-      }}
-    >
-      {children}
-    </span>
-  );
-}
 
 const STEPS: Array<{ sample: ReactNode; name: string; px: string; use: string }> = [
   {
