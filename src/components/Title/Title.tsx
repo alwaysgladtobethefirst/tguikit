@@ -1,25 +1,16 @@
-import type { ElementType, Ref } from 'react';
+import type { Ref } from 'react';
 import { cn } from '../../shared/lib/cn';
 import { Typography, type TypographyProps } from '../Typography';
-import styles from './Title.module.css';
-
-type Level = '1' | '2' | '3';
-
-// each level bundles its heading tag with its size class
-const LEVELS: Record<Level, { tag: ElementType; className: string }> = {
-  '1': { tag: 'h2', className: styles['level-1'] },
-  '2': { tag: 'h3', className: styles['level-2'] },
-  '3': { tag: 'h4', className: styles['level-3'] },
-};
+import { TITLE_LEVELS, type TitleLevel } from './Title.variants';
 
 export interface TitleProps extends TypographyProps {
   ref?: Ref<HTMLElement>;
   // 1 = largest (h2), 2 = default (h3), 3 = smallest (h4)
-  level?: Level;
+  level?: TitleLevel;
 }
 
 export function Title({ ref, level = '2', Component, className, ...rest }: TitleProps) {
-  const { tag, className: levelClass } = LEVELS[level];
+  const { tag, className: levelClass } = TITLE_LEVELS[level];
 
   return (
     <Typography

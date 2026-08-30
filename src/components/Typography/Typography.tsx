@@ -1,19 +1,6 @@
-import { cva } from 'class-variance-authority';
 import type { AllHTMLAttributes, ElementType, Ref } from 'react';
 import { cn } from '../../shared/lib/cn';
-import styles from './Typography.module.css';
-
-const typography = cva(styles.typography, {
-  variants: {
-    weight: {
-      '1': styles['weight-1'],
-      '2': styles['weight-2'],
-      '3': styles['weight-3'],
-    },
-    caps: { true: styles.caps },
-  },
-  defaultVariants: { weight: '3' },
-});
+import { typography } from './Typography.variants';
 
 export interface TypographyProps extends AllHTMLAttributes<HTMLElement> {
   ref?: Ref<HTMLElement>;
