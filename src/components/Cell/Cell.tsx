@@ -71,12 +71,19 @@ export function Cell({
   const { platform } = useTgui();
   const ios = platform === 'ios';
   const hasTitle = children != null || hint != null || titleBadge != null;
+  // a row only reads as tappable when it actually does something
+  const interactive =
+    rest.onClick != null ||
+    rest.href != null ||
+    Component === 'a' ||
+    Component === 'button' ||
+    Component === 'label';
 
   return (
     <Tappable
       ref={ref}
       Component={Component}
-      className={cn(cell({ platform, hovered, multiline }), className)}
+      className={cn(cell({ platform, hovered, multiline, interactive }), className)}
       {...rest}
     >
       {before != null ? <div className={styles.before}>{before}</div> : null}

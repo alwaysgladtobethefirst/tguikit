@@ -64,7 +64,7 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .cell:not([data-disabled]):hover {
+  .interactive:not([data-disabled]):hover {
     background: var(--tgui--tertiary_bg_color);
   }
 }

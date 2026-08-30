@@ -53,7 +53,7 @@ describe('Tappable', () => {
 
   it('spawns a ripple wave on press on the base platform', () => {
     vi.useFakeTimers();
-    const { container } = renderTappable(<Tappable>tap</Tappable>, 'base');
+    const { container } = renderTappable(<Tappable onClick={() => {}}>tap</Tappable>, 'base');
 
     fireEvent.pointerDown(screen.getByText('tap'), { clientX: 8, clientY: 12, pointerId: 1 });
     expect(ripple(container)?.children).toHaveLength(0);
@@ -64,7 +64,7 @@ describe('Tappable', () => {
 
   it('clears the wave once it has run its course', () => {
     vi.useFakeTimers();
-    const { container } = renderTappable(<Tappable>tap</Tappable>, 'base');
+    const { container } = renderTappable(<Tappable onClick={() => {}}>tap</Tappable>, 'base');
 
     fireEvent.pointerDown(screen.getByText('tap'), { pointerId: 1 });
     act(() => vi.advanceTimersByTime(80));
@@ -77,7 +77,7 @@ describe('Tappable', () => {
 
   it('does not ripple before the press delay elapses', () => {
     vi.useFakeTimers();
-    const { container } = renderTappable(<Tappable>tap</Tappable>, 'base');
+    const { container } = renderTappable(<Tappable onClick={() => {}}>tap</Tappable>, 'base');
 
     fireEvent.pointerDown(screen.getByText('tap'), { pointerId: 1 });
     fireEvent.pointerCancel(screen.getByText('tap'), { pointerId: 1 });
@@ -112,6 +112,16 @@ describe('Tappable', () => {
     expect(ripple(container)).toBeNull();
     expect(screen.getByText('tap')).toHaveAttribute('data-readonly');
     expect(screen.getByText('tap').className).toContain('tappable--opacity');
+  });
+
+  it('does not ripple a plain wrapper with no handler', () => {
+    vi.useFakeTimers();
+    const { container } = renderTappable(<Tappable>tap</Tappable>, 'base');
+
+    fireEvent.pointerDown(screen.getByText('tap'), { pointerId: 1 });
+    act(() => vi.advanceTimersByTime(200));
+
+    expect(ripple(container)).toBeNull();
   });
 
   it('still calls a caller-supplied onPointerDown', () => {

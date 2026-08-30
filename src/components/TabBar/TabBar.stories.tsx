@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { type ReactNode, useState } from 'react';
 import { Article } from '../../shared/stories/Article';
+import { eyebrow } from '../../shared/stories/tokens';
 import { TabBar } from './TabBar';
 
 const Page = ({ children }: { children: ReactNode }) => (
@@ -62,13 +63,19 @@ export const Playground: Story = {
       <Page>
         <div
           style={{
+            display: 'flex',
+            flexDirection: 'column',
             maxWidth: 380,
-            borderRadius: 20,
+            height: 460,
+            borderRadius: 28,
             overflow: 'hidden',
-            border: '1px solid var(--tgui--outline)',
+            background: 'var(--tgui--secondary_bg_color)',
+            boxShadow: '0 24px 60px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px var(--tgui--outline)',
           }}
         >
-          <div style={{ height: 220, background: 'var(--tgui--secondary_bg_color)' }} />
+          <div style={{ flexGrow: 1, display: 'grid', placeItems: 'center' }}>
+            <span style={{ ...eyebrow, color: 'var(--tgui--hint_color)' }}>{TABS[active]}</span>
+          </div>
           <TabBar>
             {TABS.map((t, i) => (
               <TabBar.Item key={t} text={t} selected={active === i} onClick={() => setActive(i)}>

@@ -29,7 +29,9 @@ export function Checkbox({
   };
 
   return (
-    <label
+    // a span, not a label: the input overlays the box for standalone taps, and in a
+    // row the surrounding Cell can be the label without nesting one label in another
+    <span
       className={cn(styles.checkbox, className)}
       style={style}
       data-disabled={disabled || undefined}
@@ -42,7 +44,7 @@ export function Checkbox({
         {...rest}
       />
       <span className={styles.box} aria-hidden />
-    </label>
+    </span>
   );
 }
 
