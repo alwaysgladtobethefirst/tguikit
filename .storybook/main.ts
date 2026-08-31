@@ -9,6 +9,7 @@ const config: StorybookConfig = {
   },
   managerHead: (head) => `
     ${head}
+    <script>document.title = 'tgui — components for Telegram Mini Apps';</script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"

@@ -4,7 +4,9 @@ import { create } from 'storybook/theming';
 addons.setConfig({
   theme: create({
     base: 'light',
-    brandTitle: 'telegram-ui',
+    brandTitle: 'tgui',
+    brandUrl: 'https://github.com/alwaysgladtobethefirst/tgui',
+    brandTarget: '_blank',
     fontBase: "'Inter Tight', system-ui, sans-serif",
   }),
 });

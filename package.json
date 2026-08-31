@@ -21,7 +21,7 @@
     "type": "git",
     "url": "git+https://github.com/alwaysgladtobethefirst/tgui.git"
   },
-  "homepage": "https://github.com/alwaysgladtobethefirst/tgui#readme",
+  "homepage": "https://alwaysgladtobethefirst.github.io/tgui/",
   "bugs": "https://github.com/alwaysgladtobethefirst/tgui/issues",
   "sideEffects": [
     "**/*.css"
