@@ -100,13 +100,13 @@ describe('Button', () => {
 
   it('renders the large label with Text and smaller sizes with Subheadline', () => {
     const { rerender } = renderButton(<Button size="l">x</Button>);
-    expect(screen.getByText('x').className).toContain('text');
+    expect(screen.getByText('x').parentElement?.className).toContain('text');
 
     rerender(
       <TguiProvider platform="base">
         <Button size="s">x</Button>
       </TguiProvider>,
     );
-    expect(screen.getByText('x').className).toContain('level-2');
+    expect(screen.getByText('x').parentElement?.className).toContain('level-2');
   });
 });
