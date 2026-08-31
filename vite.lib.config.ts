@@ -3,9 +3,6 @@ import preserveDirectives from 'rollup-preserve-directives';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 
-// library build only — dev + vitest stay in vite.config.ts.
-// dts emits a mirrored tree into dist/dts; rollup.dts.config.mjs then bundles it
-// into a single dist/index.d.ts (api-extractor can't parse TS 6 output yet).
 export default defineConfig({
   plugins: [
     react(),

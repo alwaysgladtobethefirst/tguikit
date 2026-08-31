@@ -17,11 +17,9 @@ export type InputStatus = 'default' | 'error' | 'focused';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   ref?: Ref<HTMLInputElement>;
-  // floating label, shown on the base platform only
   header?: ReactNode;
   before?: ReactNode;
   after?: ReactNode;
-  // pin the visual state; otherwise it tracks focus
   status?: InputStatus;
 }
 

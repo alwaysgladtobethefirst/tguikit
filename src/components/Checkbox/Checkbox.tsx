@@ -4,7 +4,6 @@ import styles from './Checkbox.module.css';
 
 export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   ref?: Ref<HTMLInputElement>;
-  // the dash state — a partial selection
   indeterminate?: boolean;
 }
 
@@ -29,8 +28,6 @@ export function Checkbox({
   };
 
   return (
-    // a span, not a label: the input overlays the box for standalone taps, and in a
-    // row the surrounding Cell can be the label without nesting one label in another
     <span
       className={cn(styles.checkbox, className)}
       style={style}

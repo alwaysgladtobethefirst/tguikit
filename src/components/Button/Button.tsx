@@ -16,14 +16,12 @@ export interface ButtonProps extends Omit<AllHTMLAttributes<HTMLElement>, 'size'
   size?: ButtonSize;
   stretched?: boolean;
   loading?: boolean;
-  // slot before / after the label, usually an icon
   before?: ReactNode;
   after?: ReactNode;
 }
 
 function Label({ size, children }: { size: ButtonSize; children: ReactNode }) {
   const shared = { weight: '2', className: styles.content } as const;
-  // inner span carries the truncation so .content can center an icon-only child
   const inner = <span className={styles.label}>{children}</span>;
   return size === 'l' ? (
     <Text {...shared}>{inner}</Text>

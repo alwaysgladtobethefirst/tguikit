@@ -5,7 +5,6 @@ import { type CaptionLevel, caption } from './Caption.variants';
 
 export interface CaptionProps extends TypographyProps {
   ref?: Ref<HTMLElement>;
-  // 1 = 13px (default), 2 = 11px
   level?: CaptionLevel;
 }
 

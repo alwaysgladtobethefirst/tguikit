@@ -10,7 +10,6 @@ import styles from './Section.module.css';
 
 export interface SectionHeaderProps extends HTMLAttributes<HTMLElement> {
   ref?: Ref<HTMLElement>;
-  // switches to a page-title style (bigger, primary text colour)
   large?: boolean;
 }
 

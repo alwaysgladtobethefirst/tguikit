@@ -16,7 +16,6 @@ import styles from './TguiProvider.module.css';
 export interface TguiProviderProps extends HTMLAttributes<HTMLDivElement> {
   ref?: Ref<HTMLDivElement>;
   platform?: TguiPlatform;
-  // omit to follow the telegram / system theme live; set to pin it
   appearance?: Appearance;
   portalContainer?: HTMLElement | null;
 }

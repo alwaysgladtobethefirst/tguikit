@@ -36,7 +36,6 @@
   --tgui--border--width: 1px;
   --tgui--base--section--box_shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
 
-  /* native theme tokens */
   --tgui--bg_color: var(--tg-theme-bg-color, #ffffff);
   --tgui--text_color: var(--tg-theme-text-color, #000000);
   --tgui--hint_color: var(--tg-theme-hint-color, #707579);
@@ -51,12 +50,11 @@
   --tgui--subtitle_text_color: var(--tg-theme-subtitle-text-color, #707579);
   --tgui--destructive_text_color: var(--tg-theme-destructive-text-color, #e53935);
 
-  /* custom lib tokens */
   --tgui--skeleton: rgba(0, 0, 0, 0.03);
   --tgui--divider: rgba(0, 0, 0, 0.15);
   --tgui--outline: rgba(0, 0, 0, 0.05);
   --tgui--surface_primary: rgba(255, 255, 255, 0.95);
-  /* solid fallbacks; the color-mix block below derives these from the live theme */
+
   --tgui--tertiary_bg_color: #f4f4f7;
   --tgui--quartenary_bg_color: #f6f6fa;
   --tgui--segmented_control_active_bg: var(--tgui--bg_color);
@@ -72,7 +70,6 @@
   --tgui--plain_foreground: rgba(0, 0, 0, 0.8);
   --tgui--toast_accent_color: #55a6ff;
 
-  /* non-theme tokens */
   --tgui--surface_dark: rgba(56, 56, 56, 0.85);
   --tgui--tooltip_background_dark: rgba(0, 0, 0, 0.85);
   --tgui--white: #ffffff;
@@ -148,8 +145,6 @@
   }
 }
 
-/* derive the neutral surface tokens from the live theme so they track custom themes
-   and Telegram's blue-grey dark instead of clashing fixed greys (upstream #114, #53, #59) */
 @supports (color: color-mix(in srgb, red 10%, transparent)) {
   .wrapper {
     --tgui--secondary_fill: color-mix(in srgb, var(--tgui--accent_text_color) 10%, transparent);

@@ -14,7 +14,6 @@ export function getPlatform(): TguiPlatform {
   }
 
   const ua = navigator.userAgent;
-  // ipados 13+ reports a mac ua, so check touch points too
   const isIpadOs = ua.includes('Macintosh') && navigator.maxTouchPoints > 1;
 
   return /iphone|ipad|ipod/i.test(ua) || isIpadOs ? 'ios' : 'base';

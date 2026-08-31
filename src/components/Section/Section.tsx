@@ -17,9 +17,7 @@ import { SectionHeader } from './SectionHeader';
 
 export interface SectionProps extends HTMLAttributes<HTMLElement> {
   ref?: Ref<HTMLElement>;
-  // a string is wrapped in Section.Header automatically; pass <Section.Header large> for control
   header?: ReactNode;
-  // a string is wrapped in Section.Footer automatically
   footer?: ReactNode;
 }
 

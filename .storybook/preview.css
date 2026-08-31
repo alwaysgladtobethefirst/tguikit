@@ -9,7 +9,6 @@ body,
   font-family: "Inter Tight Variable", system-ui, sans-serif;
 }
 
-/* fallback before the decorator syncs it (see preview.tsx) */
 .sb-main-fullscreen {
   background: #ffffff;
 }

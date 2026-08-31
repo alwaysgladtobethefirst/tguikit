@@ -9,7 +9,6 @@ import styles from './Section.module.css';
 
 export interface SectionFooterProps extends HTMLAttributes<HTMLElement> {
   ref?: Ref<HTMLElement>;
-  // centre the text and add breathing room, for a standalone note
   centered?: boolean;
 }
 
