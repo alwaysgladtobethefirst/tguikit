@@ -4,6 +4,7 @@
 
 .ios {
   padding: 10px 18px;
+  background: var(--tgui--secondary_bg_color);
 }
 
 .list > :not(:last-child) {

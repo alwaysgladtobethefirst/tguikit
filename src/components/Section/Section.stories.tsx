@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import type { ReactNode } from 'react';
 import { Article } from '../../shared/stories/Article';
 import { Cell } from '../Cell';
+import { List } from '../List';
 import { Section } from './Section';
 
 const Page = ({ children }: { children: ReactNode }) => (
@@ -60,17 +61,19 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {
   render: (args) => (
     <Page>
-      <Section {...args}>
-        <Cell subtitle="+1 555 0100" after={<Chevron />}>
-          Phone number
-        </Cell>
-        <Cell subtitle="@john" after={<Chevron />}>
-          Username
-        </Cell>
-        <Cell subtitle="Add a few words" after={<Chevron />}>
-          Bio
-        </Cell>
-      </Section>
+      <List>
+        <Section {...args}>
+          <Cell subtitle="+1 555 0100" after={<Chevron />}>
+            Phone number
+          </Cell>
+          <Cell subtitle="@john" after={<Chevron />}>
+            Username
+          </Cell>
+          <Cell subtitle="Add a few words" after={<Chevron />}>
+            Bio
+          </Cell>
+        </Section>
+      </List>
     </Page>
   ),
 };
@@ -79,7 +82,7 @@ export const SettingsScreen: Story = {
   name: 'A settings screen',
   render: () => (
     <Page>
-      <div style={{ display: 'grid', gap: 24 }}>
+      <List>
         <Section header={<Section.Header large>Settings</Section.Header>}>
           <Cell subtitle="+1 555 0100" after={<Chevron />}>
             Phone number
@@ -103,7 +106,7 @@ export const SettingsScreen: Story = {
           <Cell after={<Chevron />}>Ask a Question</Cell>
           <Cell after={<Chevron />}>Privacy Policy</Cell>
         </Section>
-      </div>
+      </List>
     </Page>
   ),
 };
@@ -112,7 +115,7 @@ export const HeaderAndFooter: Story = {
   name: 'Header & footer variants',
   render: () => (
     <Page>
-      <div style={{ display: 'grid', gap: 24 }}>
+      <List>
         <Section header="Default header" footer="Default footer text.">
           <Cell>Row</Cell>
         </Section>
@@ -122,7 +125,7 @@ export const HeaderAndFooter: Story = {
         >
           <Cell>Row</Cell>
         </Section>
-      </div>
+      </List>
     </Page>
   ),
 };
