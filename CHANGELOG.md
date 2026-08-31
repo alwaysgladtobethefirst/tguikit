@@ -1,4 +1,4 @@
-# @tgui/react
+# tguikit
 
 ## 0.1.0
 
