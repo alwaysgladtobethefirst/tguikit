@@ -1,4 +1,4 @@
-# @tgui/react
+# tgui-react
 
 ## 0.1.0
 

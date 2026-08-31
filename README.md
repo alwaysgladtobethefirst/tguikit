@@ -1,4 +1,4 @@
-# @tgui/react
+# tgui-react
 
 React 19 component library for Telegram Mini Apps — a modern reimplementation of [`@telegram-apps/telegram-ui`](https://github.com/telegram-mini-apps-dev/TelegramUI).
 
@@ -9,7 +9,7 @@ React 19 component library for Telegram Mini Apps — a modern reimplementation 
 ## Install
 
 ```bash
-bun add @tgui/react
+bun add tgui-react
 ```
 
 `react` and `react-dom` 19 are peer dependencies.
@@ -17,8 +17,8 @@ bun add @tgui/react
 ## Use
 
 ```tsx
-import { TguiProvider, Button } from '@tgui/react';
-import '@tgui/react/styles.css';
+import { TguiProvider, Button } from 'tgui-react';
+import 'tgui-react/styles.css';
 
 export function App() {
   return (
