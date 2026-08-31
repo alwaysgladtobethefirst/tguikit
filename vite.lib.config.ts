@@ -33,14 +33,7 @@ export default defineConfig({
     },
     sourcemap: true,
     rollupOptions: {
-      external: [
-        'react',
-        'react-dom',
-        'react/jsx-runtime',
-        'clsx',
-        'class-variance-authority',
-        'tailwind-merge',
-      ],
+      external: ['react', 'react-dom', 'react/jsx-runtime', 'clsx', 'class-variance-authority'],
       output: {
         assetFileNames: 'styles[extname]',
       },
