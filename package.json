@@ -3,8 +3,12 @@
   "private": false,
   "version": "0.0.0",
   "type": "module",
-  "sideEffects": ["**/*.css"],
-  "files": ["dist"],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist"
+  ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -21,6 +25,7 @@
     "build": "tsc -b && vite build --config vite.lib.config.ts && rollup -c rollup.dts.config.mjs && rm -rf dist/dts",
     "typecheck": "tsc -b",
     "test": "vitest",
+    "test:ci": "vitest run",
     "lint": "biome check .",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
