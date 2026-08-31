@@ -1,7 +1,7 @@
 {
   "name": "tgui",
   "private": false,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "description": "React 19 component library for Telegram Mini Apps — a modern reimplementation of @telegram-apps/telegram-ui.",
   "keywords": [
@@ -21,7 +21,7 @@
     "type": "git",
     "url": "git+https://github.com/alwaysgladtobethefirst/tgui.git"
   },
-  "homepage": "https://github.com/alwaysgladtobethefirst/tgui#readme",
+  "homepage": "https://alwaysgladtobethefirst.github.io/tgui/",
   "bugs": "https://github.com/alwaysgladtobethefirst/tgui/issues",
   "sideEffects": [
     "**/*.css"

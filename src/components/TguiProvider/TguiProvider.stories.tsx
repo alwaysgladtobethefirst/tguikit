@@ -204,7 +204,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The root provider every telegram-ui component expects above it. It detects the ' +
+          'The root provider every tgui component expects above it. It detects the ' +
           'platform (`ios`, or `base` for Android / Desktop / Web) and colour scheme, keeps ' +
           'them in sync with the Telegram client, and exposes them through context via ' +
           '`useTgui()`. Its wrapper element carries the `--tgui--*` design tokens and is the ' +

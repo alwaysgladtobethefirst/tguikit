@@ -79,7 +79,7 @@ export const Playground: Story = {
           </Cell>
         </Section>
 
-        <Section footer={<Section.Footer centered>telegram-ui · v0.1.0</Section.Footer>}>
+        <Section footer={<Section.Footer centered>tgui · v0.1.0</Section.Footer>}>
           <Cell after={<Chevron />}>Ask a Question</Cell>
         </Section>
       </List>
