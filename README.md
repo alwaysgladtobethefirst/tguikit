@@ -2,8 +2,6 @@
 
 React 19 component library for Telegram Mini Apps — a modern reimplementation of [`@telegram-apps/telegram-ui`](https://github.com/telegram-mini-apps-dev/TelegramUI).
 
-**[Storybook →](https://alwaysgladtobethefirst.github.io/tgui/)**
-
 > Pre-release. The API is still moving before `1.0`.
 
 ## Install
@@ -44,10 +42,7 @@ bun install
 bun run storybook
 ```
 
-Storybook is the workbench — every component has a story. The hosted build is at
-[alwaysgladtobethefirst.github.io/tgui](https://alwaysgladtobethefirst.github.io/tgui/).
-
-See [`CONTRIBUTING.md`](./CONTRIBUTING.md).
+Storybook is the workbench — every component has a story. See [`CONTRIBUTING.md`](./CONTRIBUTING.md).
 
 ## License
 
