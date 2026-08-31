@@ -1,8 +1,11 @@
 {
-  "name": "tgui",
+  "name": "@tgui/react",
   "private": false,
   "version": "0.1.0",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "React 19 component library for Telegram Mini Apps — a modern reimplementation of @telegram-apps/telegram-ui.",
   "keywords": [
     "telegram",
