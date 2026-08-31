@@ -1,0 +1,37 @@
+name: Bug report
+description: Something in tgui doesn't work as documented.
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happens
+      description: What you saw, and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction
+      description: Minimal steps or a code snippet. A StackBlitz / CodeSandbox link is ideal.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: tgui version
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform prop
+      options: [base, ios, both, "n/a"]
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: React / bundler
+      placeholder: React 19.2, Vite 8

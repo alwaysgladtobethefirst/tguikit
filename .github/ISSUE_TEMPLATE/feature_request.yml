@@ -1,0 +1,16 @@
+name: Feature request
+description: A component, prop, or behaviour tgui should have.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What you're trying to build
+      description: The use case, not just the API. What does the original @telegram-apps/telegram-ui do here, if anything?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed API
+      description: Rough shape — component name, props, an example.
