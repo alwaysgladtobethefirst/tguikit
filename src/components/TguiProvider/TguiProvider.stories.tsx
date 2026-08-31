@@ -131,7 +131,6 @@ function Overview() {
                   height: 12,
                   borderRadius: '50%',
                   background: `var(${token})`,
-                  // faint ring so tokens that match the surface are still visible
                   boxShadow:
                     '0 0 0 1px color-mix(in srgb, var(--tgui--text_color) 14%, transparent)',
                 }}

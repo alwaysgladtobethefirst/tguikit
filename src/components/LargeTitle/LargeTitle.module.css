@@ -1,6 +1,6 @@
 .large-title {
   font-size: var(--tgui--large_title--font_size);
   line-height: var(--tgui--large_title--line_height);
-  /* display-sized text reads too loose at its default tracking */
+
   letter-spacing: -0.02em;
 }

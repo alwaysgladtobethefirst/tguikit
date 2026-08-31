@@ -52,7 +52,6 @@
   background: var(--tgui--secondary_hint_color);
 }
 
-/* ios systemFill — a translucent grey that reads on either theme, unlike the near-bg token */
 .ios .control::before {
   background: rgba(120, 120, 128, 0.22);
 }

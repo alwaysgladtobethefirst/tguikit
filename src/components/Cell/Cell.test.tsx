@@ -59,7 +59,6 @@ describe('Cell', () => {
   it('omits the title row when there is nothing titley to show', () => {
     renderCell(<Cell before={<span>x</span>} subtitle="just a subtitle" />);
     expect(screen.queryByText('just a subtitle')).toBeInTheDocument();
-    // no head element
     expect(document.querySelector('[class*="head"]')).toBeNull();
   });
 

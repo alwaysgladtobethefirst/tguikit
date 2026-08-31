@@ -20,7 +20,6 @@ export default defineConfig({
         'src/shared/stories/**',
         'src/test/**',
       ],
-      // locked near current coverage — a component added without tests drops these and fails CI
       thresholds: { lines: 93, functions: 92, branches: 83, statements: 93 },
     },
   },

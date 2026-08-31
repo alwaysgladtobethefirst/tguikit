@@ -15,7 +15,6 @@
   flex-grow: 1;
 }
 
-/* hover wash — a translucent overlay whose strength varies by mode */
 .button::after {
   content: "";
   position: absolute;
@@ -91,7 +90,6 @@
   }
 }
 
-/* sizes */
 .size-s {
   height: 36px;
   min-width: 34px;
@@ -121,7 +119,6 @@
   content: none;
 }
 
-/* modes */
 .mode-filled {
   --tgui--button--wash-opacity: 0.15;
   --tgui--button--spinner-color: var(--tgui--button_text_color);

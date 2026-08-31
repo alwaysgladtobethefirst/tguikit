@@ -13,8 +13,6 @@ const withTgui: Decorator = (Story, { globals }) => {
   const platform = globals.platform as Choice<TguiPlatform>;
   const ref = useRef<HTMLDivElement>(null);
 
-  // keep the storybook canvas the same colour as the themed surface so short
-  // stories don't leave a mismatched strip below the content
   // biome-ignore lint/correctness/useExhaustiveDependencies: bg follows these globals through the DOM
   useLayoutEffect(() => {
     if (!ref.current) return;

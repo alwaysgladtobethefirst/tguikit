@@ -70,7 +70,6 @@ describe('Tappable', () => {
     act(() => vi.advanceTimersByTime(80));
     expect(ripple(container)?.children).toHaveLength(1);
 
-    // browsers remove it on animationend; the fallback timer covers reduced motion
     act(() => vi.advanceTimersByTime(700));
     expect(ripple(container)?.children).toHaveLength(0);
   });
