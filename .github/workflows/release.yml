@@ -16,7 +16,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: 1.4.x
@@ -24,7 +24,7 @@ jobs:
 
       # opens / updates a "Version Packages" PR while changesets are pending;
       # once that PR is merged, this same step runs `release` and publishes
-      - uses: changesets/action@v1
+      - uses: changesets/action@v2
         with:
           version: bunx changeset version
           publish: bun run release
