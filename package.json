@@ -3,6 +3,26 @@
   "private": false,
   "version": "0.0.0",
   "type": "module",
+  "description": "React 19 component library for Telegram Mini Apps — a modern reimplementation of @telegram-apps/telegram-ui.",
+  "keywords": [
+    "telegram",
+    "telegram-mini-apps",
+    "telegram-web-app",
+    "react",
+    "react19",
+    "component-library",
+    "ui-kit",
+    "design-system",
+    "typescript"
+  ],
+  "license": "MIT",
+  "author": "Vladyslav Skrynnyk",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alwaysgladtobethefirst/tgui.git"
+  },
+  "homepage": "https://github.com/alwaysgladtobethefirst/tgui#readme",
+  "bugs": "https://github.com/alwaysgladtobethefirst/tgui/issues",
   "sideEffects": [
     "**/*.css"
   ],
