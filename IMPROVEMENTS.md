@@ -47,3 +47,19 @@ These hold across every component, not case by case.
 ## Documentation
 
 - Every component has a Storybook story with an "in context" example and a prose description – the original's stories rarely explained usage (#10, #49, #78, #88, #105, #106).
+
+## Bundle size
+
+Both packages built the same way: React (and other shared deps) externalised, `esbuild --minify`, then gzipped.
+
+| | `@telegram-apps/telegram-ui` 2.1.13 | this package |
+| --- | --- | --- |
+| components | ~60 | 22 |
+| JS – whole kit | 209 kB → **67.5 kB gzip** | 16 kB → **5.6 kB gzip** |
+| JS – smallest usable import (a button + the provider) | 31 kB → 6.4 kB gzip | *(one 5.6 kB gzip bundle)* |
+| CSS – one file, always loaded in full | 46 kB → **10.8 kB gzip** | 21 kB → **4.7 kB gzip** |
+| runtime dependencies | 4 (`@floating-ui/react-dom`, `@xelene/vaul-with-scroll-fix`, `@swc/helpers`, `@twa-dev/types`) | 3 (`clsx`, `class-variance-authority`, `tailwind-merge` – all under 6 kB) |
+| npm install | 8.2 MB, 1918 files (ships a second CJS build and a bundled Storybook) | 143 kB, 6 files |
+| React | 18 (peer) | 19 (peer) |
+
+The kits aren't the same size – 22 components against ~60. The comparison that holds regardless: **this entire kit (5.6 kB JS + 4.7 kB CSS gzip) is smaller than the legacy library's single smallest usable import** (6.4 kB JS + its full 10.8 kB CSS, because that stylesheet is monolithic and always ships whole). As Phase 2 components land this package grows too – from a much lower floor, and with leaner per-component CSS (no dead custom properties, theme-derived tokens).
