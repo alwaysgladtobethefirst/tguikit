@@ -1,16 +1,12 @@
 version: 2
 updates:
-  - package-ecosystem: npm
-    directory: /
-    schedule:
-      interval: weekly
-    groups:
-      dev:
-        dependency-type: development
-        update-types: [minor, patch]
-    open-pull-requests-limit: 5
-
+  # npm is handled by Renovate — Dependabot can't update bun.lock, so its PRs
+  # fail CI on `bun install --frozen-lockfile` (TGUI-59).
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: weekly
+    groups:
+      actions:
+        patterns: ["*"]
+    open-pull-requests-limit: 5
