@@ -8,7 +8,7 @@ import { Select } from './Select';
 const Page = ({ children }: { children: ReactNode }) => (
   <Article
     title="Select"
-    lead="A native `select` styled to match Input. On base it is a self-contained outlined field with a floating `header`; on iOS it is a borderless row for a `Section`. Custom chevron, native OS picker on mobile."
+    lead="A native `select` in a field container. On base it is an outlined field with a floating `header`; on iOS it is a filled picker row. Custom chevron, native OS picker on mobile."
   >
     {children}
   </Article>
@@ -31,10 +31,10 @@ const meta = {
     docs: {
       description: {
         component:
-          'A styled wrapper around a native `<select>` — `appearance: none`, a CSS chevron, and ' +
-          'the same field container as `Input`. Base: outlined field with a floating `header`, ' +
-          'used on its own. iOS: a borderless row that takes its framing from the surrounding ' +
-          '`Section`. `status` is `default` | `error` | `focused`. Needs a `TguiProvider`.',
+          'A styled wrapper around a native `<select>` — `appearance: none`, a CSS chevron. ' +
+          'Base: an outlined field with a floating `header`. iOS: a filled picker row (a light ' +
+          'fill rather than Input’s borderless text row, since a select reads as a button). ' +
+          '`status` is `default` | `error` | `focused`. Needs a `TguiProvider`.',
       },
     },
   },
