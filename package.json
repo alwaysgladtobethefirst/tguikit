@@ -1,44 +1,71 @@
 {
-	"name": "telegram-ui",
-	"private": false,
-	"version": "0.0.0",
-	"type": "module",
-	"scripts": {
-		"dev": "vite",
-		"build": "tsc -b && vite build",
-		"test": "vitest",
-		"storybook": "storybook dev -p 6006",
-		"build-storybook": "storybook build"
-	},
-	"dependencies": {
-		"class-variance-authority": "^0.7.1",
-		"clsx": "^2.1.1",
-		"react": "^19.2.8",
-		"react-dom": "^19.2.8",
-		"tailwind-merge": "^3.6.0"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "^2.5.11",
-		"@fontsource-variable/geist-mono": "^5.3.0",
-		"@fontsource-variable/inter-tight": "^5.3.0",
-		"@storybook/addon-a11y": "^10.5.10",
-		"@storybook/addon-docs": "^10.5.10",
-		"@storybook/react-vite": "^10.5.10",
-		"@tailwindcss/vite": "^4.3.3",
-		"@testing-library/dom": "^10.4.0",
-		"@testing-library/jest-dom": "^7.0.1",
-		"@testing-library/react": "^16.3.3",
-		"@types/node": "^24.13.3",
-		"@types/react": "^19.2.18",
-		"@types/react-dom": "^19.2.4",
-		"@vitejs/plugin-react": "^6.1.0",
-		"globals": "^17.11.0",
-		"jsdom": "^30.0.1",
-		"storybook": "^10.5.10",
-		"tailwindcss": "^4.3.3",
-		"typescript": "~6.0.2",
-		"typescript-eslint": "^8.67.0",
-		"vite": "^8.2.2",
-		"vitest": "^4.1.11"
-	}
+  "name": "telegram-ui",
+  "private": false,
+  "version": "0.0.0",
+  "type": "module",
+  "sideEffects": ["**/*.css"],
+  "files": ["dist"],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build --config vite.lib.config.ts && rollup -c rollup.dts.config.mjs && rm -rf dist/dts",
+    "typecheck": "tsc -b",
+    "test": "vitest",
+    "lint": "biome check .",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "check:package": "publint && attw --pack .",
+    "prepublishOnly": "bun run build"
+  },
+  "peerDependencies": {
+    "react": "^19",
+    "react-dom": "^19"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.6.0"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
+    "@biomejs/biome": "^2.5.11",
+    "@fontsource-variable/geist-mono": "^5.3.0",
+    "@fontsource-variable/inter-tight": "^5.3.0",
+    "@storybook/addon-a11y": "^10.5.10",
+    "@storybook/addon-docs": "^10.5.10",
+    "@storybook/react-vite": "^10.5.10",
+    "@tailwindcss/vite": "^4.3.3",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.1.0",
+    "globals": "^17.11.0",
+    "jsdom": "^30.0.1",
+    "publint": "^0.3.24",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "rollup": "^4.63.1",
+    "rollup-plugin-dts": "^6.5.1",
+    "rollup-preserve-directives": "^1.1.3",
+    "storybook": "^10.5.10",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~6.0.2",
+    "typescript-eslint": "^8.67.0",
+    "vite": "^8.2.2",
+    "vite-plugin-dts": "^4.5.3",
+    "vitest": "^4.1.11"
+  }
 }
