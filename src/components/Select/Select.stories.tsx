@@ -1,13 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import type { ReactNode } from 'react';
 import { Article } from '../../shared/stories/Article';
+import { eyebrow } from '../../shared/stories/tokens';
 import { Section } from '../Section';
 import { Select } from './Select';
 
 const Page = ({ children }: { children: ReactNode }) => (
   <Article
     title="Select"
-    lead="A native `select` in the field container, with a custom chevron and the platform ring. `header` is the floating label on base; `status` pins the error / focused state."
+    lead="A native `select` styled to match Input. On base it is a self-contained outlined field with a floating `header`; on iOS it is a borderless row for a `Section`. Custom chevron, native OS picker on mobile."
   >
     {children}
   </Article>
@@ -31,8 +32,9 @@ const meta = {
       description: {
         component:
           'A styled wrapper around a native `<select>` — `appearance: none`, a CSS chevron, and ' +
-          'the same field container as `Input` (floating `header` on base, ring on focus/error). ' +
-          'Keeps the OS picker on mobile. Needs a `TguiProvider`.',
+          'the same field container as `Input`. Base: outlined field with a floating `header`, ' +
+          'used on its own. iOS: a borderless row that takes its framing from the surrounding ' +
+          '`Section`. `status` is `default` | `error` | `focused`. Needs a `TguiProvider`.',
       },
     },
   },
@@ -54,11 +56,9 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {
   render: (args) => (
     <Page>
-      <Section>
-        <Select {...args} defaultValue="en">
-          {languages}
-        </Select>
-      </Section>
+      <Select {...args} defaultValue="en">
+        {languages}
+      </Select>
     </Page>
   ),
 };
@@ -66,23 +66,35 @@ export const Playground: Story = {
 export const States: Story = {
   render: () => (
     <Page>
-      <div style={{ display: 'grid', gap: 16 }}>
-        <Section>
-          <Select header="Default" defaultValue="en">
+      <div style={{ display: 'grid', gap: 20 }}>
+        {(['default', 'focused', 'error'] as const).map((status) => (
+          <div key={status} style={{ display: 'grid', gap: 8 }}>
+            <span style={eyebrow}>status="{status}"</span>
+            <Select header="Language" status={status} defaultValue="en">
+              {languages}
+            </Select>
+          </div>
+        ))}
+        <div style={{ display: 'grid', gap: 8 }}>
+          <span style={eyebrow}>disabled</span>
+          <Select header="Language" disabled defaultValue="fr">
             {languages}
           </Select>
-        </Section>
-        <Section>
-          <Select header="Error" status="error" defaultValue="de">
-            {languages}
-          </Select>
-        </Section>
-        <Section>
-          <Select header="Disabled" disabled defaultValue="fr">
-            {languages}
-          </Select>
-        </Section>
+        </div>
       </div>
+    </Page>
+  ),
+};
+
+export const InAList: Story = {
+  name: 'In a list (iOS)',
+  globals: { platform: 'ios' },
+  render: () => (
+    <Page>
+      <Section header="Preferences">
+        <Select defaultValue="en">{languages}</Select>
+        <Select defaultValue="uk">{languages}</Select>
+      </Section>
     </Page>
   ),
 };
