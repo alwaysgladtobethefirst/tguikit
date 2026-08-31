@@ -13,25 +13,17 @@ import { cell } from './Cell.variants';
 export interface CellProps extends Omit<TappableProps, 'Component'> {
   ref?: Ref<HTMLElement>;
   Component?: ElementType;
-  // small label above the title
   subhead?: ReactNode;
-  // text next to the title, dimmed
   hint?: ReactNode;
   titleBadge?: ReactNode;
-  // line below the title
   subtitle?: ReactNode;
-  // line below the subtitle, dimmer still
   description?: ReactNode;
-  // left / right slot — icon, avatar, chevron, switch
   before?: ReactNode;
   after?: ReactNode;
-  // force the hover style (keyboard nav)
   hovered?: boolean;
-  // wrap long content instead of truncating
   multiline?: boolean;
 }
 
-// the title / description steps swap component per platform
 function CellTitle({ ios, children }: { ios: boolean; children: ReactNode }) {
   return ios ? (
     <Text className={styles.head}>{children}</Text>
@@ -71,7 +63,6 @@ export function Cell({
   const { platform } = useTgui();
   const ios = platform === 'ios';
   const hasTitle = children != null || hint != null || titleBadge != null;
-  // a row only reads as tappable when it actually does something
   const interactive =
     rest.onClick != null ||
     rest.href != null ||

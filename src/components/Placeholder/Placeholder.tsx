@@ -6,11 +6,9 @@ import styles from './Placeholder.module.css';
 
 export interface PlaceholderProps extends HTMLAttributes<HTMLElement> {
   ref?: Ref<HTMLElement>;
-  // the visual — an illustration or animation
   children?: ReactNode;
   header?: ReactNode;
   description?: ReactNode;
-  // a call to action, usually a Button
   action?: ReactNode;
 }
 

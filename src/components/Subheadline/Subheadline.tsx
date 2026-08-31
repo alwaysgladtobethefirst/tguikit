@@ -5,7 +5,6 @@ import { type SubheadlineLevel, subheadline } from './Subheadline.variants';
 
 export interface SubheadlineProps extends TypographyProps {
   ref?: Ref<HTMLElement>;
-  // 1 = 16px (default), 2 = 15px
   level?: SubheadlineLevel;
 }
 

@@ -18,13 +18,11 @@
   background: #000;
 }
 
-/* plain cell: solid surface, normal flow */
 .cell {
   padding: 0 20px;
   background: var(--tgui--card_bg_color);
 }
 
-/* ambient cell: overlay pinned to the bottom of the media with a soft scrim */
 .cellAmbient {
   --tgui--cell--middle--padding: 12px 0;
 

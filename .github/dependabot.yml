@@ -1,7 +1,5 @@
 version: 2
 updates:
-  # npm is handled by Renovate — Dependabot can't update bun.lock, so its PRs
-  # fail CI on `bun install --frozen-lockfile` (TGUI-59).
   - package-ecosystem: github-actions
     directory: /
     schedule:

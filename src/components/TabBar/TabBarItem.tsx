@@ -11,7 +11,6 @@ export interface TabBarItemProps extends ButtonHTMLAttributes<HTMLButtonElement>
   ref?: Ref<HTMLElement>;
   selected?: boolean;
   text?: string;
-  // the icon, sized 28×28
   children?: ReactNode;
 }
 

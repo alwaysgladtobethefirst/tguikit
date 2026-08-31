@@ -8,7 +8,6 @@ import { CardCell } from './CardCell';
 
 export interface CardProps extends HTMLAttributes<HTMLElement> {
   ref?: Ref<HTMLElement>;
-  // 'ambient' floats a gradient CardCell over a media background
   type?: CardType;
 }
 

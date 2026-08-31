@@ -44,35 +44,20 @@ export type EmojiStatusError =
 export type DeviceMotionError = 'UNSUPPORTED';
 
 export interface ThemeParams {
-  /* var(--tg-theme-bg-color) */
   bg_color?: string;
-  /* var(--tg-theme-text-color) */
   text_color?: string;
-  /* var(--tg-theme-hint-color) */
   hint_color?: string;
-  /* var(--tg-theme-link-color) */
   link_color?: string;
-  /* var(--tg-theme-button-color) */
   button_color?: string;
-  /* var(--tg-theme-button-text-color) */
   button_text_color?: string;
-  /* var(--tg-theme-secondary-bg-color); Bot API 6.1+ */
   secondary_bg_color?: string;
-  /* var(--tg-theme-header-bg-color); Bot API 7.0+ */
   header_bg_color?: string;
-  /* var(--tg-theme-bottom-bar-bg-color); Bot API 7.10+ */
   bottom_bar_bg_color?: string;
-  /* var(--tg-theme-accent-text-color); Bot API 7.0+ */
   accent_text_color?: string;
-  /* var(--tg-theme-section-bg-color); Bot API 7.0+ */
   section_bg_color?: string;
-  /* var(--tg-theme-section-header-text-color); Bot API 7.0+ */
   section_header_text_color?: string;
-  /* var(--tg-theme-section-separator-color); Bot API 7.6+ */
   section_separator_color?: string;
-  /* var(--tg-theme-subtitle-text-color); Bot API 7.0+ */
   subtitle_text_color?: string;
-  /* var(--tg-theme-destructive-text-color); Bot API 7.0+ */
   destructive_text_color?: string;
 }
 
@@ -99,7 +84,6 @@ export interface WebAppChat {
 
 export interface WebAppInitData {
   query_id?: string;
-  /* Bot API 10.1+ */
   chat_join_request_query_id?: string;
   user?: WebAppUser;
   receiver?: WebAppUser;
@@ -189,14 +173,11 @@ export interface BackButton {
 }
 
 export interface BottomButtonParams {
-  /* Bot API 9.5+ */
   icon_custom_emoji_id?: string;
   text?: string;
   color?: string;
   text_color?: string;
-  /* Bot API 7.10+ */
   has_shine_effect?: boolean;
-  /* Bot API 7.10+ */
   position?: BottomButtonPosition;
   is_active?: boolean;
   is_visible?: boolean;
@@ -204,16 +185,13 @@ export interface BottomButtonParams {
 
 export interface BottomButton {
   readonly type: BottomButtonType;
-  /* Bot API 9.5+ */
   iconCustomEmojiId: string;
   text: string;
   color: string;
   textColor: string;
   isVisible: boolean;
   isActive: boolean;
-  /* Bot API 7.10+ */
   hasShineEffect: boolean;
-  /* Bot API 7.10+ */
   position: BottomButtonPosition;
   readonly isProgressVisible: boolean;
 
@@ -498,7 +476,6 @@ export interface WebApp {
   platform: string;
   colorScheme: ColorScheme;
   themeParams: ThemeParams;
-  /* Bot API 8.0+ */
   isActive: boolean;
   isExpanded: boolean;
   viewportHeight: number;
@@ -508,66 +485,39 @@ export interface WebApp {
   bottomBarColor: string;
   isClosingConfirmationEnabled: boolean;
   isVerticalSwipesEnabled: boolean;
-  /* Bot API 8.0+ */
   isFullscreen: boolean;
-  /* Bot API 8.0+ */
   isOrientationLocked: boolean;
-  /* Bot API 8.0+ */
   safeAreaInset: SafeAreaInset;
-  /* Bot API 8.0+ */
   contentSafeAreaInset: ContentSafeAreaInset;
 
   BackButton: BackButton;
   MainButton: BottomButton;
-  /* Bot API 7.10+ */
   SecondaryButton: BottomButton;
-  /* Bot API 7.0+ */
   SettingsButton: SettingsButton;
   HapticFeedback: HapticFeedback;
-  /* Bot API 6.9+ */
   CloudStorage: CloudStorage;
-  /* Bot API 7.2+ */
   BiometricManager: BiometricManager;
-  /* Bot API 8.0+ */
   Accelerometer: Accelerometer;
-  /* Bot API 8.0+ */
   DeviceOrientation: DeviceOrientation;
-  /* Bot API 8.0+ */
   Gyroscope: Gyroscope;
-  /* Bot API 8.0+ */
   LocationManager: LocationManager;
-  /* Bot API 9.0+ */
   DeviceStorage: DeviceStorage;
-  /* Bot API 9.0+ */
   SecureStorage: SecureStorage;
 
   isVersionAtLeast(version: string): boolean;
 
-  /* Bot API 6.1+ */
   setHeaderColor(color: string): void;
-  /* Bot API 6.1+ */
   setBackgroundColor(color: string): void;
-  /* Bot API 7.10+ */
   setBottomBarColor(color: string): void;
-  /* Bot API 6.2+ */
   enableClosingConfirmation(): void;
-  /* Bot API 6.2+ */
   disableClosingConfirmation(): void;
-  /* Bot API 7.7+ */
   enableVerticalSwipes(): void;
-  /* Bot API 7.7+ */
   disableVerticalSwipes(): void;
-  /* Bot API 8.0+ */
   requestFullscreen(): void;
-  /* Bot API 8.0+ */
   exitFullscreen(): void;
-  /* Bot API 8.0+ */
   lockOrientation(): void;
-  /* Bot API 8.0+ */
   unlockOrientation(): void;
-  /* Bot API 8.0+ */
   addToHomeScreen(): void;
-  /* Bot API 8.0+ */
   checkHomeScreenStatus(callback?: (status: HomeScreenStatus) => void): void;
 
   onEvent<K extends keyof TelegramEventMap>(
@@ -586,7 +536,6 @@ export interface WebApp {
 
   sendData(data: string): void;
 
-  /* Bot API 6.7+ */
   switchInlineQuery(
     query: string,
     chooseChatTypes?: Array<'users' | 'bots' | 'groups' | 'channels'>,
@@ -601,56 +550,40 @@ export interface WebApp {
 
   openTelegramLink(url: string): void;
 
-  /* Bot API 6.1+ */
   openInvoice(url: string, callback?: (status: InvoiceStatus) => void): void;
 
-  /* Bot API 7.8+ */
   shareToStory(mediaUrl: string, params?: StoryShareParams): void;
 
-  /* Bot API 8.0+ */
   shareMessage(msgId: number, callback?: (sent: boolean) => void): void;
 
-  /* Bot API 8.0+ */
   setEmojiStatus(
     customEmojiId: string,
     params?: EmojiStatusParams,
     callback?: (success: boolean) => void,
   ): void;
 
-  /* Bot API 8.0+ */
   requestEmojiStatusAccess(callback?: (granted: boolean) => void): void;
 
-  /* Bot API 8.0+ */
   downloadFile(params: DownloadFileParams, callback?: (accepted: boolean) => void): void;
 
-  /* Bot API 9.1+ */
   hideKeyboard(): void;
 
-  /* Bot API 6.2+ */
   showPopup(params: PopupParams, callback?: (buttonId: string) => void): void;
 
-  /* Bot API 6.2+ */
   showAlert(message: string, callback?: () => void): void;
 
-  /* Bot API 6.2+ */
   showConfirm(message: string, callback?: (confirmed: boolean) => void): void;
 
-  /* Bot API 6.4+ */
   showScanQrPopup(params: ScanQrPopupParams, callback?: (text: string) => boolean): void;
 
-  /* Bot API 6.4+ */
   closeScanQrPopup(): void;
 
-  /* Bot API 6.4+ */
   readTextFromClipboard(callback?: (text: string) => void): void;
 
-  /* Bot API 6.9+ */
   requestWriteAccess(callback?: (granted: boolean) => void): void;
 
-  /* Bot API 6.9+ */
   requestContact(callback?: (granted: boolean) => void): void;
 
-  /* Bot API 9.6+ */
   requestChat(reqId: number, callback?: (sent: boolean) => void): void;
 
   ready(): void;

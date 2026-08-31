@@ -10,7 +10,6 @@ import { useRipple } from './useRipple';
 export interface TappableProps extends AllHTMLAttributes<HTMLElement> {
   ref?: Ref<HTMLElement>;
   Component?: ElementType;
-  // 'background' plays a material ripple on the base platform; 'opacity' dims on press
   interactiveAnimation?: 'background' | 'opacity';
 }
 
@@ -29,7 +28,6 @@ export function Tappable({
   const disabled = Boolean(rest.disabled);
   const readOnly = Boolean(rest.readOnly);
 
-  // a plain div/span with no handler is a layout wrapper, not a control — no feedback
   const interactive = Component !== 'div' && Component !== 'span';
   const hasRipple =
     platform === 'base' &&
