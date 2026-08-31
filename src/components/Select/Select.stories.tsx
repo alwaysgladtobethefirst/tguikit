@@ -2,13 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import type { ReactNode } from 'react';
 import { Article } from '../../shared/stories/Article';
 import { eyebrow } from '../../shared/stories/tokens';
-import { Section } from '../Section';
 import { Select } from './Select';
 
 const Page = ({ children }: { children: ReactNode }) => (
   <Article
     title="Select"
-    lead="A native `select` in a field container. On base it is an outlined field with a floating `header`; on iOS it is a filled picker row. Custom chevron, native OS picker on mobile."
+    lead="A native `select` in a field container. On base it is an outlined field with a floating `header`; on iOS it is a filled picker, matching Input. Custom chevron, native OS picker on mobile."
   >
     {children}
   </Article>
@@ -32,9 +31,8 @@ const meta = {
       description: {
         component:
           'A styled wrapper around a native `<select>` — `appearance: none`, a CSS chevron. ' +
-          'Base: an outlined field with a floating `header`. iOS: a filled picker row (a light ' +
-          'fill rather than Input’s borderless text row, since a select reads as a button). ' +
-          '`status` is `default` | `error` | `focused`. Needs a `TguiProvider`.',
+          'Base: an outlined field with a floating `header`. iOS: a filled picker, matching ' +
+          'Input. `status` is `default` | `error` | `focused`. Needs a `TguiProvider`.',
       },
     },
   },
@@ -86,15 +84,15 @@ export const States: Story = {
   ),
 };
 
-export const InAList: Story = {
-  name: 'In a list (iOS)',
+export const Form: Story = {
+  name: 'Form (iOS)',
   globals: { platform: 'ios' },
   render: () => (
     <Page>
-      <Section header="Preferences">
+      <div style={{ display: 'grid', gap: 12 }}>
         <Select defaultValue="en">{languages}</Select>
         <Select defaultValue="uk">{languages}</Select>
-      </Section>
+      </div>
     </Page>
   ),
 };

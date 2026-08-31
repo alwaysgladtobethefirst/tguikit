@@ -2,13 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import type { ReactNode } from 'react';
 import { Article } from '../../shared/stories/Article';
 import { eyebrow } from '../../shared/stories/tokens';
-import { Section } from '../Section';
 import { Input } from './Input';
 
 const Page = ({ children }: { children: ReactNode }) => (
   <Article
     title="Input"
-    lead="A single-line text field. On base it is a self-contained outlined field with a floating `header` label; on iOS it is a borderless row that lives inside a `Section`. `before` / `after` slot icons or a clear button; `status` pins the error / focused ring, otherwise it follows focus."
+    lead="A single-line text field. On base it is an outlined field with a floating `header` label; on iOS it is a filled field. `before` / `after` slot icons or a clear button; `status` pins the error / focused ring, otherwise it follows focus."
   >
     {children}
   </Article>
@@ -23,9 +22,9 @@ const meta = {
       description: {
         component:
           'Text input with a platform-aware container. Base: an outlined field with a floating ' +
-          '`header` label — use it on its own, not inside a `Section`. iOS: a borderless row that ' +
-          'takes its framing from the surrounding `Section` / list. `status` is `default` | ' +
-          '`error` | `focused` (pins the ring); left unset it tracks focus. Needs a `TguiProvider`.',
+          '`header` label. iOS: a filled field — stack a few with a gap for a form. `status` is ' +
+          '`default` | `error` | `focused` (pins the ring); left unset it tracks focus. Needs a ' +
+          '`TguiProvider`.',
       },
     },
   },
@@ -76,16 +75,16 @@ export const States: Story = {
   ),
 };
 
-export const InAList: Story = {
-  name: 'In a list (iOS)',
+export const Form: Story = {
+  name: 'Form (iOS)',
   globals: { platform: 'ios' },
   render: () => (
     <Page>
-      <Section header="Contact">
+      <div style={{ display: 'grid', gap: 12 }}>
         <Input placeholder="First name" defaultValue="Ada" />
         <Input placeholder="Last name" defaultValue="Lovelace" />
-        <Input placeholder="Email" defaultValue="ada@example.com" />
-      </Section>
+        <Input placeholder="Email" type="email" defaultValue="ada@example.com" />
+      </div>
     </Page>
   ),
 };
