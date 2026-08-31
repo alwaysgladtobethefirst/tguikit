@@ -1,14 +1,14 @@
 [
   {
-    "name": "js — full kit (brotli, react external)",
+    "name": "js — full kit + deps (brotli, react external)",
     "path": "dist/index.js",
     "import": "*",
     "ignore": ["react", "react-dom", "react/jsx-runtime"],
-    "limit": "13.5 kB"
+    "limit": "6 kB"
   },
   {
     "name": "css (brotli)",
     "path": "dist/styles.css",
-    "limit": "5 kB"
+    "limit": "4.5 kB"
   }
 ]

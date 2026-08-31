@@ -7,7 +7,14 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "includes": ["**", "!**/public", "!**/dist", "!**/storybook-static", "!**/coverage"]
+    "includes": [
+      "**",
+      "!**/public",
+      "!**/dist",
+      "!**/storybook-static",
+      "!**/coverage",
+      "!**/.github"
+    ]
   },
   "formatter": {
     "enabled": true,
