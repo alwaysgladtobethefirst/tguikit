@@ -39,10 +39,23 @@
 }
 
 .content {
+  display: flex;
+  flex: 0 1 auto;
+  min-inline-size: 0;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--tgui--z-index--simple);
+}
+
+.label {
+  min-inline-size: 0;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  z-index: var(--tgui--z-index--simple);
+}
+
+.content svg {
+  display: block;
 }
 
 .loading {
