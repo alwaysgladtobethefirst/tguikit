@@ -23,7 +23,7 @@
 .ios .body {
   min-height: 48px;
   border-radius: 12px;
-  background: var(--tgui--bg_color);
+  background: var(--tgui--tertiary_bg_color);
 }
 
 .before,

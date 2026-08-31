@@ -14,7 +14,7 @@ const Page = ({ children }: { children: ReactNode }) => (
 );
 
 const meta = {
-  title: 'Foundations/Typography',
+  title: 'Primitives/Typography',
   component: Typography,
   tags: ['autodocs'],
   parameters: {

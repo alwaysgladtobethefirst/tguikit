@@ -60,7 +60,7 @@
   --tgui--segmented_control_active_bg: var(--tgui--bg_color);
   --tgui--card_bg_color: var(--tgui--section_bg_color);
   --tgui--secondary_hint_color: #a2acb0;
-  --tgui--secondary_fill: rgba(67, 120, 255, 0.1);
+  --tgui--secondary_fill: rgba(67, 120, 255, 0.14);
   --tgui--green: #31d158;
   --tgui--destructive_background: #e53935;
   --tgui--primary_code_highlight: #4378ff;
@@ -123,7 +123,7 @@
   --tgui--segmented_control_active_bg: #2f2f2f;
   --tgui--card_bg_color: #262626;
   --tgui--secondary_hint_color: #78797e;
-  --tgui--secondary_fill: rgba(41, 144, 255, 0.15);
+  --tgui--secondary_fill: rgba(41, 144, 255, 0.2);
   --tgui--green: #32e55e;
   --tgui--destructive_background: rgba(255, 35, 35, 0.02);
   --tgui--primary_code_highlight: #2990ff;
@@ -147,7 +147,7 @@
 
 @supports (color: color-mix(in srgb, red 10%, transparent)) {
   .wrapper {
-    --tgui--secondary_fill: color-mix(in srgb, var(--tgui--accent_text_color) 10%, transparent);
+    --tgui--secondary_fill: color-mix(in srgb, var(--tgui--accent_text_color) 14%, transparent);
     --tgui--tertiary_bg_color: color-mix(
       in srgb,
       var(--tgui--secondary_bg_color),
@@ -161,7 +161,7 @@
   }
 
   .wrapper--dark {
-    --tgui--secondary_fill: color-mix(in srgb, var(--tgui--accent_text_color) 15%, transparent);
+    --tgui--secondary_fill: color-mix(in srgb, var(--tgui--accent_text_color) 20%, transparent);
     --tgui--card_bg_color: color-mix(in srgb, var(--tgui--bg_color), #fff 7%);
     --tgui--tertiary_bg_color: color-mix(in srgb, var(--tgui--bg_color), #fff 10%);
     --tgui--quartenary_bg_color: color-mix(in srgb, var(--tgui--bg_color), #fff 14%);

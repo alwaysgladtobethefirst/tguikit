@@ -6,6 +6,7 @@ import { Button } from './Button';
 import type { ButtonMode } from './Button.variants';
 
 const MODES: ButtonMode[] = ['filled', 'bezeled', 'plain', 'gray', 'outline', 'white'];
+const SURFACE_MODES = MODES.filter((m) => m !== 'white');
 
 function PlusIcon() {
   return (
@@ -80,11 +81,24 @@ export const Modes: Story = {
   render: () => (
     <Page>
       <div style={{ display: 'grid', gap: 16 }}>
-        {MODES.map((mode) => (
+        {SURFACE_MODES.map((mode) => (
           <Row key={mode} label={mode}>
             <Button mode={mode}>Continue</Button>
           </Row>
         ))}
+        <div style={{ display: 'grid', gap: 8 }}>
+          <span style={eyebrow}>white · for use over media</span>
+          <div
+            style={{
+              display: 'flex',
+              padding: 20,
+              borderRadius: 16,
+              background: 'linear-gradient(135deg, #4b7bec, #a55eea)',
+            }}
+          >
+            <Button mode="white">Continue</Button>
+          </div>
+        </div>
       </div>
     </Page>
   ),
@@ -117,8 +131,13 @@ export const WithIcons: Story = {
           Invite
         </Button>
       </Row>
-      <Row label="icon only">
-        <Button size="s" mode="gray" aria-label="Add">
+      <Row label="icon only · square it with style">
+        <Button
+          size="s"
+          mode="gray"
+          aria-label="Add"
+          style={{ width: 36, minWidth: 36, padding: 0, borderRadius: '50%' }}
+        >
           <PlusIcon />
         </Button>
       </Row>

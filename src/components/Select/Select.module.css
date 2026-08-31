@@ -8,12 +8,15 @@
   position: relative;
   box-sizing: border-box;
   border-radius: 14px;
+}
+
+.base .row {
   box-shadow: inset 0 0 0 2px var(--tgui--outline);
 }
 
 .ios .row {
   border-radius: 12px;
-  background: var(--tgui--bg_color);
+  background: var(--tgui--tertiary_bg_color);
 }
 
 .select {
