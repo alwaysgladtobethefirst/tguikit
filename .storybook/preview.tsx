@@ -80,7 +80,7 @@ const preview: Preview = {
       storySort: {
         order: [
           'Getting Started',
-          'Foundations',
+          'Primitives',
           'Typography',
           ['Scale', '*'],
           'Layout',

@@ -196,7 +196,7 @@ function Overview() {
 }
 
 const meta = {
-  title: 'Foundations/TguiProvider',
+  title: 'Primitives/TguiProvider',
   component: TguiProvider,
   tags: ['autodocs'],
   parameters: {
