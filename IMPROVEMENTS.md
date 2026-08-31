@@ -16,7 +16,7 @@ These hold across every component, not case by case.
 - **Nothing is rebuilt on every render.** Platform-adaptive subcomponents are defined at module level, never inside render via `useCallback` / inline definitions – the original churned component identity and thrashed the DOM (#86).
 - **Complete public exports.** `src/components/index.ts` exports every component and subcomponent (`TabBar.Item`, `Section.Header`, `Section.Footer`, …) (#14, #17, #32, #63).
 - **SSR-safe.** Platform / appearance / Telegram detection is `typeof window` guarded; the provider follows the theme through `useSyncExternalStore`, so no hydration flash (#12, #13, #16, #76). No `:root` selectors leak – all tokens are scoped to the provider element (#13).
-- **Real package.** ESM `exports` map, bundled `.d.ts`, `sideEffects` limited to the CSS, React externalised as a peer dependency, `publint` + `arethetypeswrong` clean. The original's packaging broke repeatedly (#3, #22, #107, #108, PR #6). One stylesheet at `tgui/styles.css`.
+- **Real package.** ESM `exports` map, bundled `.d.ts`, `sideEffects` limited to the CSS, React externalised as a peer dependency, `publint` + `arethetypeswrong` clean. The original's packaging broke repeatedly (#3, #22, #107, #108, PR #6). One stylesheet at `@tgui/react/styles.css`.
 
 ## Correctness
 
