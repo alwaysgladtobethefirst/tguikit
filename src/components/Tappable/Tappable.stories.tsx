@@ -28,7 +28,7 @@ const Page = ({ children }: { children: ReactNode }) => (
 );
 
 const meta = {
-  title: 'Utilities/Tappable',
+  title: 'Foundations/Tappable',
   component: Tappable,
   tags: ['autodocs'],
   parameters: {
