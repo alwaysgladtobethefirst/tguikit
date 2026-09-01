@@ -52,6 +52,7 @@ export function Sheet({
   container,
 }: SheetProps) {
   const reducedMotion = useReducedMotion();
+  const contained = container != null;
   const [rendered, setRendered] = useState(open);
   const [visible, setVisible] = useState(false);
 
@@ -87,10 +88,12 @@ export function Sheet({
     restoreFocusRef.current = document.activeElement as HTMLElement | null;
 
     const { body, documentElement } = document;
-    const scrollbar = window.innerWidth - documentElement.clientWidth;
     const previous = { overflow: body.style.overflow, paddingRight: body.style.paddingRight };
-    body.style.overflow = 'hidden';
-    if (scrollbar > 0) body.style.paddingRight = `${scrollbar}px`;
+    if (!contained) {
+      const scrollbar = window.innerWidth - documentElement.clientWidth;
+      body.style.overflow = 'hidden';
+      if (scrollbar > 0) body.style.paddingRight = `${scrollbar}px`;
+    }
 
     const id = requestAnimationFrame(() => panelRef.current?.focus({ preventScroll: true }));
     return () => {
@@ -99,7 +102,7 @@ export function Sheet({
       body.style.paddingRight = previous.paddingRight;
       restoreFocusRef.current?.focus?.({ preventScroll: true });
     };
-  }, [rendered]);
+  }, [rendered, contained]);
 
   useEffect(() => {
     if (!rendered) return;
@@ -198,7 +201,11 @@ export function Sheet({
     <Portal container={container}>
       <div
         ref={ref}
-        className={cn(styles.backdrop, showPanel && styles['backdrop--visible'])}
+        className={cn(
+          styles.backdrop,
+          contained && styles['backdrop--contained'],
+          showPanel && styles['backdrop--visible'],
+        )}
         onPointerDown={(event) => {
           if (event.target === event.currentTarget && dismissable) onClose();
         }}

@@ -9,6 +9,10 @@
   opacity: 0;
 }
 
+.backdrop--contained {
+  position: absolute;
+}
+
 .backdrop--visible {
   opacity: 1;
 }
