@@ -1,9 +1,15 @@
+export { Avatar, type AvatarProps, type AvatarSize } from './Avatar';
 export { Badge, type BadgeMode, type BadgeProps, type BadgeType } from './Badge';
 export { Button, type ButtonMode, type ButtonProps, type ButtonSize } from './Button';
 export { Caption, type CaptionProps } from './Caption';
 export { Card, CardCell, type CardCellProps, type CardProps, type CardType } from './Card';
 export { Cell, type CellProps } from './Cell';
 export { Checkbox, type CheckboxProps } from './Checkbox';
+export {
+  CircularProgress,
+  type CircularProgressProps,
+  type CircularProgressSize,
+} from './CircularProgress';
 export { Divider, type DividerProps } from './Divider';
 export { Headline, type HeadlineProps } from './Headline';
 export {
@@ -16,6 +22,7 @@ export { Input, type InputProps, type InputStatus } from './Input';
 export { LargeTitle, type LargeTitleProps } from './LargeTitle';
 export { List, type ListProps } from './List';
 export { Placeholder, type PlaceholderProps } from './Placeholder';
+export { Progress, type ProgressProps } from './Progress';
 export { Radio, type RadioProps } from './Radio';
 export {
   Section,
@@ -33,6 +40,7 @@ export { Switch, type SwitchProps } from './Switch';
 export { TabBar, TabBarItem, type TabBarItemProps, type TabBarProps } from './TabBar';
 export { Tappable, type TappableProps } from './Tappable';
 export { Text, type TextProps } from './Text';
+export { Textarea, type TextareaProps, type TextareaStatus } from './Textarea';
 export { TguiProvider, type TguiProviderProps, useTgui } from './TguiProvider';
 export { Title, type TitleProps } from './Title';
 export { Typography, type TypographyProps } from './Typography';
