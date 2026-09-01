@@ -11,6 +11,7 @@ import {
   useState,
 } from 'react';
 import { cn } from '../../shared/lib/cn';
+import { IconButton } from '../IconButton';
 import { Portal } from '../Portal';
 import styles from './Sheet.module.css';
 import { useReducedMotion } from './useReducedMotion';
@@ -230,8 +231,10 @@ export function Sheet({
               <div className={styles.header}>
                 <div className={styles.title}>{header}</div>
                 {dismissable ? (
-                  <button
-                    type="button"
+                  <IconButton
+                    mode="gray"
+                    size="s"
+                    circle
                     className={styles.close}
                     aria-label={closeLabel}
                     onClick={onClose}
@@ -244,7 +247,7 @@ export function Sheet({
                         strokeLinecap="round"
                       />
                     </svg>
-                  </button>
+                  </IconButton>
                 ) : null}
               </div>
             ) : null}

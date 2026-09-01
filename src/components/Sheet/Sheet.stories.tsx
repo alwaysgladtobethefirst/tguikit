@@ -100,17 +100,17 @@ export const Playground: Story = {
                 container={container}
                 open={open}
                 onClose={() => setOpen(false)}
-                header="Send TON"
+                header="Water the plants?"
               >
                 <p style={{ margin: '0 0 16px', color: 'var(--tgui--hint_color)' }}>
-                  Confirm the transfer of 5 TON to @durov. This cannot be undone.
+                  The fern is doing that dramatic droop again. It knows you can see it.
                 </p>
                 <div style={{ display: 'grid', gap: 8 }}>
                   <Button size="l" stretched onClick={() => setOpen(false)}>
-                    Confirm
+                    Fine, watering now
                   </Button>
                   <Button size="l" mode="plain" stretched onClick={() => setOpen(false)}>
-                    Cancel
+                    Remind me tonight
                   </Button>
                 </div>
               </Sheet>
@@ -131,7 +131,7 @@ export const WithList: Story = {
         <Stage>
           {(container) => (
             <>
-              <Button onClick={() => setOpen(true)}>Choose a chat</Button>
+              <Button onClick={() => setOpen(true)}>Send to a friend</Button>
               <Sheet
                 container={container}
                 open={open}
@@ -167,20 +167,21 @@ export const NonDismissable: Story = {
         <Stage>
           {(container) => (
             <>
-              <Button onClick={() => setOpen(true)}>Start action</Button>
+              <Button onClick={() => setOpen(true)}>Start brewing</Button>
               <Sheet
                 container={container}
                 open={open}
                 onClose={() => setOpen(false)}
                 dismissable={false}
-                header="Signing…"
+                header="Brewing your coffee…"
               >
                 <p style={{ margin: 0, color: 'var(--tgui--hint_color)' }}>
-                  Waiting for the wallet to confirm. The sheet stays until the request resolves.
+                  This is the important part. No scrim tap, no swipe – the sheet waits until it's
+                  done.
                 </p>
                 <div style={{ marginTop: 16 }}>
                   <Button size="l" stretched mode="plain" onClick={() => setOpen(false)}>
-                    Force close (demo)
+                    Cancel the pour
                   </Button>
                 </div>
               </Sheet>
