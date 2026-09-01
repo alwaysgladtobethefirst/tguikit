@@ -53,7 +53,7 @@
 
 .mode-gray {
   color: var(--tgui--plain_foreground);
-  background: var(--tgui--plain_background);
+  background: var(--tgui--tertiary_bg_color);
 }
 
 .mode-white {

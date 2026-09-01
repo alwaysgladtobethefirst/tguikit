@@ -8,6 +8,7 @@ import { Badge } from './Badge';
 import type { BadgeMode } from './Badge.variants';
 
 const MODES: BadgeMode[] = ['primary', 'critical', 'secondary', 'gray', 'white'];
+const SURFACE_MODES = MODES.filter((m) => m !== 'white');
 
 const Page = ({ children }: { children: ReactNode }) => (
   <Article
@@ -56,7 +57,9 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {
   render: (args) => (
     <Page>
-      <Badge {...args} />
+      <div style={{ display: 'flex' }}>
+        <Badge {...args} />
+      </div>
     </Page>
   ),
 };
@@ -65,17 +68,33 @@ export const Modes: Story = {
   render: () => (
     <Page>
       <Row label="number">
-        {MODES.map((mode) => (
+        {SURFACE_MODES.map((mode) => (
           <Badge key={mode} mode={mode}>
             12
           </Badge>
         ))}
       </Row>
       <Row label="dot">
-        {MODES.map((mode) => (
+        {SURFACE_MODES.map((mode) => (
           <Badge key={mode} type="dot" mode={mode} />
         ))}
       </Row>
+      <div style={{ display: 'grid', gap: 8 }}>
+        <span style={eyebrow}>white · for use over media</span>
+        <div
+          style={{
+            display: 'flex',
+            gap: 12,
+            width: 'fit-content',
+            padding: '12px 16px',
+            borderRadius: 12,
+            background: 'linear-gradient(135deg, #4b7bec, #a55eea)',
+          }}
+        >
+          <Badge mode="white">12</Badge>
+          <Badge mode="white" type="dot" />
+        </div>
+      </div>
       <Row label="large">
         <Badge large>3</Badge>
         <Badge large type="dot" />

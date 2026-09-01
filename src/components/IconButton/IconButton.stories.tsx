@@ -53,7 +53,7 @@ const meta = {
     className: { table: { disable: true } },
     children: { table: { disable: true } },
   },
-  args: { mode: 'plain', size: 'm', circle: false, 'aria-label': 'Add' },
+  args: { mode: 'gray', size: 'm', circle: false, 'aria-label': 'Add' },
 } satisfies Meta<typeof IconButton>;
 
 export default meta;

@@ -8,10 +8,11 @@
   min-height: 1em;
   border-radius: 8px;
   background: var(--tgui--skeleton);
+  color: transparent;
   pointer-events: none;
 }
 
-.visible > * {
+.visible * {
   visibility: hidden;
 }
 
