@@ -1,3 +1,4 @@
+export { Badge, type BadgeMode, type BadgeProps, type BadgeType } from './Badge';
 export { Button, type ButtonMode, type ButtonProps, type ButtonSize } from './Button';
 export { Caption, type CaptionProps } from './Caption';
 export { Card, CardCell, type CardCellProps, type CardProps, type CardType } from './Card';

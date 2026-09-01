@@ -1,0 +1,62 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  font-family: var(--tgui--font-family);
+  font-weight: var(--tgui--font_weight--accent2);
+}
+
+.number {
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.large.number {
+  min-width: 24px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 12px;
+  font-size: 15px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.large.dot {
+  width: 10px;
+  height: 10px;
+}
+
+.mode-primary {
+  color: var(--tgui--button_text_color);
+  background: var(--tgui--button_color);
+}
+
+.mode-critical {
+  color: var(--tgui--white);
+  background: var(--tgui--destructive_text_color);
+}
+
+.mode-secondary {
+  color: var(--tgui--link_color);
+  background: var(--tgui--secondary_fill);
+}
+
+.mode-gray {
+  color: var(--tgui--plain_foreground);
+  background: var(--tgui--plain_background);
+}
+
+.mode-white {
+  color: var(--tgui--black);
+  background: var(--tgui--white);
+}
