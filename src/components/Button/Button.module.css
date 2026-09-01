@@ -19,6 +19,7 @@
   content: "";
   position: absolute;
   inset: 0;
+  border-radius: inherit;
   opacity: 0;
   background: var(--tgui--bg_color);
   transition: opacity 0.15s ease-out;

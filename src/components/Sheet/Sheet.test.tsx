@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import type { ComponentProps } from 'react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { TguiProvider } from '../TguiProvider';
-import { Modal } from './Modal';
+import { Sheet } from './Sheet';
 
 beforeEach(() => {
   window.matchMedia ??= vi.fn().mockReturnValue({
@@ -12,32 +12,32 @@ beforeEach(() => {
   }) as unknown as typeof window.matchMedia;
 });
 
-function renderModal(props: Partial<ComponentProps<typeof Modal>> = {}) {
+function renderSheet(props: Partial<ComponentProps<typeof Sheet>> = {}) {
   const onClose = vi.fn();
   const result = render(
     <TguiProvider>
-      <Modal open onClose={onClose} header="Sheet" {...props}>
+      <Sheet open onClose={onClose} header="Sheet" {...props}>
         <p>Body copy</p>
-      </Modal>
+      </Sheet>
     </TguiProvider>,
   );
   return { onClose, ...result };
 }
 
-describe('Modal', () => {
+describe('Sheet', () => {
   it('renders nothing when closed', () => {
     render(
       <TguiProvider>
-        <Modal open={false} onClose={vi.fn()} header="Sheet">
+        <Sheet open={false} onClose={vi.fn()} header="Sheet">
           <p>Body copy</p>
-        </Modal>
+        </Sheet>
       </TguiProvider>,
     );
     expect(screen.queryByRole('dialog')).toBeNull();
   });
 
-  it('renders a modal dialog with header and body when open', () => {
-    renderModal();
+  it('renders a sheet dialog with header and body when open', () => {
+    renderSheet();
     const dialog = screen.getByRole('dialog');
     expect(dialog).toHaveAttribute('aria-modal', 'true');
     expect(dialog).toHaveTextContent('Sheet');
@@ -45,26 +45,26 @@ describe('Modal', () => {
   });
 
   it('closes on Escape', () => {
-    const { onClose } = renderModal();
+    const { onClose } = renderSheet();
     fireEvent.keyDown(document, { key: 'Escape' });
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
   it('closes on the close button', () => {
-    const { onClose } = renderModal();
+    const { onClose } = renderSheet();
     fireEvent.click(screen.getByRole('button', { name: 'Close' }));
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
   it('locks body scroll while open and restores it on unmount', () => {
-    const { unmount } = renderModal();
+    const { unmount } = renderSheet();
     expect(document.body.style.overflow).toBe('hidden');
     unmount();
     expect(document.body.style.overflow).toBe('');
   });
 
   it('hides the close button and ignores Escape when not dismissable', () => {
-    const { onClose } = renderModal({ dismissable: false });
+    const { onClose } = renderSheet({ dismissable: false });
     expect(screen.queryByRole('button', { name: 'Close' })).toBeNull();
     fireEvent.keyDown(document, { key: 'Escape' });
     expect(onClose).not.toHaveBeenCalled();

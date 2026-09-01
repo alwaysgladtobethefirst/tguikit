@@ -21,7 +21,6 @@ export {
 export { Input, type InputProps, type InputStatus } from './Input';
 export { LargeTitle, type LargeTitleProps } from './LargeTitle';
 export { List, type ListProps } from './List';
-export { Modal, type ModalProps } from './Modal';
 export { Placeholder, type PlaceholderProps } from './Placeholder';
 export { Portal, type PortalProps } from './Portal';
 export { Progress, type ProgressProps } from './Progress';
@@ -35,6 +34,7 @@ export {
   type SectionProps,
 } from './Section';
 export { Select, type SelectProps } from './Select';
+export { Sheet, type SheetProps } from './Sheet';
 export { Skeleton, type SkeletonProps } from './Skeleton';
 export { Spinner, type SpinnerProps, type SpinnerSize } from './Spinner';
 export { Subheadline, type SubheadlineProps } from './Subheadline';

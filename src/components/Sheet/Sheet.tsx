@@ -12,7 +12,7 @@ import {
 } from 'react';
 import { cn } from '../../shared/lib/cn';
 import { Portal } from '../Portal';
-import styles from './Modal.module.css';
+import styles from './Sheet.module.css';
 import { useReducedMotion } from './useReducedMotion';
 
 const EXIT_MS = 260;
@@ -20,7 +20,7 @@ const DRAG_THRESHOLD = 6;
 const DISMISS_DISTANCE = 96;
 const DISMISS_VELOCITY = 0.5;
 
-export interface ModalProps {
+export interface SheetProps {
   ref?: Ref<HTMLDivElement>;
   open: boolean;
   onClose: () => void;
@@ -40,7 +40,7 @@ function focusable(root: HTMLElement) {
   ).filter((el) => el.offsetParent !== null || el === document.activeElement);
 }
 
-export function Modal({
+export function Sheet({
   ref,
   open,
   onClose,
@@ -50,7 +50,7 @@ export function Modal({
   closeLabel = 'Close',
   className,
   container,
-}: ModalProps) {
+}: SheetProps) {
   const reducedMotion = useReducedMotion();
   const [rendered, setRendered] = useState(open);
   const [visible, setVisible] = useState(false);
@@ -239,4 +239,4 @@ export function Modal({
   );
 }
 
-Modal.displayName = 'Modal';
+Sheet.displayName = 'Sheet';
