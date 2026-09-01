@@ -1,5 +1,27 @@
 # tguikit
 
+## 0.2.0
+
+### Minor Changes
+
+- 215bed5: New components: Spinner, IconButton, Radio, Badge, Skeleton.
+  
+  - **Spinner** — indeterminate ring, `size` s/m/l, follows `currentColor`
+  - **IconButton** — icon-only button on Tappable, `mode` (plain / bezeled / gray / outline), `size`, `circle`
+  - **Radio** — single choice over a native radio input, groups by `name`
+  - **Badge** — count pill or status dot, `mode` (primary / critical / secondary / gray / white), `large`
+  - **Skeleton** — loading placeholder with a shimmer sweep; a sized block or a content wrapper via `visible`
+  
+  Button's `loading` state now renders the standalone `Spinner`. `--tgui--skeleton` opacity bumped so it reads on both themes.
+- 3a2972f: New components: Avatar, Textarea, Progress, CircularProgress.
+  
+  - **Avatar** – image with a fallback chain (image → `acronym` initials → person icon), fixed `size` scale (20 / 24 / 28 / 40 / 48 / 96), circular, children slot for a status dot
+  - **Textarea** – multi-line sibling of Input, same platform container / `header` / `status`, optional `autoGrow` up to `maxRows`
+  - **Progress** – linear determinate bar, `value` 0–100, `role="progressbar"`
+  - **CircularProgress** – determinate SVG ring, `value` 0–100, `size` s / m / l
+  
+  Input's field container is factored into an internal `FormField` shared with Textarea; Input's markup and API are unchanged.
+
 ## 0.1.1
 
 ### Patch Changes
