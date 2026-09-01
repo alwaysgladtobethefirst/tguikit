@@ -40,14 +40,22 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const PEOPLE = ['AB', 'CD', 'EF', 'GH', 'IJ'];
+const PEOPLE = [
+  { initials: 'AB', color: '#e17076' },
+  { initials: 'CD', color: '#7bc862' },
+  { initials: 'EF', color: '#65aadd' },
+  { initials: 'GH', color: '#a695e7' },
+  { initials: 'IJ', color: '#ee7aae' },
+];
+
+const face = (color: string) => ({ background: color, color: '#fff' });
 
 export const Playground: Story = {
   render: (args) => (
     <Page>
       <AvatarStack {...args}>
-        {PEOPLE.map((initials) => (
-          <Avatar key={initials} size={40} acronym={initials} />
+        {PEOPLE.map(({ initials, color }) => (
+          <Avatar key={initials} size={40} acronym={initials} style={face(color)} />
         ))}
       </AvatarStack>
     </Page>
@@ -60,13 +68,16 @@ export const Overflow: Story = {
       <div style={{ display: 'grid', gap: 8 }}>
         <span style={eyebrow}>4 shown, +8 more</span>
         <AvatarStack>
-          {PEOPLE.slice(0, 4).map((initials) => (
-            <Avatar key={initials} size={28} acronym={initials} />
+          {PEOPLE.slice(0, 4).map(({ initials, color }) => (
+            <Avatar key={initials} size={28} acronym={initials} style={face(color)} />
           ))}
           <Avatar
             size={28}
             acronym="+8"
-            style={{ background: 'var(--tgui--secondary_fill)', color: 'var(--tgui--link_color)' }}
+            style={{
+              background: 'var(--tgui--tertiary_bg_color)',
+              color: 'var(--tgui--subtitle_text_color)',
+            }}
           />
         </AvatarStack>
       </div>
@@ -82,8 +93,8 @@ export const Sizes: Story = {
           <div key={size} style={{ display: 'grid', gap: 8 }}>
             <span style={eyebrow}>size {size}</span>
             <AvatarStack overlap={Math.round(size / 3)}>
-              {PEOPLE.map((initials) => (
-                <Avatar key={initials} size={size} acronym={initials} />
+              {PEOPLE.map(({ initials, color }) => (
+                <Avatar key={initials} size={size} acronym={initials} style={face(color)} />
               ))}
             </AvatarStack>
           </div>

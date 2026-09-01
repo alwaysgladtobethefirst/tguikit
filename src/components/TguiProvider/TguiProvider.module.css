@@ -124,6 +124,8 @@
   --tgui--card_bg_color: #262626;
   --tgui--secondary_hint_color: #78797e;
   --tgui--secondary_fill: rgba(41, 144, 255, 0.2);
+  --tgui--surface_dark: #48484a;
+  --tgui--tooltip_background_dark: #48484a;
   --tgui--green: #32e55e;
   --tgui--destructive_background: rgba(255, 35, 35, 0.02);
   --tgui--primary_code_highlight: #2990ff;

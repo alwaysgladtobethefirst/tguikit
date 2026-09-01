@@ -7,7 +7,10 @@
 .row {
   display: flex;
   gap: 2px;
-  color: var(--tgui--secondary_fill);
+}
+
+.empty {
+  color: color-mix(in srgb, var(--tgui--rating--color, #f5a623) 22%, transparent);
 }
 
 .fill {

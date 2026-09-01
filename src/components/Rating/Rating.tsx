@@ -86,7 +86,7 @@ export function Rating({
       aria-label={label}
       {...interactiveHandlers}
     >
-      <div className={styles.row} aria-hidden={!interactive}>
+      <div className={cn(styles.row, styles.empty)} aria-hidden={!interactive}>
         {stars.map((star) =>
           interactive ? (
             // biome-ignore lint/a11y/useSemanticElements: a button in a radiogroup is the rating ARIA pattern; a native radio can't hold the icon

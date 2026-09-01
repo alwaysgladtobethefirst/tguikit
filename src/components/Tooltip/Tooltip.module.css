@@ -10,8 +10,8 @@
   max-width: 260px;
   padding: 6px 10px;
   border-radius: 8px;
-  background: var(--tgui--tooltip--bg, var(--tgui--surface_dark, #2c2c2e));
-  color: var(--tgui--tooltip--text, #ffffff);
+  background: var(--tgui--tooltip_background_dark, rgba(0, 0, 0, 0.86));
+  color: var(--tgui--white, #ffffff);
   font-family: var(--tgui--font-family);
   font-size: 13px;
   line-height: 17px;

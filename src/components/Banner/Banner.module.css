@@ -10,7 +10,7 @@
 }
 
 .type-section {
-  background: var(--tgui--secondary_bg_color);
+  background: var(--tgui--tertiary_bg_color);
   color: var(--tgui--text_color);
 }
 

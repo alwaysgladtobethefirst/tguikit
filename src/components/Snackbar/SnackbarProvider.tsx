@@ -5,6 +5,7 @@ import {
   type PointerEvent as ReactPointerEvent,
   useCallback,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -88,7 +89,7 @@ function SnackbarItem({ item, defaultDuration, onDismiss }: SnackbarItemProps) {
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const drag = useRef({ id: -1, startX: 0, active: false });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const node = nodeRef.current;
     if (node) void node.offsetHeight;
     setVisible(true);
@@ -154,7 +155,14 @@ function SnackbarItem({ item, defaultDuration, onDismiss }: SnackbarItemProps) {
     node.classList.remove(styles['snackbar--dragging']);
     const dx = event.clientX - state.startX;
     if (state.active && Math.abs(dx) > SWIPE_DISMISS) {
-      close();
+      if (reducedMotion) {
+        onDismiss();
+        return;
+      }
+      node.style.transition = 'transform 0.2s ease-out, opacity 0.2s ease-out';
+      node.style.transform = `translateX(${Math.sign(dx) * (window.innerWidth || 400)}px)`;
+      node.style.opacity = '0';
+      setTimeout(onDismiss, 190);
       return;
     }
     node.style.transform = '';
