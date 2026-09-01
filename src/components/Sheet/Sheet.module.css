@@ -37,22 +37,23 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .backdrop {
-    transition: opacity 0.24s ease;
+    transition: opacity 0.34s ease;
   }
 
   .panel {
-    transition: transform 0.26s cubic-bezier(0.32, 0.72, 0, 1);
+    transition: transform 0.34s cubic-bezier(0.32, 0.72, 0, 1);
   }
-}
-
-.panel--dragging {
-  transition: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .backdrop {
+    transition: opacity 0.18s linear;
+  }
+
   .panel {
     transform: none;
     opacity: 0;
+    transition: opacity 0.18s linear;
   }
 
   .panel--visible {

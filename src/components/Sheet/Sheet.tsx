@@ -15,7 +15,7 @@ import { Portal } from '../Portal';
 import styles from './Sheet.module.css';
 import { useReducedMotion } from './useReducedMotion';
 
-const EXIT_MS = 260;
+const DURATION_MS = 340;
 const DRAG_THRESHOLD = 6;
 const DISMISS_DISTANCE = 96;
 const DISMISS_VELOCITY = 0.5;
@@ -57,32 +57,37 @@ export function Sheet({
 
   const panelRef = useRef<HTMLDivElement | null>(null);
   const restoreFocusRef = useRef<HTMLElement | null>(null);
-
   const drag = useRef({ id: -1, active: false, startY: 0, lastY: 0, lastT: 0, velocity: 0 });
-  const [dragY, setDragY] = useState(0);
-  const [dragging, setDragging] = useState(false);
 
   useEffect(() => {
     if (open) {
       setRendered(true);
-      const id = requestAnimationFrame(() => setVisible(true));
-      return () => cancelAnimationFrame(id);
+      return;
     }
     setVisible(false);
     if (reducedMotion) {
       setRendered(false);
       return;
     }
-    const id = setTimeout(() => setRendered(false), EXIT_MS);
+    const id = setTimeout(() => setRendered(false), DURATION_MS);
     return () => clearTimeout(id);
   }, [open, reducedMotion]);
 
   useEffect(() => {
-    if (!rendered) {
-      setDragY(0);
-      setDragging(false);
-    }
-  }, [rendered]);
+    if (!rendered || !open) return;
+    let shown = false;
+    const show = () => {
+      if (shown) return;
+      shown = true;
+      setVisible(true);
+    };
+    const raf = requestAnimationFrame(show);
+    const timer = setTimeout(show, 50);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(timer);
+    };
+  }, [rendered, open]);
 
   useEffect(() => {
     if (!rendered) return;
@@ -130,7 +135,7 @@ export function Sheet({
   }, []);
 
   const onPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
-    if (!dismissable || event.button !== 0) return;
+    if (!dismissable || event.button !== 0 || reducedMotion) return;
     if ((event.target as HTMLElement).closest('button')) return;
     drag.current = {
       id: event.pointerId,
@@ -149,14 +154,19 @@ export function Sheet({
     if (!state.active) {
       if (delta < DRAG_THRESHOLD) return;
       state.active = true;
-      setDragging(true);
       event.currentTarget.setPointerCapture(event.pointerId);
+      if (panelRef.current) panelRef.current.style.transition = 'none';
     }
     const dt = event.timeStamp - state.lastT;
-    if (dt > 0) state.velocity = (event.clientY - state.lastY) / dt;
-    state.lastY = event.clientY;
-    state.lastT = event.timeStamp;
-    setDragY(Math.max(0, delta));
+    if (dt >= 1) {
+      const instant = (event.clientY - state.lastY) / dt;
+      state.velocity = state.velocity * 0.6 + instant * 0.4;
+      state.lastY = event.clientY;
+      state.lastT = event.timeStamp;
+    }
+    if (panelRef.current) {
+      panelRef.current.style.transform = `translateY(${Math.max(0, delta)}px)`;
+    }
   };
 
   const endDrag = (event: ReactPointerEvent<HTMLDivElement>) => {
@@ -164,13 +174,20 @@ export function Sheet({
     if (state.id !== event.pointerId) return;
     drag.current = { ...state, id: -1, active: false };
     if (!state.active) return;
-    setDragging(false);
     event.currentTarget.releasePointerCapture?.(event.pointerId);
+
+    const panel = panelRef.current;
     const travelled = event.clientY - state.startY;
-    if (travelled > DISMISS_DISTANCE || state.velocity > DISMISS_VELOCITY) {
+    const dismiss = travelled > DISMISS_DISTANCE || state.velocity > DISMISS_VELOCITY;
+
+    if (panel) {
+      panel.style.transition = '';
+      panel.getBoundingClientRect();
+      panel.style.transform = '';
+    }
+    if (dismiss) {
+      setVisible(false);
       onClose();
-    } else {
-      setDragY(0);
     }
   };
 
@@ -192,13 +209,7 @@ export function Sheet({
           role="dialog"
           aria-modal="true"
           tabIndex={-1}
-          className={cn(
-            styles.panel,
-            showPanel && styles['panel--visible'],
-            dragging && styles['panel--dragging'],
-            className,
-          )}
-          style={dragY ? { transform: `translateY(${dragY}px)` } : undefined}
+          className={cn(styles.panel, showPanel && styles['panel--visible'], className)}
           onKeyDown={trapTab}
         >
           <div
