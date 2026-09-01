@@ -1,0 +1,49 @@
+.skeleton {
+  display: block;
+}
+
+.visible {
+  position: relative;
+  overflow: hidden;
+  min-height: 1em;
+  border-radius: 8px;
+  background: var(--tgui--skeleton);
+  color: transparent;
+  pointer-events: none;
+}
+
+.visible * {
+  visibility: hidden;
+}
+
+.visible::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--tgui--text_color) 5%, transparent),
+    transparent
+  );
+  animation: tgui-skeleton 1.5s ease-in-out infinite;
+}
+
+@keyframes tgui-skeleton {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .visible::after {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .visible {
+    background: var(--tgui--tertiary_bg_color);
+  }
+}

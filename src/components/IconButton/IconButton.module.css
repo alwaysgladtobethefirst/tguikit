@@ -1,0 +1,84 @@
+.iconButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  overflow: hidden;
+  border-radius: 10px;
+  color: var(--tgui--link_color);
+  background: transparent;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.s {
+  width: 30px;
+  height: 30px;
+}
+
+.m {
+  width: 36px;
+  height: 36px;
+}
+
+.l {
+  width: 44px;
+  height: 44px;
+}
+
+.iconButton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: currentColor;
+}
+
+.ios::after {
+  content: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .iconButton::after {
+    transition: opacity 0.15s ease-out;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .iconButton:not([data-disabled]):hover::after {
+    opacity: 0.08;
+  }
+}
+
+.icon {
+  display: flex;
+  z-index: var(--tgui--z-index--simple);
+}
+
+.icon svg {
+  display: block;
+}
+
+.mode-bezeled {
+  color: var(--tgui--link_color);
+  background: var(--tgui--secondary_fill);
+}
+
+.mode-plain {
+  color: var(--tgui--link_color);
+}
+
+.mode-gray {
+  color: var(--tgui--plain_foreground);
+  background: var(--tgui--plain_background);
+}
+
+.mode-outline {
+  color: var(--tgui--plain_foreground);
+  box-shadow: inset 0 0 0 1px var(--tgui--outline);
+}

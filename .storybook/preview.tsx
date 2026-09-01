@@ -85,6 +85,7 @@ const preview: Preview = {
           ['Scale', '*'],
           'Layout',
           'Data Display',
+          'Feedback',
           'Inputs',
           'Actions',
           'Navigation',
