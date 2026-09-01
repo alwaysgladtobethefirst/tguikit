@@ -19,12 +19,14 @@
   flex-direction: column;
   width: 100%;
   max-width: 512px;
-  margin: 0 auto;
+  min-height: 96px;
   max-height: 92vh;
+  margin: 0 auto;
   padding-bottom: env(safe-area-inset-bottom);
   border-radius: 16px 16px 0 0;
   background: var(--tgui--bg_color);
   color: var(--tgui--text_color);
+  box-shadow: 0 -8px 32px rgb(0 0 0 / 0.18);
   transform: translateY(100%);
   will-change: transform;
 }
@@ -58,29 +60,32 @@
   }
 }
 
-.handle {
+.grip {
+  display: flex;
+  flex-direction: column;
   flex-shrink: 0;
+  padding-top: 8px;
+  touch-action: none;
+  cursor: grab;
+}
+
+.handle {
   align-self: center;
   width: 36px;
   height: 4px;
-  margin: 8px 0;
   border-radius: 2px;
   background: var(--tgui--quaternary_bg_color, var(--tgui--tertiary_bg_color));
-}
-
-.grip {
-  flex-shrink: 0;
-  touch-action: none;
-  cursor: grab;
 }
 
 .header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 4px 16px 12px;
+  gap: 12px;
+  padding: 12px 12px 12px 20px;
   font-family: var(--tgui--font-family);
-  font-weight: var(--tgui--font_weight--accent2);
+  font-size: 20px;
+  font-weight: var(--tgui--font_weight--accent1);
+  line-height: 1.2;
 }
 
 .title {
@@ -90,11 +95,12 @@
 
 .close {
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   width: 30px;
   height: 30px;
-  margin: -4px -8px -4px 0;
+  padding: 0;
   border: 0;
   border-radius: 50%;
   color: var(--tgui--secondary_hint_color);
@@ -102,9 +108,20 @@
   cursor: pointer;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .close:hover {
+    color: var(--tgui--text_color);
+  }
+}
+
 .body {
+  flex: 1;
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: 0 16px 16px;
+  padding: 4px 20px 20px;
   -webkit-overflow-scrolling: touch;
+}
+
+.grip + .body {
+  padding-top: 0;
 }

@@ -37,6 +37,7 @@ const meta = {
   parameters: {
     layout: 'fullscreen',
     docs: {
+      story: { inline: false, height: '560px' },
       description: {
         component:
           'A controlled bottom sheet: `open` + `onClose`. Portals into the `TguiProvider` wrapper, ' +

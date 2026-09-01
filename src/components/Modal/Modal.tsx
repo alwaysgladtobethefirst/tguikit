@@ -16,6 +16,7 @@ import styles from './Modal.module.css';
 import { useReducedMotion } from './useReducedMotion';
 
 const EXIT_MS = 260;
+const DRAG_THRESHOLD = 6;
 const DISMISS_DISTANCE = 96;
 const DISMISS_VELOCITY = 0.5;
 
@@ -57,7 +58,7 @@ export function Modal({
   const panelRef = useRef<HTMLDivElement | null>(null);
   const restoreFocusRef = useRef<HTMLElement | null>(null);
 
-  const drag = useRef({ active: false, startY: 0, lastY: 0, lastT: 0, velocity: 0 });
+  const drag = useRef({ id: -1, active: false, startY: 0, lastY: 0, lastT: 0, velocity: 0 });
   const [dragY, setDragY] = useState(0);
   const [dragging, setDragging] = useState(false);
 
@@ -130,35 +131,43 @@ export function Modal({
 
   const onPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
     if (!dismissable || event.button !== 0) return;
+    if ((event.target as HTMLElement).closest('button')) return;
     drag.current = {
-      active: true,
+      id: event.pointerId,
+      active: false,
       startY: event.clientY,
       lastY: event.clientY,
       lastT: event.timeStamp,
       velocity: 0,
     };
-    setDragging(true);
-    event.currentTarget.setPointerCapture(event.pointerId);
   };
 
   const onPointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
-    if (!drag.current.active) return;
-    const dt = event.timeStamp - drag.current.lastT;
-    if (dt > 0) {
-      drag.current.velocity = (event.clientY - drag.current.lastY) / dt;
+    const state = drag.current;
+    if (state.id !== event.pointerId) return;
+    const delta = event.clientY - state.startY;
+    if (!state.active) {
+      if (delta < DRAG_THRESHOLD) return;
+      state.active = true;
+      setDragging(true);
+      event.currentTarget.setPointerCapture(event.pointerId);
     }
-    drag.current.lastY = event.clientY;
-    drag.current.lastT = event.timeStamp;
-    setDragY(Math.max(0, event.clientY - drag.current.startY));
+    const dt = event.timeStamp - state.lastT;
+    if (dt > 0) state.velocity = (event.clientY - state.lastY) / dt;
+    state.lastY = event.clientY;
+    state.lastT = event.timeStamp;
+    setDragY(Math.max(0, delta));
   };
 
   const endDrag = (event: ReactPointerEvent<HTMLDivElement>) => {
-    if (!drag.current.active) return;
-    drag.current.active = false;
+    const state = drag.current;
+    if (state.id !== event.pointerId) return;
+    drag.current = { ...state, id: -1, active: false };
+    if (!state.active) return;
     setDragging(false);
     event.currentTarget.releasePointerCapture?.(event.pointerId);
-    const travelled = event.clientY - drag.current.startY;
-    if (travelled > DISMISS_DISTANCE || drag.current.velocity > DISMISS_VELOCITY) {
+    const travelled = event.clientY - state.startY;
+    if (travelled > DISMISS_DISTANCE || state.velocity > DISMISS_VELOCITY) {
       onClose();
     } else {
       setDragY(0);
@@ -193,13 +202,13 @@ export function Modal({
           onKeyDown={trapTab}
         >
           <div
-            className={cn(styles.grip)}
+            className={styles.grip}
             onPointerDown={onPointerDown}
             onPointerMove={onPointerMove}
             onPointerUp={endDrag}
             onPointerCancel={endDrag}
           >
-            <div className={styles.handle} />
+            {dismissable ? <span className={styles.handle} aria-hidden /> : null}
             {header != null ? (
               <div className={styles.header}>
                 <div className={styles.title}>{header}</div>
