@@ -15,6 +15,7 @@ export { Input, type InputProps, type InputStatus } from './Input';
 export { LargeTitle, type LargeTitleProps } from './LargeTitle';
 export { List, type ListProps } from './List';
 export { Placeholder, type PlaceholderProps } from './Placeholder';
+export { Radio, type RadioProps } from './Radio';
 export {
   Section,
   SectionFooter,
