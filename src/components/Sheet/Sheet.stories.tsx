@@ -34,13 +34,12 @@ const stageStyle: CSSProperties = {
   position: 'relative',
   display: 'flex',
   justifyContent: 'center',
-  height: 640,
+  height: 620,
   padding: 24,
   overflow: 'hidden',
   borderRadius: 16,
   background: 'var(--tgui--secondary_bg_color)',
   boxShadow: 'inset 0 0 0 1px var(--tgui--outline)',
-  ...({ '--tgui--sheet--height': '440px' } as CSSProperties),
 };
 
 const Stage = ({ children }: { children: (container: HTMLElement | null) => ReactNode }) => {
@@ -65,8 +64,9 @@ const meta = {
           'with a scrim, traps and restores focus, and locks body scroll. Closes on `Escape`, ' +
           'scrim tap, the header close button, or a downward drag past a threshold / flick; ' +
           '`dismissable={false}` removes all of those. Reduced motion swaps the slide for a fade. ' +
-          'Height is fixed (`--tgui--sheet--height`). Needs a `TguiProvider`. The demos below run ' +
-          'inside a bordered box so the scrim is visible; in an app the sheet covers the viewport.',
+          'Height follows its content, capped at `--tgui--sheet--max-height` (default 50% of the ' +
+          'scrim); past that the body scrolls. Needs a `TguiProvider`. The demos below run inside ' +
+          'a bordered box so the scrim is visible; in an app the sheet covers the viewport.',
       },
     },
   },
