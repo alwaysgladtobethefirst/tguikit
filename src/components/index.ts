@@ -18,6 +18,7 @@ export {
   type SectionProps,
 } from './Section';
 export { Select, type SelectProps } from './Select';
+export { Spinner, type SpinnerProps, type SpinnerSize } from './Spinner';
 export { Subheadline, type SubheadlineProps } from './Subheadline';
 export { Switch, type SwitchProps } from './Switch';
 export { TabBar, TabBarItem, type TabBarItemProps, type TabBarProps } from './TabBar';

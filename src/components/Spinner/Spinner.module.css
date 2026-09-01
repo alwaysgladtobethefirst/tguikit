@@ -1,0 +1,39 @@
+.spinner {
+  display: inline-block;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: currentColor;
+  border-top-color: transparent;
+  animation: tgui-spinner 0.6s linear infinite;
+}
+
+.s {
+  width: 16px;
+  height: 16px;
+  border-width: 2px;
+}
+
+.m {
+  width: 24px;
+  height: 24px;
+  border-width: 2.5px;
+}
+
+.l {
+  width: 32px;
+  height: 32px;
+  border-width: 3px;
+}
+
+@keyframes tgui-spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation-duration: 1.6s;
+  }
+}
