@@ -1,4 +1,5 @@
 export { Avatar, type AvatarProps, type AvatarSize } from './Avatar';
+export { AvatarStack, type AvatarStackProps } from './AvatarStack';
 export { Badge, type BadgeMode, type BadgeProps, type BadgeType } from './Badge';
 export { Banner, type BannerProps, type BannerType } from './Banner';
 export { Button, type ButtonMode, type ButtonProps, type ButtonSize } from './Button';
@@ -24,10 +25,12 @@ export {
 export { Input, type InputProps, type InputStatus } from './Input';
 export { LargeTitle, type LargeTitleProps } from './LargeTitle';
 export { List, type ListProps } from './List';
+export { PinInput, type PinInputProps } from './PinInput';
 export { Placeholder, type PlaceholderProps } from './Placeholder';
 export { Portal, type PortalProps } from './Portal';
 export { Progress, type ProgressProps } from './Progress';
 export { Radio, type RadioProps } from './Radio';
+export { Rating, type RatingProps } from './Rating';
 export {
   Section,
   SectionFooter,
@@ -45,6 +48,14 @@ export {
 export { Select, type SelectProps } from './Select';
 export { Sheet, type SheetProps } from './Sheet';
 export { Skeleton, type SkeletonProps } from './Skeleton';
+export { Slider, type SliderProps } from './Slider';
+export {
+  type SnackbarApi,
+  type SnackbarOptions,
+  SnackbarProvider,
+  type SnackbarProviderProps,
+  useSnackbar,
+} from './Snackbar';
 export { Spinner, type SpinnerProps, type SpinnerSize } from './Spinner';
 export { Subheadline, type SubheadlineProps } from './Subheadline';
 export { Switch, type SwitchProps } from './Switch';
@@ -54,4 +65,5 @@ export { Text, type TextProps } from './Text';
 export { Textarea, type TextareaProps, type TextareaStatus } from './Textarea';
 export { TguiProvider, type TguiProviderProps, useTgui } from './TguiProvider';
 export { Title, type TitleProps } from './Title';
+export { Tooltip, type TooltipPlacement, type TooltipProps } from './Tooltip';
 export { Typography, type TypographyProps } from './Typography';

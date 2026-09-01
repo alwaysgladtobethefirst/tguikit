@@ -11,10 +11,10 @@ import {
   useState,
 } from 'react';
 import { cn } from '../../shared/lib/cn';
+import { useReducedMotion } from '../../shared/lib/useReducedMotion';
 import { IconButton } from '../IconButton';
 import { Portal } from '../Portal';
 import styles from './Sheet.module.css';
-import { useReducedMotion } from './useReducedMotion';
 
 const DURATION_MS = 340;
 const DRAG_THRESHOLD = 6;

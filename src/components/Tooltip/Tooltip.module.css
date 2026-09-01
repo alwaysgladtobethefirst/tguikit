@@ -1,0 +1,50 @@
+.trigger {
+  display: inline-flex;
+}
+
+.tooltip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--tgui--z-index--overlay, 1000);
+  max-width: 260px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: var(--tgui--tooltip--bg, var(--tgui--surface_dark, #2c2c2e));
+  color: var(--tgui--tooltip--text, #ffffff);
+  font-family: var(--tgui--font-family);
+  font-size: 13px;
+  line-height: 17px;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.24);
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.92);
+  transform-origin: var(--tgui--tooltip--origin-x, 50%) var(--tgui--tooltip--origin-y, 50%);
+}
+
+.tooltip--visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tooltip {
+    transition:
+      opacity 0.13s ease,
+      transform 0.13s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tooltip {
+    transform: none;
+  }
+}
+
+.arrow {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: inherit;
+  transform: rotate(45deg);
+}
