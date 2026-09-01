@@ -21,7 +21,9 @@ export {
 export { Input, type InputProps, type InputStatus } from './Input';
 export { LargeTitle, type LargeTitleProps } from './LargeTitle';
 export { List, type ListProps } from './List';
+export { Modal, type ModalProps } from './Modal';
 export { Placeholder, type PlaceholderProps } from './Placeholder';
+export { Portal, type PortalProps } from './Portal';
 export { Progress, type ProgressProps } from './Progress';
 export { Radio, type RadioProps } from './Radio';
 export {
