@@ -26,6 +26,7 @@ export {
   type SectionProps,
 } from './Section';
 export { Select, type SelectProps } from './Select';
+export { Skeleton, type SkeletonProps } from './Skeleton';
 export { Spinner, type SpinnerProps, type SpinnerSize } from './Spinner';
 export { Subheadline, type SubheadlineProps } from './Subheadline';
 export { Switch, type SwitchProps } from './Switch';
