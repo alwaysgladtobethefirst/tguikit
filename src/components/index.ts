@@ -5,6 +5,12 @@ export { Cell, type CellProps } from './Cell';
 export { Checkbox, type CheckboxProps } from './Checkbox';
 export { Divider, type DividerProps } from './Divider';
 export { Headline, type HeadlineProps } from './Headline';
+export {
+  IconButton,
+  type IconButtonMode,
+  type IconButtonProps,
+  type IconButtonSize,
+} from './IconButton';
 export { Input, type InputProps, type InputStatus } from './Input';
 export { LargeTitle, type LargeTitleProps } from './LargeTitle';
 export { List, type ListProps } from './List';
