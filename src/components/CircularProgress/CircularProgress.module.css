@@ -1,0 +1,24 @@
+.root {
+  display: inline-flex;
+  color: var(--tgui--link_color);
+}
+
+.svg {
+  display: block;
+}
+
+.track {
+  stroke: var(--tgui--tertiary_bg_color);
+}
+
+.indicator {
+  stroke: currentColor;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .indicator {
+    transition: stroke-dashoffset 0.25s ease;
+  }
+}

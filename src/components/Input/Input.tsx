@@ -7,7 +7,7 @@ import {
   type Ref,
   useState,
 } from 'react';
-import { cn } from '../../shared/lib/cn';
+import { FormField } from '../FormField';
 import { Subheadline } from '../Subheadline';
 import { Text } from '../Text';
 import { useTgui } from '../TguiProvider';
@@ -52,33 +52,26 @@ export function Input({
   };
 
   return (
-    <div
-      className={cn(
-        ios ? styles.ios : styles.base,
-        state === 'error' && styles.error,
-        state === 'focused' && styles.focused,
-        disabled && styles.disabled,
-        className,
-      )}
-      aria-disabled={disabled || undefined}
+    <FormField
+      ios={ios}
+      status={state}
+      disabled={disabled}
+      header={header}
+      before={before}
+      after={after}
+      className={className}
     >
-      {/* biome-ignore lint/a11y/noLabelWithoutControl: the control is <input> below, rendered via Typography */}
-      <label className={styles.body}>
-        {before != null ? <span className={styles.before}>{before}</span> : null}
-        <Typography
-          ref={ref as Ref<HTMLElement>}
-          Component="input"
-          className={styles.field}
-          type={type}
-          disabled={disabled}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          {...rest}
-        />
-        {after != null ? <span className={styles.after}>{after}</span> : null}
-      </label>
-      {header != null && !ios ? <span className={styles.header}>{header}</span> : null}
-    </div>
+      <Typography
+        ref={ref as Ref<HTMLElement>}
+        Component="input"
+        className={styles.field}
+        type={type}
+        disabled={disabled}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        {...rest}
+      />
+    </FormField>
   );
 }
 
