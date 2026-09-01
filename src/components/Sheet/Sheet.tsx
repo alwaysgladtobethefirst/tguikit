@@ -75,30 +75,29 @@ export function Sheet({
 
   useEffect(() => {
     if (!rendered || !open) return;
-    let shown = false;
-    const show = () => {
-      if (shown) return;
-      shown = true;
-      setVisible(true);
-    };
-    const raf = requestAnimationFrame(show);
-    const timer = setTimeout(show, 50);
-    return () => {
-      cancelAnimationFrame(raf);
-      clearTimeout(timer);
-    };
+    const panel = panelRef.current;
+    if (!panel) return;
+    // reflow so the browser registers the off-screen start before the class flips
+    void panel.offsetHeight;
+    setVisible(true);
   }, [rendered, open]);
 
   useEffect(() => {
     if (!rendered) return;
     restoreFocusRef.current = document.activeElement as HTMLElement | null;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    const id = requestAnimationFrame(() => panelRef.current?.focus());
+
+    const { body, documentElement } = document;
+    const scrollbar = window.innerWidth - documentElement.clientWidth;
+    const previous = { overflow: body.style.overflow, paddingRight: body.style.paddingRight };
+    body.style.overflow = 'hidden';
+    if (scrollbar > 0) body.style.paddingRight = `${scrollbar}px`;
+
+    const id = requestAnimationFrame(() => panelRef.current?.focus({ preventScroll: true }));
     return () => {
       cancelAnimationFrame(id);
-      document.body.style.overflow = previousOverflow;
-      restoreFocusRef.current?.focus?.();
+      body.style.overflow = previous.overflow;
+      body.style.paddingRight = previous.paddingRight;
+      restoreFocusRef.current?.focus?.({ preventScroll: true });
     };
   }, [rendered]);
 

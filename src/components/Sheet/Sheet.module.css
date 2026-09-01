@@ -19,16 +19,15 @@
   flex-direction: column;
   width: 100%;
   max-width: 512px;
-  min-height: 96px;
-  max-height: 92vh;
+  height: var(--tgui--sheet--height, min(560px, 88dvh));
   margin: 0 auto;
-  padding-bottom: env(safe-area-inset-bottom);
   border-radius: 16px 16px 0 0;
   background: var(--tgui--bg_color);
   color: var(--tgui--text_color);
   box-shadow: 0 -8px 32px rgb(0 0 0 / 0.18);
   transform: translateY(100%);
   will-change: transform;
+  contain: layout;
 }
 
 .panel--visible {
@@ -117,9 +116,10 @@
 
 .body {
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: 4px 20px 20px;
+  padding: 4px 20px calc(20px + env(safe-area-inset-bottom));
   -webkit-overflow-scrolling: touch;
 }
 
