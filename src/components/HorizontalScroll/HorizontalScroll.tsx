@@ -111,6 +111,7 @@ export function HorizontalScroll({
           />
         </>
       ) : null}
+      {/* biome-ignore lint/a11y/noStaticElementInteractions: pointer handlers only add mouse drag-to-scroll on top of the native scroll region; keyboard and touch scroll it without them */}
       <div
         ref={scrollerRef}
         className={cn(styles.scroller, snap && styles.snap)}
