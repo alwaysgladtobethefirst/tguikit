@@ -82,6 +82,7 @@ export function Image({
           className={styles.img}
           src={src}
           alt={alt}
+          draggable={false}
           onLoad={(event) => {
             setLoaded(true);
             onLoad?.(event);

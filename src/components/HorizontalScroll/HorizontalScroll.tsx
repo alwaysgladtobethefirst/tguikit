@@ -74,9 +74,10 @@ export function HorizontalScroll({
       if (Math.abs(dx) < DRAG_THRESHOLD) return;
       state.moved = true;
       el.setPointerCapture(event.pointerId);
-      el.style.cursor = 'grabbing';
+      el.dataset.grabbing = 'true';
       el.style.scrollBehavior = 'auto';
     }
+    event.preventDefault();
     el.scrollLeft = state.startScroll - dx;
   };
 
@@ -84,7 +85,7 @@ export function HorizontalScroll({
     const el = scrollerRef.current;
     if (el && drag.current.moved) {
       el.releasePointerCapture?.(event.pointerId);
-      el.style.cursor = '';
+      delete el.dataset.grabbing;
       el.style.scrollBehavior = '';
     }
     drag.current.down = false;
@@ -93,11 +94,23 @@ export function HorizontalScroll({
   return (
     <div
       ref={ref}
-      className={cn(styles.root, fade && styles.fade, className)}
+      className={cn(styles.root, className)}
       data-start={fade ? String(edges.start) : undefined}
       data-end={fade ? String(edges.end) : undefined}
       {...rest}
     >
+      {fade ? (
+        <>
+          <span
+            className={cn(styles.edge, styles['edge--start'], edges.start && styles.visible)}
+            aria-hidden
+          />
+          <span
+            className={cn(styles.edge, styles['edge--end'], edges.end && styles.visible)}
+            aria-hidden
+          />
+        </>
+      ) : null}
       <div
         ref={scrollerRef}
         className={cn(styles.scroller, snap && styles.snap)}
@@ -105,6 +118,7 @@ export function HorizontalScroll({
         onPointerMove={onPointerMove}
         onPointerUp={endDrag}
         onPointerCancel={endDrag}
+        onDragStart={(event) => event.preventDefault()}
         onClickCapture={(event) => {
           if (drag.current.moved) {
             event.stopPropagation();

@@ -65,6 +65,7 @@ export function Spoiler({
       <span className={styles.content} aria-hidden={!revealed}>
         {children}
       </span>
+      <span className={styles.particles} aria-hidden />
     </span>
   );
 }

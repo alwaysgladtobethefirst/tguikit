@@ -6,7 +6,7 @@ import { Spoiler } from './Spoiler';
 const Page = ({ children }: { children: ReactNode }) => (
   <Article
     title="Spoiler"
-    lead="Telegram-style hidden text. Blurred with a shimmer until tapped or activated by keyboard; tap again to hide it. Reduced motion drops the shimmer and de-blurs instantly."
+    lead="Telegram-style hidden text. Blurred under an animated grain field until tapped or activated by keyboard; tap again to hide it. Reduced motion drops the flicker and de-blurs instantly."
   >
     {children}
   </Article>
@@ -20,10 +20,10 @@ const meta = {
     docs: {
       description: {
         component:
-          'A `role="button"` span that blurs its content and runs a shimmer sweep. Enter / Space ' +
-          'or a click toggles it; `aria-pressed` tracks the state and the content is `aria-hidden` ' +
-          'while concealed. Controlled via `revealed` + `onRevealedChange`. Colours are theme ' +
-          'tokens; the shimmer sits behind `prefers-reduced-motion`.',
+          'A `role="button"` span that blurs its content under a theme-coloured SVG-noise grain ' +
+          'that flickers via `steps()`. Enter / Space or a click toggles it; `aria-pressed` ' +
+          'tracks the state and the content is `aria-hidden` while concealed. Controlled via ' +
+          '`revealed` + `onRevealedChange`. The flicker sits behind `prefers-reduced-motion`.',
       },
     },
   },
