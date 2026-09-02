@@ -2,6 +2,7 @@
   --tgui--spoiler--p: 0;
   --tgui--spoiler--edge: 16px;
   --tgui--spoiler--edge-y: 7px;
+  --tgui--spoiler--radius: 9px;
   position: relative;
   display: inline-block;
   max-width: 100%;
@@ -17,6 +18,8 @@
 
 .spoiler::before,
 .canvas {
+  border-radius: var(--tgui--spoiler--radius);
+  overflow: hidden;
   -webkit-mask-image:
     linear-gradient(
       to right,
