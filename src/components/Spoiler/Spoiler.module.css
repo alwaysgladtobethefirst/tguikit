@@ -1,6 +1,7 @@
 .spoiler {
   --tgui--spoiler--p: 0;
-  --tgui--spoiler--edge: 14px;
+  --tgui--spoiler--edge: 16px;
+  --tgui--spoiler--edge-y: 7px;
   position: relative;
   display: inline-block;
   max-width: 100%;
@@ -16,26 +17,44 @@
 
 .spoiler::before,
 .canvas {
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    #000 var(--tgui--spoiler--edge),
-    #000 calc(100% - var(--tgui--spoiler--edge)),
-    transparent
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    #000 var(--tgui--spoiler--edge),
-    #000 calc(100% - var(--tgui--spoiler--edge)),
-    transparent
-  );
+  -webkit-mask-image:
+    linear-gradient(
+      to right,
+      transparent,
+      #000 var(--tgui--spoiler--edge),
+      #000 calc(100% - var(--tgui--spoiler--edge)),
+      transparent
+    ),
+    linear-gradient(
+      to bottom,
+      transparent,
+      #000 var(--tgui--spoiler--edge-y),
+      #000 calc(100% - var(--tgui--spoiler--edge-y)),
+      transparent
+    );
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(
+      to right,
+      transparent,
+      #000 var(--tgui--spoiler--edge),
+      #000 calc(100% - var(--tgui--spoiler--edge)),
+      transparent
+    ),
+    linear-gradient(
+      to bottom,
+      transparent,
+      #000 var(--tgui--spoiler--edge-y),
+      #000 calc(100% - var(--tgui--spoiler--edge-y)),
+      transparent
+    );
+  mask-composite: intersect;
 }
 
 .spoiler::before {
   content: "";
   position: absolute;
-  inset: -3px -10px;
+  inset: -5px -10px;
   z-index: 0;
   background: currentColor;
   opacity: calc((1 - var(--tgui--spoiler--p)) * 0.09);
@@ -63,10 +82,10 @@
 
 .canvas {
   position: absolute;
-  inset: -3px -10px;
+  inset: -5px -10px;
   z-index: 1;
   width: calc(100% + 20px);
-  height: calc(100% + 6px);
+  height: calc(100% + 10px);
   pointer-events: none;
 }
 
