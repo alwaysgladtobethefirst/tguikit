@@ -6,7 +6,7 @@ import { Spoiler } from './Spoiler';
 const Page = ({ children }: { children: ReactNode }) => (
   <Article
     title="Spoiler"
-    lead="Telegram-style hidden text. Blurred under an animated grain field until tapped or activated by keyboard; tap again to hide it. Reduced motion drops the flicker and de-blurs instantly."
+    lead="Telegram-style hidden text. A field of theme-coloured static drifts over the blurred content until you tap or key into it; revealing wipes the static outward from the tap. Reduced motion freezes the static and de-blurs at once."
   >
     {children}
   </Article>
@@ -20,21 +20,26 @@ const meta = {
     docs: {
       description: {
         component:
-          'A `role="button"` span that blurs its content under a theme-coloured film grain – an ' +
-          '`feTurbulence` field whose seed flickers for real static. Enter / Space or a click ' +
-          'toggles it; `aria-pressed` tracks the state and the content is `aria-hidden` while ' +
-          'concealed. Controlled via `revealed` + `onRevealedChange`. Revealing cross-fades the ' +
-          'grain out as the text sharpens; reduced motion freezes the grain and de-blurs at once.',
+          'A `role="button"` span. A `<canvas>` overlay repaints per-pixel random noise every ' +
+          'frame (`fps`, `density`, `accentColor` tunable) and pauses off-screen. Enter / Space ' +
+          'or a click toggles it (`revealOn="hover"` for hover); `aria-pressed` tracks state and ' +
+          'the content is `aria-hidden` while concealed. Revealing runs an iris — a radial mask ' +
+          'that grows from the tap point wiping the static away as the text de-blurs. Reduced ' +
+          'motion paints one static frame and toggles instantly.',
       },
     },
   },
   argTypes: {
+    revealOn: { control: 'inline-radio', options: ['click', 'hover'] },
+    density: { control: { type: 'range', min: 0.04, max: 0.3, step: 0.01 } },
+    fps: { control: { type: 'range', min: 8, max: 30, step: 1 } },
+    accentColor: { control: 'color' },
     revealed: { table: { disable: true } },
     children: { control: 'text' },
     ref: { table: { disable: true } },
     className: { table: { disable: true } },
   },
-  args: { children: 'they were the villain all along' },
+  args: { children: 'they were the villain all along', revealOn: 'click', density: 0.14, fps: 24 },
 } satisfies Meta<typeof Spoiler>;
 
 export default meta;
