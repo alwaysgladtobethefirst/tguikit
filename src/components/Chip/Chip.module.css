@@ -1,0 +1,76 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-sizing: border-box;
+  min-height: 32px;
+  padding: 4px 12px;
+  border: 0;
+  border-radius: 16px;
+  color: var(--tgui--text_color);
+  font-family: var(--tgui--font-family);
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.mode-elevated {
+  background: var(--tgui--tertiary_bg_color);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.1);
+}
+
+.mode-outline {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--tgui--outline);
+}
+
+.clickable {
+  cursor: pointer;
+  user-select: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .clickable:not([data-disabled]):hover {
+    opacity: 0.85;
+  }
+}
+
+.before,
+.after {
+  display: inline-flex;
+  align-items: center;
+  margin-left: -2px;
+}
+
+.after {
+  margin-left: 0;
+  margin-right: -4px;
+}
+
+.label {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-right: -4px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: var(--tgui--secondary_hint_color);
+  background: transparent;
+  cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .remove:hover {
+    opacity: 0.6;
+  }
+}

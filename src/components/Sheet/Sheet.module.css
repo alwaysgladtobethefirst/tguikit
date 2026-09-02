@@ -1,0 +1,116 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--tgui--z-index--overlay, 1000);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: rgb(0 0 0 / 0.4);
+  opacity: 0;
+}
+
+.backdrop--contained {
+  position: absolute;
+}
+
+.backdrop--visible {
+  opacity: 1;
+}
+
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 512px;
+  max-height: var(--tgui--sheet--max-height, 50%);
+  margin: 0 auto;
+  border-radius: 16px 16px 0 0;
+  background: var(--tgui--bg_color);
+  color: var(--tgui--text_color);
+  box-shadow: 0 -8px 32px rgb(0 0 0 / 0.18);
+  transform: translateY(100%);
+  will-change: transform;
+  contain: layout;
+}
+
+.panel--visible {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .backdrop {
+    transition: opacity 0.34s ease;
+  }
+
+  .panel {
+    transition: transform 0.34s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop {
+    transition: opacity 0.18s linear;
+  }
+
+  .panel {
+    transform: none;
+    opacity: 0;
+    transition: opacity 0.18s linear;
+  }
+
+  .panel--visible {
+    opacity: 1;
+  }
+}
+
+.grip {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  padding-top: 8px;
+  touch-action: none;
+  cursor: grab;
+}
+
+.handle {
+  align-self: center;
+  width: 36px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--tgui--quaternary_bg_color, var(--tgui--tertiary_bg_color));
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  font-family: var(--tgui--font-family);
+  font-size: 20px;
+  font-weight: var(--tgui--font_weight--accent1);
+  line-height: 1.2;
+}
+
+.title {
+  flex: 1;
+  min-width: 0;
+}
+
+.close {
+  margin-right: -7px;
+  color: var(--tgui--secondary_hint_color);
+}
+
+.body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 4px 20px calc(20px + env(safe-area-inset-bottom));
+  -webkit-overflow-scrolling: touch;
+}
+
+.grip + .body {
+  padding-top: 0;
+}

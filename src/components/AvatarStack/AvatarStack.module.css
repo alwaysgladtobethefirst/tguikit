@@ -1,0 +1,14 @@
+.stack {
+  display: inline-flex;
+  align-items: center;
+}
+
+.stack > * {
+  margin-inline-start: calc(-1 * var(--tgui--avatar-stack--overlap, 8px));
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--tgui--bg_color);
+}
+
+.stack > *:first-child {
+  margin-inline-start: 0;
+}

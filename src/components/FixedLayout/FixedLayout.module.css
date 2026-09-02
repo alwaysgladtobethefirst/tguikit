@@ -1,0 +1,17 @@
+.fixedLayout {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: var(--tgui--z-index--fixed, 100);
+  box-sizing: border-box;
+}
+
+.top {
+  top: 0;
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.bottom {
+  bottom: 0;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}

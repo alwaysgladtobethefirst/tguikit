@@ -89,6 +89,7 @@ const preview: Preview = {
           'Inputs',
           'Actions',
           'Navigation',
+          'Overlays',
         ],
       },
     },
