@@ -1,20 +1,20 @@
 'use client';
 
 import {
+  type CSSProperties,
   type HTMLAttributes,
   type KeyboardEvent as ReactKeyboardEvent,
-  type MouseEvent as ReactMouseEvent,
   type Ref,
-  useCallback,
   useEffect,
   useRef,
   useState,
 } from 'react';
 import { cn } from '../../shared/lib/cn';
 import { useReducedMotion } from '../../shared/lib/useReducedMotion';
+import { createParticles, type Particle, paintParticles } from './particles';
 import styles from './Spoiler.module.css';
 
-const REVEAL_MS = 460;
+const FADE_S = 0.5;
 
 export interface SpoilerProps extends HTMLAttributes<HTMLSpanElement> {
   ref?: Ref<HTMLSpanElement>;
@@ -23,8 +23,8 @@ export interface SpoilerProps extends HTMLAttributes<HTMLSpanElement> {
   onRevealedChange?: (revealed: boolean) => void;
   revealOn?: 'click' | 'hover';
   accentColor?: string;
-  fps?: number;
   density?: number;
+  fps?: number;
   revealLabel?: string;
 }
 
@@ -34,11 +34,6 @@ function parseColor(value: string): [number, number, number] {
   return [Number(parts[0]), Number(parts[1]), Number(parts[2])];
 }
 
-function setRefs(ref: Ref<HTMLSpanElement> | undefined, node: HTMLSpanElement | null) {
-  if (typeof ref === 'function') ref(node);
-  else if (ref) (ref as { current: HTMLSpanElement | null }).current = node;
-}
-
 export function Spoiler({
   ref,
   revealed: revealedProp,
@@ -46,10 +41,11 @@ export function Spoiler({
   onRevealedChange,
   revealOn = 'click',
   accentColor,
-  fps = 24,
-  density = 0.14,
+  density = 0.1,
+  fps = 40,
   revealLabel = 'Reveal hidden text',
   className,
+  style,
   children,
   onClick,
   onKeyDown,
@@ -60,146 +56,138 @@ export function Spoiler({
   const [uncontrolled, setUncontrolled] = useState(defaultRevealed);
   const revealed = revealedProp ?? uncontrolled;
   const reducedMotion = useReducedMotion();
+  const isButton = revealOn === 'click';
 
   const rootRef = useRef<HTMLSpanElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const origin = useRef({ x: 0.5, y: 0.5 });
-  const progress = useRef(revealed ? 1 : 0);
+  const particles = useRef<Particle[]>([]);
+  const colorRef = useRef<[number, number, number]>([128, 128, 128]);
   const inView = useRef(true);
+  const stopAt = useRef<number | null>(revealed ? 0 : null);
+  const loopTime = useRef(0);
 
-  const setProgressVars = useCallback((value: number) => {
-    const root = rootRef.current;
-    if (!root) return;
-    const rect = root.getBoundingClientRect();
-    const ox = origin.current.x * rect.width;
-    const oy = origin.current.y * rect.height;
-    const maxR = Math.hypot(Math.max(ox, rect.width - ox), Math.max(oy, rect.height - oy));
-    root.style.setProperty('--tgui--spoiler--p', String(value));
-    root.style.setProperty('--tgui--spoiler--r', `${value * (maxR + 4)}px`);
-    root.style.setProperty('--tgui--spoiler--ox', `${ox}px`);
-    root.style.setProperty('--tgui--spoiler--oy', `${oy}px`);
-  }, []);
+  const [painting, setPainting] = useState(!revealed);
 
-  const setRevealed = useCallback(
-    (next: boolean, event?: ReactMouseEvent) => {
-      if (event && rootRef.current) {
-        const rect = rootRef.current.getBoundingClientRect();
-        origin.current = {
-          x: rect.width ? (event.clientX - rect.left) / rect.width : 0.5,
-          y: rect.height ? (event.clientY - rect.top) / rect.height : 0.5,
-        };
-      } else {
-        origin.current = { x: 0.5, y: 0.5 };
-      }
-      if (revealedProp == null) setUncontrolled(next);
-      onRevealedChange?.(next);
-    },
-    [revealedProp, onRevealedChange],
-  );
-
-  // reveal / conceal transition
-  useEffect(() => {
-    const target = revealed ? 1 : 0;
-    if (reducedMotion) {
-      progress.current = target;
-      setProgressVars(target);
-      return;
+  const setRevealed = (next: boolean) => {
+    if (next) {
+      stopAt.current = loopTime.current;
+    } else {
+      stopAt.current = null;
+      setPainting(true);
     }
-    const from = progress.current;
-    const start = performance.now();
-    let raf = 0;
-    const tick = (now: number) => {
-      const t = Math.min(1, (now - start) / REVEAL_MS);
-      const eased = 1 - (1 - t) ** 3;
-      const value = from + (target - from) * eased;
-      progress.current = value;
-      setProgressVars(value);
-      if (t < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [revealed, reducedMotion, setProgressVars]);
+    if (revealedProp == null) setUncontrolled(next);
+    onRevealedChange?.(next);
+  };
 
-  // canvas sizing + accent colour
-  const [color, setColor] = useState<[number, number, number]>([128, 128, 128]);
   useEffect(() => {
+    if (!painting) return;
     const root = rootRef.current;
-    const canvas = canvasRef.current;
-    if (!root || !canvas) return;
-
-    const resize = () => {
-      const dpr = Math.min(2, window.devicePixelRatio || 1);
-      const rect = root.getBoundingClientRect();
-      canvas.width = Math.max(1, Math.round((rect.width + 4) * dpr));
-      canvas.height = Math.max(1, Math.round((rect.height + 4) * dpr));
-      setColor(parseColor(accentColor ?? getComputedStyle(root).color));
-      setProgressVars(progress.current);
-    };
-
-    resize();
-    const observer = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(resize) : null;
-    observer?.observe(root);
-    window.addEventListener('resize', resize);
-    return () => {
-      observer?.disconnect();
-      window.removeEventListener('resize', resize);
-    };
-  }, [accentColor, setProgressVars]);
-
-  // pause the noise when off-screen
-  useEffect(() => {
-    const root = rootRef.current;
-    if (!root || typeof IntersectionObserver === 'undefined') return;
-    const observer = new IntersectionObserver(([entry]) => {
-      inView.current = entry.isIntersecting;
-    });
-    observer.observe(root);
-    return () => observer.disconnect();
-  }, []);
-
-  // noise animation loop
-  useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext('2d');
-    if (!canvas || !ctx) return;
+    if (!root || !canvas || !ctx) return;
+
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+
+    const sync = () => {
+      const rect = root.getBoundingClientRect();
+      const w = Math.max(1, Math.round((rect.width + 4) * dpr));
+      const h = Math.max(1, Math.round((rect.height + 4) * dpr));
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width = w;
+        canvas.height = h;
+        particles.current = createParticles(w / dpr, h / dpr, density);
+      }
+      colorRef.current = parseColor(accentColor ?? getComputedStyle(root).color);
+    };
+    sync();
 
     if (reducedMotion) {
-      paintNoise(ctx, canvas.width, canvas.height, color, density);
+      paintParticles(
+        ctx,
+        canvas.width,
+        canvas.height,
+        dpr,
+        particles.current,
+        colorRef.current,
+        0.6,
+        null,
+        0,
+      );
       return;
     }
 
     let raf = 0;
-    let last = 0;
-    const frame = 1000 / Math.max(1, fps);
+    let start = 0;
+    let last = -1;
+    const frameGap = 1000 / Math.max(8, fps);
+
     const loop = (now: number) => {
+      if (!start) start = now;
+      const time = (now - start) / 1000;
+      loopTime.current = time;
+      const stop = stopAt.current;
+
+      if (stop != null && time > stop + FADE_S + 0.06) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        setPainting(false);
+        return;
+      }
+
       raf = requestAnimationFrame(loop);
-      if (revealed || !inView.current || now - last < frame) return;
+      if (!inView.current || now - last < frameGap) return;
       last = now;
-      paintNoise(ctx, canvas.width, canvas.height, color, density);
+
+      paintParticles(
+        ctx,
+        canvas.width,
+        canvas.height,
+        dpr,
+        particles.current,
+        colorRef.current,
+        time,
+        stop,
+        FADE_S,
+      );
     };
+
     raf = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(raf);
-  }, [revealed, reducedMotion, color, density, fps]);
 
-  const toggle = (event?: ReactMouseEvent) => setRevealed(!revealed, event);
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(sync) : null;
+    ro?.observe(root);
+    const io =
+      typeof IntersectionObserver !== 'undefined'
+        ? new IntersectionObserver(([entry]) => {
+            inView.current = entry.isIntersecting;
+          })
+        : null;
+    io?.observe(root);
 
-  const isButton = revealOn === 'click';
+    return () => {
+      cancelAnimationFrame(raf);
+      ro?.disconnect();
+      io?.disconnect();
+    };
+  }, [painting, reducedMotion, density, fps, accentColor]);
+
+  const toggle = () => setRevealed(!revealed);
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: a spoiler sits inline inside a sentence; a <button> would break the text flow and reset typography
     <span
       ref={(node) => {
         rootRef.current = node;
-        setRefs(ref, node);
+        if (typeof ref === 'function') ref(node);
+        else if (ref) (ref as { current: HTMLSpanElement | null }).current = node;
       }}
       className={cn(styles.spoiler, revealed && styles.revealed, className)}
       role="button"
       tabIndex={0}
       aria-pressed={revealed}
       aria-label={revealed ? undefined : revealLabel}
+      style={{ ...style, '--tgui--spoiler--p': revealed ? 1 : 0 } as CSSProperties}
       onClick={(event) => {
         onClick?.(event);
-        if (isButton) toggle(event);
+        if (isButton) toggle();
       }}
       onKeyDown={(event: ReactKeyboardEvent<HTMLSpanElement>) => {
         onKeyDown?.(event);
@@ -210,7 +198,7 @@ export function Spoiler({
       }}
       onMouseEnter={(event) => {
         onMouseEnter?.(event);
-        if (!isButton && !revealed) setRevealed(true, event);
+        if (!isButton && !revealed) setRevealed(true);
       }}
       onMouseLeave={(event) => {
         onMouseLeave?.(event);
@@ -221,29 +209,9 @@ export function Spoiler({
       <span className={styles.content} aria-hidden={!revealed}>
         {children}
       </span>
-      <canvas ref={canvasRef} className={styles.canvas} aria-hidden />
+      {painting ? <canvas ref={canvasRef} className={styles.canvas} aria-hidden /> : null}
     </span>
   );
 }
 
 Spoiler.displayName = 'Spoiler';
-
-function paintNoise(
-  ctx: CanvasRenderingContext2D,
-  w: number,
-  h: number,
-  [r, g, b]: [number, number, number],
-  density: number,
-) {
-  const image = ctx.createImageData(w, h);
-  const data = image.data;
-  for (let i = 0; i < data.length; i += 4) {
-    if (Math.random() < density) {
-      data[i] = r;
-      data[i + 1] = g;
-      data[i + 2] = b;
-      data[i + 3] = 150 + ((Math.random() * 105) | 0);
-    }
-  }
-  ctx.putImageData(image, 0, 0);
-}

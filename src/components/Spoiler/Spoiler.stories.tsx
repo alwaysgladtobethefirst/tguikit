@@ -6,7 +6,7 @@ import { Spoiler } from './Spoiler';
 const Page = ({ children }: { children: ReactNode }) => (
   <Article
     title="Spoiler"
-    lead="Telegram-style hidden text. A field of theme-coloured static drifts over the blurred content until you tap or key into it; revealing wipes the static outward from the tap. Reduced motion freezes the static and de-blurs at once."
+    lead="Telegram-style hidden text. A drifting field of theme-coloured particles covers the words until you tap or key into it; revealing dissolves the particles away as the text fades in. Reduced motion shows one static frame and toggles at once."
   >
     {children}
   </Article>
@@ -20,12 +20,13 @@ const meta = {
     docs: {
       description: {
         component:
-          'A `role="button"` span. A `<canvas>` overlay repaints per-pixel random noise every ' +
-          'frame (`fps`, `density`, `accentColor` tunable) and pauses off-screen. Enter / Space ' +
-          'or a click toggles it (`revealOn="hover"` for hover); `aria-pressed` tracks state and ' +
-          'the content is `aria-hidden` while concealed. Revealing runs an iris — a radial mask ' +
-          'that grows from the tap point wiping the static away as the text de-blurs. Reduced ' +
-          'motion paints one static frame and toggles instantly.',
+          'A `role="button"` span with a `<canvas>` overlay running a small particle system — ' +
+          'each dot drifts, fades through a lifetime and respawns (`density`, `fps`, ' +
+          '`accentColor` tunable), paused off-screen. Enter / Space or a click toggles it ' +
+          '(`revealOn="hover"` for hover); `aria-pressed` tracks state and the text is ' +
+          '`aria-hidden` while concealed. Revealing fades the particles out in index order (a ' +
+          'dissolve ripple) as the text fades in. Reduced motion paints one frame and toggles ' +
+          'instantly.',
       },
     },
   },

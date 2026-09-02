@@ -1,29 +1,46 @@
 .spoiler {
   --tgui--spoiler--p: 0;
-  --tgui--spoiler--r: 0px;
-  --tgui--spoiler--ox: 50%;
-  --tgui--spoiler--oy: 50%;
   position: relative;
   display: inline-block;
   max-width: 100%;
   border-radius: 4px;
   vertical-align: baseline;
   isolation: isolate;
+  color: var(--tgui--text_color);
 }
 
 .spoiler:not(.revealed) {
   cursor: pointer;
 }
 
+.spoiler::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: 0;
+  border-radius: 4px;
+  background: currentColor;
+  opacity: calc((1 - var(--tgui--spoiler--p)) * 0.1);
+  pointer-events: none;
+}
+
 .content {
   display: inline-block;
-  filter: blur(calc((1 - var(--tgui--spoiler--p)) * 5px));
-  opacity: calc(0.58 + var(--tgui--spoiler--p) * 0.42);
+  position: relative;
+  z-index: 2;
+  opacity: var(--tgui--spoiler--p);
 }
 
 .spoiler:not(.revealed) .content {
   user-select: none;
   pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .content,
+  .spoiler::before {
+    transition: opacity 0.4s ease;
+  }
 }
 
 .canvas {
@@ -33,17 +50,6 @@
   width: calc(100% + 4px);
   height: calc(100% + 4px);
   pointer-events: none;
-  opacity: calc(1 - var(--tgui--spoiler--p));
-  -webkit-mask-image: radial-gradient(
-    circle var(--tgui--spoiler--r) at var(--tgui--spoiler--ox) var(--tgui--spoiler--oy),
-    transparent 98%,
-    #000 100%
-  );
-  mask-image: radial-gradient(
-    circle var(--tgui--spoiler--r) at var(--tgui--spoiler--ox) var(--tgui--spoiler--oy),
-    transparent 98%,
-    #000 100%
-  );
 }
 
 .spoiler:focus-visible {
