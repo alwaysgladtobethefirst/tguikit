@@ -20,10 +20,11 @@ const meta = {
     docs: {
       description: {
         component:
-          'A `role="button"` span that blurs its content under a theme-coloured SVG-noise grain ' +
-          'that flickers via `steps()`. Enter / Space or a click toggles it; `aria-pressed` ' +
-          'tracks the state and the content is `aria-hidden` while concealed. Controlled via ' +
-          '`revealed` + `onRevealedChange`. The flicker sits behind `prefers-reduced-motion`.',
+          'A `role="button"` span that blurs its content under a theme-coloured film grain – an ' +
+          '`feTurbulence` field whose seed flickers for real static. Enter / Space or a click ' +
+          'toggles it; `aria-pressed` tracks the state and the content is `aria-hidden` while ' +
+          'concealed. Controlled via `revealed` + `onRevealedChange`. Revealing cross-fades the ' +
+          'grain out as the text sharpens; reduced motion freezes the grain and de-blurs at once.',
       },
     },
   },

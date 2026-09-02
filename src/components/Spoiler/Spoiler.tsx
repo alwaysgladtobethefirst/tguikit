@@ -4,9 +4,11 @@ import {
   type HTMLAttributes,
   type KeyboardEvent as ReactKeyboardEvent,
   type Ref,
+  useId,
   useState,
 } from 'react';
 import { cn } from '../../shared/lib/cn';
+import { useReducedMotion } from '../../shared/lib/useReducedMotion';
 import styles from './Spoiler.module.css';
 
 export interface SpoilerProps extends HTMLAttributes<HTMLSpanElement> {
@@ -31,6 +33,8 @@ export function Spoiler({
 }: SpoilerProps) {
   const [uncontrolled, setUncontrolled] = useState(defaultRevealed);
   const revealed = revealedProp ?? uncontrolled;
+  const reducedMotion = useReducedMotion();
+  const filterId = useId();
 
   const toggle = () => {
     const next = !revealed;
@@ -45,6 +49,8 @@ export function Spoiler({
       toggle();
     }
   };
+
+  const animate = !revealed && !reducedMotion;
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: a spoiler sits inline inside a sentence; a <button> would break the text flow and reset typography
@@ -65,7 +71,35 @@ export function Spoiler({
       <span className={styles.content} aria-hidden={!revealed}>
         {children}
       </span>
-      <span className={styles.particles} aria-hidden />
+      <svg className={styles.filter} aria-hidden focusable="false">
+        <title>Spoiler grain</title>
+        <filter id={filterId} x="-15%" y="-15%" width="130%" height="130%">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.62"
+            numOctaves="2"
+            stitchTiles="stitch"
+            seed="4"
+            result="noise"
+          >
+            {animate ? (
+              <animate
+                attributeName="seed"
+                values="4;11;6;15;9;13;5"
+                dur="0.5s"
+                repeatCount="indefinite"
+                calcMode="discrete"
+              />
+            ) : null}
+          </feTurbulence>
+          <feColorMatrix in="noise" type="luminanceToAlpha" result="mono" />
+          <feComponentTransfer in="mono" result="mask">
+            <feFuncA type="linear" slope="1.7" intercept="-0.22" />
+          </feComponentTransfer>
+          <feComposite in="SourceGraphic" in2="mask" operator="in" />
+        </filter>
+      </svg>
+      <span className={styles.grain} style={{ filter: `url(#${filterId})` }} aria-hidden />
     </span>
   );
 }
