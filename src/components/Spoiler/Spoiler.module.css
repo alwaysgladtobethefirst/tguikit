@@ -1,8 +1,9 @@
 .spoiler {
   position: relative;
   display: inline-block;
+  max-width: 100%;
   border-radius: 4px;
-  vertical-align: top;
+  vertical-align: baseline;
 }
 
 .spoiler:not(.revealed) {
@@ -15,44 +16,38 @@
 }
 
 .spoiler:not(.revealed) .content {
-  filter: blur(5px);
+  filter: blur(4px);
+  opacity: 0.55;
   user-select: none;
   pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .content {
-    transition: filter 0.28s ease;
+    transition:
+      filter 0.25s ease,
+      opacity 0.25s ease;
   }
 }
 
 .spoiler:not(.revealed)::after {
   content: "";
   position: absolute;
-  inset: 0;
-  background: color-mix(in srgb, var(--tgui--text_color) 12%, transparent);
+  inset: -2px;
+  background:
+    radial-gradient(circle at center, var(--tgui--text_color) 0.6px, transparent 1px) 0 0 / 4px 4px;
+  opacity: 0.55;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .spoiler:not(.revealed)::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    transform: translateX(-100%);
-    background: linear-gradient(
-      90deg,
-      transparent,
-      color-mix(in srgb, var(--tgui--text_color) 16%, transparent),
-      transparent
-    );
-    animation: tgui-spoiler-shimmer 1.8s ease-in-out infinite;
+  .spoiler:not(.revealed)::after {
+    animation: tgui-spoiler-drift 5s linear infinite;
   }
 }
 
-@keyframes tgui-spoiler-shimmer {
+@keyframes tgui-spoiler-drift {
   to {
-    transform: translateX(100%);
+    background-position: 40px -28px;
   }
 }
 

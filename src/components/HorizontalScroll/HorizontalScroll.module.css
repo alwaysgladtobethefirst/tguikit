@@ -1,5 +1,5 @@
 .root {
-  --tgui--hscroll--fade: 24px;
+  --tgui--hscroll--fade: 32px;
   position: relative;
   min-width: 0;
   max-width: 100%;

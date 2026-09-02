@@ -43,7 +43,9 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {
   render: (args) => (
     <Page>
-      <Spoiler {...args} />
+      <p style={{ margin: 0, fontSize: 16, color: 'var(--tgui--text_color)' }}>
+        <Spoiler {...args} />
+      </p>
     </Page>
   ),
 };

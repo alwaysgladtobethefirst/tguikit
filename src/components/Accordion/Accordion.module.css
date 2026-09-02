@@ -16,7 +16,7 @@
   align-items: center;
   gap: 12px;
   width: 100%;
-  padding: 14px 4px;
+  padding: 15px var(--tgui--accordion--inset, 20px);
   border: 0;
   background: transparent;
   color: var(--tgui--text_color);
@@ -76,8 +76,8 @@
 }
 
 .panelContent {
-  padding: 0 4px 16px;
-  color: var(--tgui--text_color);
+  padding: 2px var(--tgui--accordion--inset, 20px) 16px;
+  color: var(--tgui--subtitle_text_color);
   font-family: var(--tgui--font-family);
   font-size: 15px;
   line-height: 21px;
