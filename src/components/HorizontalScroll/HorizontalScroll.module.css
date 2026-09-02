@@ -1,0 +1,53 @@
+.root {
+  --tgui--hscroll--fade: 24px;
+  position: relative;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.fade[data-start="true"][data-end="true"] {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 var(--tgui--hscroll--fade),
+    #000 calc(100% - var(--tgui--hscroll--fade)),
+    transparent
+  );
+}
+
+.fade[data-start="true"][data-end="false"] {
+  mask-image: linear-gradient(to right, transparent, #000 var(--tgui--hscroll--fade));
+}
+
+.fade[data-start="false"][data-end="true"] {
+  mask-image: linear-gradient(to right, #000 calc(100% - var(--tgui--hscroll--fade)), transparent);
+}
+
+.scroller {
+  display: flex;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .scroller {
+    cursor: grab;
+  }
+}
+
+.snap {
+  scroll-snap-type: x mandatory;
+}
+
+.snap > * {
+  scroll-snap-align: start;
+}

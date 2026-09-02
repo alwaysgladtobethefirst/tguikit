@@ -1,0 +1,71 @@
+.frame {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--tgui--tertiary_bg_color);
+  line-height: 0;
+}
+
+.bordered {
+  box-shadow: inset 0 0 0 1px var(--tgui--outline);
+}
+
+.img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: var(--tgui--image--fit, cover);
+}
+
+.loading .img {
+  opacity: 0;
+}
+
+.placeholder,
+.fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--tgui--secondary_hint_color);
+}
+
+.placeholder {
+  overflow: hidden;
+  background: var(--tgui--skeleton);
+}
+
+.placeholder::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--tgui--text_color) 6%, transparent),
+    transparent
+  );
+  animation: tgui-image-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes tgui-image-shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .placeholder::after {
+    animation: none;
+  }
+}
+
+.fallback svg {
+  width: 32%;
+  height: 32%;
+  max-width: 48px;
+  max-height: 48px;
+}

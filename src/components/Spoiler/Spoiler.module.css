@@ -1,0 +1,62 @@
+.spoiler {
+  position: relative;
+  display: inline-block;
+  border-radius: 4px;
+  vertical-align: top;
+}
+
+.spoiler:not(.revealed) {
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.content {
+  display: inline-block;
+}
+
+.spoiler:not(.revealed) .content {
+  filter: blur(5px);
+  user-select: none;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .content {
+    transition: filter 0.28s ease;
+  }
+}
+
+.spoiler:not(.revealed)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--tgui--text_color) 12%, transparent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .spoiler:not(.revealed)::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--tgui--text_color) 16%, transparent),
+      transparent
+    );
+    animation: tgui-spoiler-shimmer 1.8s ease-in-out infinite;
+  }
+}
+
+@keyframes tgui-spoiler-shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.spoiler:focus-visible {
+  outline: 2px solid var(--tgui--link_color);
+  outline-offset: 2px;
+}
