@@ -89,9 +89,9 @@ export function Spoiler({
     const dpr = Math.min(2, window.devicePixelRatio || 1);
 
     const sync = () => {
-      const rect = root.getBoundingClientRect();
-      const w = Math.max(1, Math.round((rect.width + 4) * dpr));
-      const h = Math.max(1, Math.round((rect.height + 4) * dpr));
+      const box = canvas.getBoundingClientRect();
+      const w = Math.max(1, Math.round(box.width * dpr));
+      const h = Math.max(1, Math.round(box.height * dpr));
       if (canvas.width !== w || canvas.height !== h) {
         canvas.width = w;
         canvas.height = h;
