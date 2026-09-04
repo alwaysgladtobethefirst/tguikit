@@ -75,6 +75,12 @@
   --tgui--white: #ffffff;
   --tgui--black: #000000;
 
+  --tgui--field_padding_x: 16px;
+  --tgui--field_padding_y: 12px;
+  --tgui--field_radius: 12px;
+  --tgui--field_gap: 12px;
+  --tgui--field_min_height: 48px;
+
   --tgui--z-index--simple: 1;
   --tgui--z-index--skeleton: 2;
   --tgui--z-index--overlay: 3;

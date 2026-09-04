@@ -9,6 +9,11 @@ export { AvatarStack, type AvatarStackProps } from './AvatarStack';
 export { Badge, type BadgeMode, type BadgeProps, type BadgeType } from './Badge';
 export { Banner, type BannerProps, type BannerType } from './Banner';
 export { Blockquote, type BlockquoteProps } from './Blockquote';
+export {
+  type BreadcrumbItem,
+  Breadcrumbs,
+  type BreadcrumbsProps,
+} from './Breadcrumbs';
 export { Button, type ButtonMode, type ButtonProps, type ButtonSize } from './Button';
 export { Caption, type CaptionProps } from './Caption';
 export { Card, CardCell, type CardCellProps, type CardProps, type CardType } from './Card';
@@ -31,16 +36,30 @@ export {
   type IconButtonSize,
 } from './IconButton';
 export { Image, type ImageProps } from './Image';
+export {
+  InlineButtons,
+  InlineButtonsItem,
+  type InlineButtonsItemProps,
+  type InlineButtonsMode,
+  type InlineButtonsProps,
+} from './InlineButtons';
 export { Input, type InputProps, type InputStatus } from './Input';
 export { LargeTitle, type LargeTitleProps } from './LargeTitle';
 export { Link, type LinkProps } from './Link';
 export { List, type ListProps } from './List';
+export {
+  CompactPagination,
+  type CompactPaginationProps,
+  Pagination,
+  type PaginationProps,
+} from './Pagination';
 export { PinInput, type PinInputProps } from './PinInput';
 export { Placeholder, type PlaceholderProps } from './Placeholder';
 export { Portal, type PortalProps } from './Portal';
 export { Progress, type ProgressProps } from './Progress';
 export { Radio, type RadioProps } from './Radio';
 export { Rating, type RatingProps } from './Rating';
+export { SearchBar, type SearchBarProps } from './SearchBar';
 export {
   Section,
   SectionFooter,
@@ -68,6 +87,8 @@ export {
 } from './Snackbar';
 export { Spinner, type SpinnerProps, type SpinnerSize } from './Spinner';
 export { Spoiler, type SpoilerProps } from './Spoiler';
+export { Stepper, type StepperProps } from './Stepper';
+export { Steps, type StepsProps } from './Steps';
 export { Subheadline, type SubheadlineProps } from './Subheadline';
 export { Switch, type SwitchProps } from './Switch';
 export { TabBar, TabBarItem, type TabBarItemProps, type TabBarProps } from './TabBar';
@@ -75,6 +96,7 @@ export { Tappable, type TappableProps } from './Tappable';
 export { Text, type TextProps } from './Text';
 export { Textarea, type TextareaProps, type TextareaStatus } from './Textarea';
 export { TguiProvider, type TguiProviderProps, useTgui } from './TguiProvider';
+export { Timeline, TimelineItem, type TimelineItemProps, type TimelineProps } from './Timeline';
 export { Title, type TitleProps } from './Title';
 export { Tooltip, type TooltipPlacement, type TooltipProps } from './Tooltip';
 export { Typography, type TypographyProps } from './Typography';

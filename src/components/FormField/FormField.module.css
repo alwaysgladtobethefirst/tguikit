@@ -8,11 +8,11 @@
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  padding: 12px 16px;
+  padding: var(--tgui--field_padding_y) var(--tgui--field_padding_x);
 }
 
 .body > :not(:first-child) {
-  margin-left: 12px;
+  margin-left: var(--tgui--field_gap);
 }
 
 .base .body {
@@ -21,8 +21,8 @@
 }
 
 .ios .body {
-  min-height: 48px;
-  border-radius: 12px;
+  min-height: var(--tgui--field_min_height);
+  border-radius: var(--tgui--field_radius);
   background: var(--tgui--tertiary_bg_color);
 }
 
