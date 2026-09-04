@@ -1,0 +1,119 @@
+.timeline {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  padding-bottom: 20px;
+}
+
+.item:last-child {
+  padding-bottom: 0;
+}
+
+.rail {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  width: 10px;
+  padding-top: 5px;
+}
+
+.connector {
+  position: absolute;
+  top: 10px;
+  bottom: -30px;
+  left: 50%;
+  width: 1.5px;
+  transform: translateX(-50%);
+  background: var(--tgui--divider);
+}
+
+.item:last-child .connector {
+  display: none;
+}
+
+.item:has(~ .item[data-active]) .connector {
+  background: var(--tgui--link_color);
+}
+
+.dot {
+  z-index: 1;
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--tgui--secondary_hint_color);
+}
+
+.item:has(~ .item[data-active]) .dot {
+  background: var(--tgui--link_color);
+}
+
+.item[data-active] .dot {
+  background: var(--tgui--link_color);
+  box-shadow: 0 0 0 3px var(--tgui--secondary_fill);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .connector,
+  .dot {
+    transition:
+      background 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+  padding-top: 1px;
+}
+
+.heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title {
+  font-family: var(--tgui--font-family);
+  font-size: 15px;
+  font-weight: var(--tgui--font_weight--accent2);
+  color: var(--tgui--text_color);
+}
+
+.time {
+  flex-shrink: 0;
+  font-family: var(--tgui--font-family);
+  font-size: 13px;
+  color: var(--tgui--hint_color);
+}
+
+.description {
+  margin-top: 2px;
+  font-family: var(--tgui--font-family);
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--tgui--subtitle_text_color);
+}
+
+.item[data-active] ~ .item .title {
+  color: var(--tgui--hint_color);
+}
+
+.item[data-active] ~ .item .description {
+  color: var(--tgui--hint_color);
+}
+
+.item[data-active] ~ .item .dot {
+  background: color-mix(in srgb, var(--tgui--secondary_hint_color) 55%, var(--tgui--bg_color));
+}

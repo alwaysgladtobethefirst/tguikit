@@ -1,0 +1,79 @@
+.base {
+  position: relative;
+  padding: 20px 22px 16px;
+  background: var(--tgui--bg_color);
+}
+
+.body {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: var(--tgui--field_padding_y) var(--tgui--field_padding_x);
+}
+
+.body > :not(:first-child) {
+  margin-left: var(--tgui--field_gap);
+}
+
+.base .body {
+  border-radius: 14px;
+  box-shadow: 0 0 0 2px var(--tgui--outline);
+}
+
+.ios .body {
+  min-height: var(--tgui--field_min_height);
+  border-radius: var(--tgui--field_radius);
+  background: var(--tgui--tertiary_bg_color);
+}
+
+.align-start .body {
+  align-items: flex-start;
+}
+
+.before,
+.after {
+  display: flex;
+  align-items: center;
+}
+
+.header {
+  position: absolute;
+  top: 6px;
+  left: 32px;
+  max-width: calc(100% - 76px);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 0 6px;
+  border-radius: 5px;
+  color: var(--tgui--secondary_hint_color);
+  background: var(--tgui--bg_color);
+}
+
+.focused.base .body {
+  box-shadow: 0 0 0 2px var(--tgui--link_color);
+}
+
+.focused.base .header {
+  color: var(--tgui--link_color);
+}
+
+.error.base .body {
+  box-shadow: 0 0 0 2px var(--tgui--destructive_text_color);
+}
+
+.error.base .header {
+  color: var(--tgui--destructive_text_color);
+}
+
+.error.ios .body {
+  box-shadow: 0 0 0 1.5px var(--tgui--destructive_text_color);
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.disabled.ios {
+  opacity: 0.35;
+}

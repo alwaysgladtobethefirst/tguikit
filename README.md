@@ -1,15 +1,13 @@
-# tgui
+# tguikit
 
 React 19 component library for Telegram Mini Apps — a modern reimplementation of [`@telegram-apps/telegram-ui`](https://github.com/telegram-mini-apps-dev/TelegramUI).
-
-**[Storybook →](https://alwaysgladtobethefirst.github.io/tgui/)**
 
 > Pre-release. The API is still moving before `1.0`.
 
 ## Install
 
 ```bash
-bun add tgui
+bun add tguikit
 ```
 
 `react` and `react-dom` 19 are peer dependencies.
@@ -17,8 +15,8 @@ bun add tgui
 ## Use
 
 ```tsx
-import { TguiProvider, Button } from 'tgui';
-import 'tgui/styles.css';
+import { TguiProvider, Button } from 'tguikit';
+import 'tguikit/styles.css';
 
 export function App() {
   return (
@@ -44,10 +42,7 @@ bun install
 bun run storybook
 ```
 
-Storybook is the workbench — every component has a story. The hosted build is at
-[alwaysgladtobethefirst.github.io/tgui](https://alwaysgladtobethefirst.github.io/tgui/).
-
-See [`CONTRIBUTING.md`](./CONTRIBUTING.md).
+Storybook is the workbench — every component has a story. See [`CONTRIBUTING.md`](./CONTRIBUTING.md).
 
 ## License
 

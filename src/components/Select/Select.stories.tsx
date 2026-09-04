@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import type { ReactNode } from 'react';
 import { Article } from '../../shared/stories/Article';
-import { Section } from '../Section';
+import { eyebrow } from '../../shared/stories/tokens';
 import { Select } from './Select';
 
 const Page = ({ children }: { children: ReactNode }) => (
   <Article
     title="Select"
-    lead="A native `select` in the field container, with a custom chevron and the platform ring. `header` is the floating label on base; `status` pins the error / focused state."
+    lead="A native `select` in a field container. On base it is an outlined field with a floating `header`; on iOS it is a filled picker, matching Input. Custom chevron, native OS picker on mobile."
   >
     {children}
   </Article>
@@ -30,9 +30,9 @@ const meta = {
     docs: {
       description: {
         component:
-          'A styled wrapper around a native `<select>` — `appearance: none`, a CSS chevron, and ' +
-          'the same field container as `Input` (floating `header` on base, ring on focus/error). ' +
-          'Keeps the OS picker on mobile. Needs a `TguiProvider`.',
+          'A styled wrapper around a native `<select>` — `appearance: none`, a CSS chevron. ' +
+          'Base: an outlined field with a floating `header`. iOS: a filled picker, matching ' +
+          'Input. `status` is `default` | `error` | `focused`. Needs a `TguiProvider`.',
       },
     },
   },
@@ -54,11 +54,9 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {
   render: (args) => (
     <Page>
-      <Section>
-        <Select {...args} defaultValue="en">
-          {languages}
-        </Select>
-      </Section>
+      <Select {...args} defaultValue="en">
+        {languages}
+      </Select>
     </Page>
   ),
 };
@@ -66,22 +64,34 @@ export const Playground: Story = {
 export const States: Story = {
   render: () => (
     <Page>
-      <div style={{ display: 'grid', gap: 16 }}>
-        <Section>
-          <Select header="Default" defaultValue="en">
+      <div style={{ display: 'grid', gap: 20 }}>
+        {(['default', 'focused', 'error'] as const).map((status) => (
+          <div key={status} style={{ display: 'grid', gap: 8 }}>
+            <span style={eyebrow}>status="{status}"</span>
+            <Select header="Language" status={status} defaultValue="en">
+              {languages}
+            </Select>
+          </div>
+        ))}
+        <div style={{ display: 'grid', gap: 8 }}>
+          <span style={eyebrow}>disabled</span>
+          <Select header="Language" disabled defaultValue="fr">
             {languages}
           </Select>
-        </Section>
-        <Section>
-          <Select header="Error" status="error" defaultValue="de">
-            {languages}
-          </Select>
-        </Section>
-        <Section>
-          <Select header="Disabled" disabled defaultValue="fr">
-            {languages}
-          </Select>
-        </Section>
+        </div>
+      </div>
+    </Page>
+  ),
+};
+
+export const Form: Story = {
+  name: 'Form (iOS)',
+  globals: { platform: 'ios' },
+  render: () => (
+    <Page>
+      <div style={{ display: 'grid', gap: 12 }}>
+        <Select defaultValue="en">{languages}</Select>
+        <Select defaultValue="uk">{languages}</Select>
       </div>
     </Page>
   ),

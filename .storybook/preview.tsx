@@ -23,12 +23,14 @@ const withTgui: Decorator = (Story, { globals }) => {
     };
   }, [appearance, platform]);
 
+  const pageBg = platform === 'ios' ? 'var(--tgui--secondary_bg_color)' : 'var(--tgui--bg_color)';
+
   return (
     <TguiProvider
       ref={ref}
       appearance={appearance === 'auto' ? undefined : appearance}
       platform={platform === 'auto' ? undefined : platform}
-      style={{ minHeight: '100%', background: 'var(--tgui--bg_color)', padding: '56px 24px' }}
+      style={{ minHeight: '100%', background: pageBg, padding: '56px 24px' }}
     >
       <Story />
     </TguiProvider>
@@ -78,15 +80,16 @@ const preview: Preview = {
       storySort: {
         order: [
           'Getting Started',
-          'Foundations',
+          'Primitives',
           'Typography',
           ['Scale', '*'],
           'Layout',
           'Data Display',
+          'Feedback',
           'Inputs',
           'Actions',
           'Navigation',
-          'Utilities',
+          'Overlays',
         ],
       },
     },

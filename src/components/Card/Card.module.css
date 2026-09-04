@@ -15,7 +15,7 @@
 }
 
 .cardAmbient {
-  background: #000;
+  background: var(--tgui--black);
 }
 
 .cell {
@@ -37,7 +37,7 @@
     rgba(0, 0, 0, 0.55) 62%,
     rgba(0, 0, 0, 0.85) 100%
   );
-  color: #fff;
+  color: var(--tgui--white);
 }
 
 .cellHeader {
@@ -51,7 +51,7 @@
 }
 
 .cellAmbient .cellHeader {
-  color: #fff;
+  color: var(--tgui--white);
 }
 
 .cellAmbient .cellSubtitle {

@@ -1,0 +1,62 @@
+.control {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  padding: 2px;
+  border-radius: 9px;
+  background: var(--tgui--secondary_fill);
+}
+
+.pill {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  bottom: 2px;
+  border-radius: 7px;
+  background: var(--tgui--segmented_control_active_bg, var(--tgui--bg_color));
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.12);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .pill {
+    transition:
+      transform 0.22s cubic-bezier(0.32, 0.72, 0, 1),
+      width 0.22s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+}
+
+.item {
+  position: relative;
+  z-index: var(--tgui--z-index--simple, 1);
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--tgui--text_color);
+  font-family: var(--tgui--font-family);
+  font-size: 14px;
+  font-weight: var(--tgui--font_weight--accent2);
+  line-height: 20px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.item[data-selected] {
+  cursor: default;
+}
+
+.item:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .item:not([data-selected]):not(:disabled):hover {
+    color: var(--tgui--link_color);
+  }
+}

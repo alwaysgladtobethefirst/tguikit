@@ -99,7 +99,7 @@ function Overview() {
           {[
             ['platform', PLATFORM_LABEL[platform], 'Base covers Android, Desktop and Web'],
             ['appearance', appearance, 'live unless pinned'],
-            ['portalContainer', portal, 'modals, popovers, toasts'],
+            ['portalContainer', portal, 'sheets, popovers, toasts'],
           ].map(([key, value, hint]) => (
             <div key={key} style={{ display: 'contents' }}>
               <dt style={{ fontFamily: MONO, fontSize: 12, color: 'var(--tgui--hint_color)' }}>
@@ -196,7 +196,7 @@ function Overview() {
 }
 
 const meta = {
-  title: 'Foundations/TguiProvider',
+  title: 'Primitives/TguiProvider',
   component: TguiProvider,
   tags: ['autodocs'],
   parameters: {

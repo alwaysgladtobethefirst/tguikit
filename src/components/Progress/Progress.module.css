@@ -1,0 +1,19 @@
+.track {
+  overflow: hidden;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--tgui--tertiary_bg_color);
+}
+
+.bar {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--tgui--link_color);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .bar {
+    transition: width 0.25s ease;
+  }
+}

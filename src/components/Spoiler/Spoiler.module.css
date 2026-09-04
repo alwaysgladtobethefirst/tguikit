@@ -1,0 +1,98 @@
+.spoiler {
+  --tgui--spoiler--p: 0;
+  --tgui--spoiler--edge: 10px;
+  --tgui--spoiler--edge-y: 3px;
+  --tgui--spoiler--radius: 5px;
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  border-radius: 4px;
+  vertical-align: baseline;
+  isolation: isolate;
+  color: var(--tgui--text_color);
+}
+
+.spoiler:not(.revealed) {
+  cursor: pointer;
+}
+
+.spoiler::before,
+.canvas {
+  border-radius: var(--tgui--spoiler--radius);
+  overflow: hidden;
+  -webkit-mask-image:
+    linear-gradient(
+      to right,
+      transparent,
+      #000 var(--tgui--spoiler--edge),
+      #000 calc(100% - var(--tgui--spoiler--edge)),
+      transparent
+    ),
+    linear-gradient(
+      to bottom,
+      transparent,
+      #000 var(--tgui--spoiler--edge-y),
+      #000 calc(100% - var(--tgui--spoiler--edge-y)),
+      transparent
+    );
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(
+      to right,
+      transparent,
+      #000 var(--tgui--spoiler--edge),
+      #000 calc(100% - var(--tgui--spoiler--edge)),
+      transparent
+    ),
+    linear-gradient(
+      to bottom,
+      transparent,
+      #000 var(--tgui--spoiler--edge-y),
+      #000 calc(100% - var(--tgui--spoiler--edge-y)),
+      transparent
+    );
+  mask-composite: intersect;
+}
+
+.spoiler::before {
+  content: "";
+  position: absolute;
+  inset: -1px -3px;
+  z-index: 0;
+  background: currentColor;
+  opacity: calc((1 - var(--tgui--spoiler--p)) * 0.06);
+  pointer-events: none;
+}
+
+.content {
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+  opacity: var(--tgui--spoiler--p);
+}
+
+.spoiler:not(.revealed) .content {
+  user-select: none;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .content,
+  .spoiler::before {
+    transition: opacity 0.4s ease;
+  }
+}
+
+.canvas {
+  position: absolute;
+  inset: -1px -3px;
+  z-index: 1;
+  width: calc(100% + 6px);
+  height: calc(100% + 2px);
+  pointer-events: none;
+}
+
+.spoiler:focus-visible {
+  outline: 2px solid var(--tgui--link_color);
+  outline-offset: 2px;
+}

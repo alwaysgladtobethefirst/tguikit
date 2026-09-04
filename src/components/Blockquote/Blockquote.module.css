@@ -1,0 +1,19 @@
+.blockquote {
+  margin: 0;
+  padding: 8px 12px 8px 16px;
+  border-radius: 4px 12px 12px 4px;
+  border-inline-start: 3px solid var(--tgui--link_color);
+  background: var(--tgui--secondary_fill);
+  color: var(--tgui--text_color);
+  font-family: var(--tgui--font-family);
+  font-size: 15px;
+  line-height: 21px;
+}
+
+.cite {
+  display: block;
+  margin-top: 6px;
+  color: var(--tgui--hint_color);
+  font-size: 13px;
+  font-style: normal;
+}
