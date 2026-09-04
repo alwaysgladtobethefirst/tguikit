@@ -1,0 +1,26 @@
+.steps {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+
+.segment {
+  flex: 1 1 0;
+  overflow: hidden;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--tgui--secondary_fill);
+}
+
+.fill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--tgui--link_color);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fill {
+    transition: width 0.2s ease;
+  }
+}
