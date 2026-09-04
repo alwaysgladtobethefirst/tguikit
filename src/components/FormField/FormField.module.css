@@ -21,7 +21,7 @@
 }
 
 .ios .body {
-  min-height: 48px;
+  min-height: var(--tgui--field_min_height);
   border-radius: var(--tgui--field_radius);
   background: var(--tgui--tertiary_bg_color);
 }

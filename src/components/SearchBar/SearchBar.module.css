@@ -11,7 +11,7 @@
   align-items: center;
   flex: 1;
   min-width: 0;
-  height: 40px;
+  height: var(--tgui--field_min_height);
   padding: 0 var(--tgui--field_padding_x);
   border-radius: var(--tgui--field_radius);
   background: var(--tgui--tertiary_bg_color);

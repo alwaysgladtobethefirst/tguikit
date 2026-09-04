@@ -7,7 +7,7 @@ import { TimelineItem } from './TimelineItem';
 const Page = ({ children }: { children: ReactNode }) => (
   <Article
     title="Timeline"
-    lead="A vertical connector line down a list of dated events. Mark the current one with `active` — everything after it reads as pending."
+    lead="A vertical connector line down a list of dated events. Mark the current one with `active` — everything up to and including it reads as done, everything after reads as pending."
   >
     {children}
   </Article>
@@ -23,8 +23,8 @@ const meta = {
         component:
           'Compound component: `Timeline` renders an `<ol>` with a connector rail; ' +
           '`TimelineItem` is a dot + title + optional `description` and `time`. ' +
-          'Set `active` on one item — the connector leading to it turns accent-coloured and ' +
-          'every item after it is muted.',
+          'Set `active` on one item — every dot and connector up to and including it turns ' +
+          'accent-coloured, every item after it is muted.',
       },
     },
   },
