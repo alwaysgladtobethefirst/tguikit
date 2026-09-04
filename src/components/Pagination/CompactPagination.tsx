@@ -1,6 +1,6 @@
 'use client';
 
-import type { HTMLAttributes, Ref } from 'react';
+import { type HTMLAttributes, type Ref, useState } from 'react';
 import { cn } from '../../shared/lib/cn';
 import styles from './Pagination.module.css';
 
@@ -13,12 +13,14 @@ export interface CompactPaginationProps extends Omit<HTMLAttributes<HTMLElement>
 
 const MAX_DOTS = 8;
 const WINDOW = 7;
+const MARGIN = 1;
 
-function visiblePages(page: number, count: number) {
-  if (count <= MAX_DOTS) return Array.from({ length: count }, (_, index) => index + 1);
-  const half = Math.floor(WINDOW / 2);
-  const start = Math.max(1, Math.min(page - half, count - WINDOW + 1));
-  return Array.from({ length: WINDOW }, (_, index) => start + index);
+function clampStart(start: number, count: number) {
+  return Math.max(1, Math.min(start, count - WINDOW + 1));
+}
+
+function initialStart(page: number, count: number) {
+  return clampStart(page - Math.floor(WINDOW / 2), count);
 }
 
 export function CompactPagination({
@@ -29,7 +31,22 @@ export function CompactPagination({
   className,
   ...rest
 }: CompactPaginationProps) {
-  const pages = visiblePages(page, count);
+  const [start, setStart] = useState(() => initialStart(page, count));
+
+  const windowed = count > MAX_DOTS;
+  const effectiveStart = windowed
+    ? page < start + MARGIN
+      ? clampStart(page - MARGIN, count)
+      : page > start + WINDOW - 1 - MARGIN
+        ? clampStart(page - WINDOW + 1 + MARGIN, count)
+        : clampStart(start, count)
+    : 1;
+
+  if (windowed && effectiveStart !== start) setStart(effectiveStart);
+
+  const pages = windowed
+    ? Array.from({ length: WINDOW }, (_, index) => effectiveStart + index)
+    : Array.from({ length: count }, (_, index) => index + 1);
 
   return (
     <nav ref={ref} aria-label="Pagination" className={cn(styles.nav, className)} {...rest}>

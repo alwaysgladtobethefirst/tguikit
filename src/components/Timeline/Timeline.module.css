@@ -28,8 +28,8 @@
 
 .connector {
   position: absolute;
-  top: 14px;
-  bottom: -20px;
+  top: 10px;
+  bottom: -30px;
   left: 50%;
   width: 1.5px;
   transform: translateX(-50%);
@@ -46,6 +46,7 @@
 
 .dot {
   z-index: 1;
+  flex-shrink: 0;
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -53,8 +54,6 @@
 }
 
 .item[data-active] .dot {
-  width: 12px;
-  height: 12px;
   background: var(--tgui--link_color);
   box-shadow: 0 0 0 3px var(--tgui--secondary_fill);
 }

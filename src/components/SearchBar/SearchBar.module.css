@@ -11,9 +11,9 @@
   align-items: center;
   flex: 1;
   min-width: 0;
-  height: 36px;
-  padding: 0 8px;
-  border-radius: 10px;
+  height: 40px;
+  padding: 0 var(--tgui--field_padding_x);
+  border-radius: var(--tgui--field_radius);
   background: var(--tgui--tertiary_bg_color);
 }
 

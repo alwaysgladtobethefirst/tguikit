@@ -33,3 +33,27 @@
   outline: 2px solid var(--tgui--link_color);
   outline-offset: 2px;
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  .value[data-pulse="up"] {
+    animation: pulse-up 0.18s ease-out;
+  }
+
+  .value[data-pulse="down"] {
+    animation: pulse-down 0.18s ease-out;
+  }
+}
+
+@keyframes pulse-up {
+  from {
+    transform: translateY(6px);
+    opacity: 0.4;
+  }
+}
+
+@keyframes pulse-down {
+  from {
+    transform: translateY(-6px);
+    opacity: 0.4;
+  }
+}

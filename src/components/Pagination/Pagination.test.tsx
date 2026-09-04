@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import type { ReactNode } from 'react';
+import { type ReactNode, useState } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { TguiProvider } from '../TguiProvider';
 import { Pagination } from './Pagination';
@@ -57,5 +57,25 @@ describe('Pagination', () => {
     expect(onChange).toHaveBeenCalledWith(3);
     fireEvent.click(screen.getByRole('button', { name: 'Previous page' }));
     expect(onChange).toHaveBeenCalledWith(1);
+  });
+
+  it('never assigns the same key to two siblings while paging through (regression)', () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    function Controlled() {
+      const [page, setPage] = useState(4);
+      return <Pagination page={page} count={12} onChange={setPage} />;
+    }
+    renderPagination(<Controlled />);
+
+    for (const target of [5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2]) {
+      const matches = screen.getAllByRole('button', { name: String(target) });
+      expect(matches).toHaveLength(1);
+      fireEvent.click(matches[0]);
+    }
+
+    const keyWarning = errorSpy.mock.calls.some((call) => String(call[0]).includes('same key'));
+    expect(keyWarning).toBe(false);
+    errorSpy.mockRestore();
   });
 });

@@ -6,9 +6,11 @@ import {
   type KeyboardEvent,
   type Ref,
   useEffect,
+  useRef,
   useState,
 } from 'react';
 import { cn } from '../../shared/lib/cn';
+import { useReducedMotion } from '../../shared/lib/useReducedMotion';
 import { IconButton } from '../IconButton';
 import styles from './Stepper.module.css';
 
@@ -47,11 +49,18 @@ export function Stepper({
   className,
   ...rest
 }: StepperProps) {
+  const reducedMotion = useReducedMotion();
   const [text, setText] = useState(String(value));
+  const [pulse, setPulse] = useState<'up' | 'down' | null>(null);
+  const previousValue = useRef(value);
 
   useEffect(() => {
     setText(String(value));
-  }, [value]);
+    if (value !== previousValue.current) {
+      if (!reducedMotion) setPulse(value > previousValue.current ? 'up' : 'down');
+      previousValue.current = value;
+    }
+  }, [value, reducedMotion]);
 
   const commit = () => {
     const parsed = Number.parseFloat(text);
@@ -85,9 +94,11 @@ export function Stepper({
         aria-label="Value"
         value={text}
         disabled={disabled}
+        data-pulse={pulse ?? undefined}
         onChange={(event: ChangeEvent<HTMLInputElement>) => setText(event.target.value)}
         onBlur={commit}
         onKeyDown={handleKeyDown}
+        onAnimationEnd={() => setPulse(null)}
       />
       <IconButton
         mode="gray"

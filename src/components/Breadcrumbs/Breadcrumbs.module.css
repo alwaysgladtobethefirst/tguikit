@@ -9,6 +9,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  gap: 6px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -17,7 +18,7 @@
 .item {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   min-width: 0;
 }
 

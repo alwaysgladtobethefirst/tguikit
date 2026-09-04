@@ -35,8 +35,8 @@ const meta = {
     },
   },
   argTypes: {
-    count: { control: { type: 'number', min: 1, max: 10, step: 1 } },
-    progress: { control: { type: 'range', min: 0, max: 5, step: 0.1 } },
+    count: { control: { type: 'number', min: 1, max: 20, step: 1 } },
+    progress: { control: { type: 'range', min: 0, max: 20, step: 0.1 } },
     ref: { table: { disable: true } },
     className: { table: { disable: true } },
   },

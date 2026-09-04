@@ -51,7 +51,7 @@ export const Order: Story = {
   ),
 };
 
-export const Complete: Story = {
+export const Delivered: Story = {
   render: () => (
     <Page>
       <Timeline>

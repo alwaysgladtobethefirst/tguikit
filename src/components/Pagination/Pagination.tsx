@@ -77,7 +77,7 @@ export function Pagination({
         {items.map((item, index) =>
           item === DOTS ? (
             // biome-ignore lint/suspicious/noArrayIndexKey: ellipsis positions are stable per render
-            <li key={index} className={styles.dots} aria-hidden>
+            <li key={`dots-${index}`} className={styles.dots} aria-hidden>
               …
             </li>
           ) : (

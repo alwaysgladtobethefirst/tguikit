@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import { useState } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { CompactPagination } from './CompactPagination';
 
@@ -28,5 +29,26 @@ describe('CompactPagination', () => {
     render(<CompactPagination page={1} count={4} onChange={onChange} />);
     fireEvent.click(screen.getByRole('button', { name: 'Page 3' }));
     expect(onChange).toHaveBeenCalledWith(3);
+  });
+
+  it('only shifts the window once the current page nears its edge (regression)', () => {
+    function Controlled() {
+      const [page, setPage] = useState(12);
+      return <CompactPagination page={page} count={30} onChange={setPage} />;
+    }
+    render(<Controlled />);
+
+    const labels = () =>
+      screen.getAllByRole('button').map((button) => button.getAttribute('aria-label'));
+
+    expect(labels()).toEqual([9, 10, 11, 12, 13, 14, 15].map((n) => `Page ${n}`));
+
+    fireEvent.click(screen.getByRole('button', { name: 'Page 13' }));
+    expect(labels()).toEqual([9, 10, 11, 12, 13, 14, 15].map((n) => `Page ${n}`));
+    expect(screen.getByRole('button', { name: 'Page 13' })).toHaveAttribute('aria-current', 'page');
+
+    fireEvent.click(screen.getByRole('button', { name: 'Page 15' }));
+    expect(labels()).toEqual([10, 11, 12, 13, 14, 15, 16].map((n) => `Page ${n}`));
+    expect(screen.getByRole('button', { name: 'Page 15' })).toHaveAttribute('aria-current', 'page');
   });
 });
