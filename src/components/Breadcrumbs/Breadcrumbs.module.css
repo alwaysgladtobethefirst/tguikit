@@ -1,0 +1,63 @@
+.nav {
+  min-width: 0;
+  font-family: var(--tgui--font-family);
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+
+.link {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--tgui--link_color);
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link:hover {
+    text-decoration: underline;
+  }
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--tgui--link_color);
+  outline-offset: 2px;
+}
+
+.current {
+  overflow: hidden;
+  max-width: 220px;
+  color: var(--tgui--text_color);
+  font-weight: var(--tgui--font_weight--accent2);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ellipsis {
+  color: var(--tgui--hint_color);
+}
+
+.chevron {
+  flex-shrink: 0;
+  color: var(--tgui--hint_color);
+}
