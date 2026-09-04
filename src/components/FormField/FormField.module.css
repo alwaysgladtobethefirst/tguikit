@@ -12,7 +12,7 @@
 }
 
 .body > :not(:first-child) {
-  margin-left: 12px;
+  margin-left: var(--tgui--field_gap);
 }
 
 .base .body {
@@ -51,7 +51,11 @@
 }
 
 .focused.base .body {
-  box-shadow: 0 0 0 2px var(--tgui--link_color);
+  box-shadow: var(--tgui--field_focus_ring);
+}
+
+.focused.ios .body {
+  box-shadow: var(--tgui--field_focus_ring);
 }
 
 .focused.base .header {

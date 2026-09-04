@@ -1,5 +1,4 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { useState } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { CompactPagination } from './CompactPagination';
 
@@ -17,11 +16,17 @@ describe('CompactPagination', () => {
     expect(screen.getByRole('button', { name: 'Page 1' })).not.toHaveAttribute('aria-current');
   });
 
-  it('caps the rendered dots to a window around the current page for large counts', () => {
-    render(<CompactPagination page={10} count={30} onChange={() => {}} />);
-    const buttons = screen.getAllByRole('button');
-    expect(buttons).toHaveLength(7);
-    expect(screen.getByRole('button', { name: 'Page 10' })).toHaveAttribute('aria-current', 'page');
+  it('always keeps the first and last page reachable for large counts', () => {
+    render(<CompactPagination page={15} count={30} onChange={() => {}} />);
+    expect(screen.getByRole('button', { name: 'Page 1' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Page 30' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Page 15' })).toHaveAttribute('aria-current', 'page');
+  });
+
+  it('collapses the middle into non-interactive gaps for large counts', () => {
+    render(<CompactPagination page={15} count={30} onChange={() => {}} />);
+    expect(screen.getAllByRole('button')).toHaveLength(5);
+    expect(screen.queryByRole('button', { name: 'Page 5' })).not.toBeInTheDocument();
   });
 
   it('calls onChange with the clicked page', () => {
@@ -31,24 +36,12 @@ describe('CompactPagination', () => {
     expect(onChange).toHaveBeenCalledWith(3);
   });
 
-  it('only shifts the window once the current page nears its edge (regression)', () => {
-    function Controlled() {
-      const [page, setPage] = useState(12);
-      return <CompactPagination page={page} count={30} onChange={setPage} />;
-    }
-    render(<Controlled />);
-
-    const labels = () =>
-      screen.getAllByRole('button').map((button) => button.getAttribute('aria-label'));
-
-    expect(labels()).toEqual([9, 10, 11, 12, 13, 14, 15].map((n) => `Page ${n}`));
-
-    fireEvent.click(screen.getByRole('button', { name: 'Page 13' }));
-    expect(labels()).toEqual([9, 10, 11, 12, 13, 14, 15].map((n) => `Page ${n}`));
-    expect(screen.getByRole('button', { name: 'Page 13' })).toHaveAttribute('aria-current', 'page');
-
-    fireEvent.click(screen.getByRole('button', { name: 'Page 15' }));
-    expect(labels()).toEqual([10, 11, 12, 13, 14, 15, 16].map((n) => `Page ${n}`));
-    expect(screen.getByRole('button', { name: 'Page 15' })).toHaveAttribute('aria-current', 'page');
+  it('reaches page 1 and the last page in a single click from anywhere', () => {
+    const onChange = vi.fn();
+    render(<CompactPagination page={15} count={30} onChange={onChange} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Page 1' }));
+    expect(onChange).toHaveBeenCalledWith(1);
+    fireEvent.click(screen.getByRole('button', { name: 'Page 30' }));
+    expect(onChange).toHaveBeenCalledWith(30);
   });
 });

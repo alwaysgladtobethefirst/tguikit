@@ -18,12 +18,12 @@
 }
 
 .field:focus-within {
-  box-shadow: inset 0 0 0 1px var(--tgui--link_color);
+  box-shadow: var(--tgui--field_focus_ring);
 }
 
 .icon {
   flex-shrink: 0;
-  margin-right: 6px;
+  margin-right: var(--tgui--field_gap);
   color: var(--tgui--secondary_hint_color);
 }
 

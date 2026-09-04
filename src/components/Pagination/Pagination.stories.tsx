@@ -31,7 +31,9 @@ const meta = {
         component:
           '`<nav aria-label="Pagination">` with prev/next `IconButton`s and numbered page ' +
           'buttons. Always shows the first and last page plus `page ± siblingCount`; the rest ' +
-          'collapses into a non-interactive `…`. The current page carries `aria-current="page"`.',
+          'collapses into a non-interactive `…`. `CompactPagination` renders the same range as ' +
+          'dots instead of numbers, so the first and last page are always one tap away. The ' +
+          'current page carries `aria-current="page"`.',
       },
     },
   },
@@ -85,12 +87,12 @@ export const Compact: Story = {
   },
 };
 
-export const CompactWindowed: Story = {
+export const CompactCollapsed: Story = {
   render: () => {
-    const [page, setPage] = useState(12);
+    const [page, setPage] = useState(15);
     return (
       <Page>
-        <Row label="count=30 — windowed to 7 dots">
+        <Row label="count=30 — first and last dot always reachable, middle collapses">
           <CompactPagination page={page} count={30} onChange={setPage} />
         </Row>
       </Page>

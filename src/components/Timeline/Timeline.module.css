@@ -40,7 +40,7 @@
   display: none;
 }
 
-.item:has(+ .item[data-active]) .connector {
+.item:has(~ .item[data-active]) .connector {
   background: var(--tgui--link_color);
 }
 
@@ -111,5 +111,5 @@
 }
 
 .item[data-active] ~ .item .dot {
-  opacity: 0.6;
+  background: color-mix(in srgb, var(--tgui--secondary_hint_color) 55%, var(--tgui--bg_color));
 }
