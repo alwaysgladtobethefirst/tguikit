@@ -17,10 +17,6 @@
   background: var(--tgui--tertiary_bg_color);
 }
 
-.field:focus-within {
-  box-shadow: var(--tgui--field_focus_ring);
-}
-
 .icon {
   flex-shrink: 0;
   margin-right: var(--tgui--field_gap);

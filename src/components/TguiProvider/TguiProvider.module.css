@@ -80,7 +80,6 @@
   --tgui--field_radius: 12px;
   --tgui--field_gap: 12px;
   --tgui--field_min_height: 48px;
-  --tgui--field_focus_ring: 0 0 0 2px var(--tgui--link_color);
 
   --tgui--z-index--simple: 1;
   --tgui--z-index--skeleton: 2;
