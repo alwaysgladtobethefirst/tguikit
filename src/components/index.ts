@@ -55,6 +55,14 @@ export {
 } from './Pagination';
 export { PinInput, type PinInputProps } from './PinInput';
 export { Placeholder, type PlaceholderProps } from './Placeholder';
+export {
+  Popover,
+  PopoverContent,
+  type PopoverContentProps,
+  type PopoverProps,
+  PopoverTrigger,
+  type PopoverTriggerProps,
+} from './Popover';
 export { Portal, type PortalProps } from './Portal';
 export { Progress, type ProgressProps } from './Progress';
 export { Radio, type RadioProps } from './Radio';

@@ -4,11 +4,11 @@
     "path": "dist/index.js",
     "import": "*",
     "ignore": ["react", "react-dom", "react/jsx-runtime"],
-    "limit": "19 kB"
+    "limit": "27 kB"
   },
   {
     "name": "css (brotli)",
     "path": "dist/styles.css",
-    "limit": "9.5 kB"
+    "limit": "10 kB"
   }
 ]
