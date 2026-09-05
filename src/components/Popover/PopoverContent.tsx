@@ -109,7 +109,7 @@ export function PopoverContent({
               style={
                 position
                   ? { top: position.top, left: position.left }
-                  : { top: 0, left: 0, visibility: 'hidden' }
+                  : { top: 0, left: 0, opacity: 0, pointerEvents: 'none' }
               }
               {...rest}
             >
