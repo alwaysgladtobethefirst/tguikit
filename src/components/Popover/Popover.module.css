@@ -1,0 +1,52 @@
+.content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--tgui--z-index--overlay, 1000);
+  min-width: 160px;
+  max-width: 320px;
+  border-radius: var(--tgui--field_radius, 12px);
+  background: var(--tgui--bg_color);
+  color: var(--tgui--text_color);
+  box-shadow: 0 4px 24px rgb(0 0 0 / 0.16);
+}
+
+.content[data-side="bottom"] {
+  transform-origin: top center;
+}
+
+.content[data-side="top"] {
+  transform-origin: bottom center;
+}
+
+.content[data-side="left"] {
+  transform-origin: right center;
+}
+
+.content[data-side="right"] {
+  transform-origin: left center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .content[data-state="open"] {
+    animation: popover-in 0.15s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .content[data-state="closed"] {
+    animation: popover-out 0.15s ease-in;
+  }
+}
+
+@keyframes popover-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+@keyframes popover-out {
+  to {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
