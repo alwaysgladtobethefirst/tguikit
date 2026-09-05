@@ -9,13 +9,6 @@
   background: var(--tgui--bg_color);
   color: var(--tgui--text_color);
   box-shadow: 0 4px 24px rgb(0 0 0 / 0.16);
-  opacity: 0;
-  transform: scale(0.96);
-}
-
-.content--visible {
-  opacity: 1;
-  transform: scale(1);
 }
 
 .content[data-side="bottom"] {
@@ -35,15 +28,25 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .content {
-    transition:
-      opacity 0.15s ease,
-      transform 0.15s cubic-bezier(0.32, 0.72, 0, 1);
+  .content[data-state="open"] {
+    animation: popover-in 0.15s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .content[data-state="closed"] {
+    animation: popover-out 0.15s ease-in;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .content {
-    transform: none;
+@keyframes popover-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+@keyframes popover-out {
+  to {
+    opacity: 0;
+    transform: scale(0.96);
   }
 }

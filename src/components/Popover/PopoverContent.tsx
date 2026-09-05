@@ -4,7 +4,6 @@ import { DismissableLayer } from '@radix-ui/react-dismissable-layer';
 import { FocusScope } from '@radix-ui/react-focus-scope';
 import { Presence } from '@radix-ui/react-presence';
 import {
-  type CSSProperties,
   type HTMLAttributes,
   type Ref,
   useCallback,
@@ -45,7 +44,6 @@ export function PopoverContent({
   const nodeRef = useRef<HTMLDivElement | null>(null);
   const [contentNode, setContentNode] = useState<HTMLDivElement | null>(null);
   const [position, setPosition] = useState<FloatingPosition | null>(null);
-  const [visible, setVisible] = useState(false);
 
   const reposition = useCallback(() => {
     const trigger = triggerRef.current;
@@ -63,25 +61,19 @@ export function PopoverContent({
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: contentNode re-runs this once Presence actually mounts the div, one render after `open` flips
   useLayoutEffect(() => {
-    if (!open) {
-      setVisible(false);
-      return;
-    }
-    reposition();
+    if (open) reposition();
   }, [open, reposition, contentNode]);
 
   useEffect(() => {
-    if (!open || !position) return;
-    const raf = requestAnimationFrame(() => setVisible(true));
+    if (!open) return;
     const onScrollOrResize = () => reposition();
     window.addEventListener('resize', onScrollOrResize);
     window.addEventListener('scroll', onScrollOrResize, true);
     return () => {
-      cancelAnimationFrame(raf);
       window.removeEventListener('resize', onScrollOrResize);
       window.removeEventListener('scroll', onScrollOrResize, true);
     };
-  }, [open, position, reposition]);
+  }, [open, reposition]);
 
   return (
     <Portal container={container}>
@@ -112,11 +104,12 @@ export function PopoverContent({
               id={contentId}
               role="dialog"
               data-side={position?.side}
-              className={cn(styles.content, visible && styles['content--visible'], className)}
+              data-state={position ? (open ? 'open' : 'closed') : undefined}
+              className={cn(styles.content, className)}
               style={
                 position
                   ? { top: position.top, left: position.left }
-                  : ({ top: 0, left: 0, visibility: 'hidden' } as CSSProperties)
+                  : { top: 0, left: 0, visibility: 'hidden' }
               }
               {...rest}
             >
